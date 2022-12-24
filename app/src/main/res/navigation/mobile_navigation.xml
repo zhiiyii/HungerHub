@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="my.edu.tarc.hungerhub.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_survey"
+        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragment"
+        android:label="@string/menu_survey" />
+
+    <fragment
+        android:id="@+id/nav_donation"
+        android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment"
+        android:label="@string/menu_donation" />
+    <fragment
+        android:id="@+id/nav_request"
+        android:name="my.edu.tarc.hungerhub.ui.request.RequestFragment"
+        android:label="@string/menu_request" />
+</navigation>

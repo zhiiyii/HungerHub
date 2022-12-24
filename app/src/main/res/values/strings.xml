@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HungerHub</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_survey">Survey</string>
+    <string name="menu_donation">Donation</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone Number</string>
+
+    <string name="menu_request">Request Food</string>
+    <string name="request_heading">Are you finding for food?</string>
+    <string name="request_donation_form">Request Donation Form</string>
+    <string name="address">Address</string>
+    <string name="ic">IC number</string>
+    <string name="income">Household Income</string>
+    <string name="reason">Why do you need food?</string>
+</resources>
