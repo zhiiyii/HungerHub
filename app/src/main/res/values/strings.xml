@@ -14,16 +14,31 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="phone">Phone Number</string>
-
-    <string name="menu_request">Request Food</string>
-    <string name="request_heading">Are you finding for food?</string>
-    <string name="request_donation_form">Request Donation Form</string>
     <string name="address">Address</string>
-    <string name="ic">IC number</string>
-    <string name="income">Household Income</string>
-    <string name="reason">Why do you need food?</string>
 
-    <string name="Survey_text">Survey</string>
+    <!--  Request Fragment  -->
+    <string name="menu_request">Request Food</string>
+    <string name="white_bg">White Background</string>
+    <string name="request_donation_form">Request Donation Form</string>
+    <string name="ic">IC Number *</string>
+    <string name="income">Household Income *</string>
+    <string name="reason">Why do you have insufficient food? *</string>
+    <string name="marital_status">Marital Status *</string>
+    <string name="single">Single</string>
+    <string name="married">Married</string>
+    <string name="widowed">Widowed</string>
+    <string name="divorced">Divorced</string>
+    <string name="job_status">Job Status *</string>
+    <string name="employed">Employed</string>
+    <string name="unemployed">Unemployed</string>
+    <string name="student">Student</string>
+    <string name="upload">Upload</string>
+    <string name="upload_text">Upload proof documents</string>
+    <string name="tnc">I have read and agree the Terms and Conditions.</string>
+    <string name="submit">Submit</string>
+
+    <!--  Survey Fragment  -->
+    <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->
     <string name="Height">Height (cm)</string>
     <string name="Weight">Weight (kg)</string>
     <string name="BMI_calc">BMI calculator</string>
@@ -35,7 +50,6 @@
     <string name="Status">Status: </string>
     <string name="result">Your BMI is </string>
     <string name="fragment_name">com.example.MyFragment</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

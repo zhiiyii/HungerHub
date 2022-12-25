@@ -9,36 +9,274 @@
     <ImageView
         android:id="@+id/imageViewBowl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/menu_request"
+        android:scaleType="centerCrop"
         android:src="@drawable/hunger_bowl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageViewWhite"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/abeezee_italic"
-        android:text="@string/request_heading"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:adjustViewBounds="true"
+        android:alpha="0.5"
+        android:contentDescription="@string/white_bg"
+        android:src="@drawable/white_background"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewBowl"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewBowl" />
+        app:layout_constraintEnd_toEndOf="@+id/imageViewBowl"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewBowl" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/abeezee_regular"
+        android:fontFamily="@font/abeezee_italic"
         android:text="@string/request_donation_form"
-        android:textSize="24sp"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewBowl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewBowl" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/reason"
+        android:textSize="@dimen/font_size_label"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextIncome" />
+
+    <EditText
+        android:id="@+id/editTextReason"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/edit_text_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/income"
+        android:textSize="@dimen/font_size_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextIC" />
+
+    <EditText
+        android:id="@+id/editTextIncome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="@dimen/edit_text_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/ic"
+        android:textSize="@dimen/font_size_label"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupJob" />
+
+    <EditText
+        android:id="@+id/editTextIC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="000000-00-0000"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/edit_text_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/job_status"
+        android:textSize="@dimen/font_size_label"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupMarital" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/marital_status"
+        android:textSize="@dimen/font_size_label"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewBowl" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupMarital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <RadioButton
+            android:id="@+id/radioButtonSingle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/single" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMarried"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/married" />
+
+        <RadioButton
+            android:id="@+id/radioButtonWidowed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/widowed" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDivorced"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/divorced" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroupJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <RadioButton
+            android:id="@+id/radioButtonEmployed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/employed" />
+
+        <RadioButton
+            android:id="@+id/radioButtonUnemployed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/unemployed" />
+
+        <RadioButton
+            android:id="@+id/radioButtonStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_radio_button"
+            android:fontFamily="@font/abeezee_regular"
+            android:text="@string/student" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/submit"
+        android:textSize="16sp"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/upload"
+        android:src="@drawable/ic_baseline_upload_file_36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/upload_text"
+        android:fontFamily="@font/abeezee_italic"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload" />
+
+    <CheckBox
+        android:id="@+id/checkBoxTnc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/tnc"
+        android:fontFamily="@font/abeezee_italic"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
