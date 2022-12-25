@@ -22,4 +22,20 @@
     <string name="ic">IC number</string>
     <string name="income">Household Income</string>
     <string name="reason">Why do you need food?</string>
+
+    <string name="Survey_text">Survey</string>
+    <string name="Height">Height (cm)</string>
+    <string name="Weight">Weight (kg)</string>
+    <string name="BMI_calc">BMI calculator</string>
+    <string name="calc">Calculate</string>
+    <string name="reset">Reset</string>
+    <string name="underweight">Underweight</string>
+    <string name="Healthy">Healthy</string>
+    <string name="Overweight">Overweight</string>
+    <string name="Status">Status: </string>
+    <string name="result">Your BMI is </string>
+    <string name="fragment_name">com.example.MyFragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
