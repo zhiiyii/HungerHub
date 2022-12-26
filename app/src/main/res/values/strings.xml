@@ -20,7 +20,6 @@
     <string name="menu_request">Request Food</string>
     <string name="white_bg">White Background</string>
     <string name="request_donation_form">Request Donation Form</string>
-    <string name="ic">IC Number *</string>
     <string name="income">Household Income *</string>
     <string name="reason">Why do you have insufficient food? *</string>
     <string name="marital_status">Marital Status *</string>
@@ -34,8 +33,26 @@
     <string name="student">Student</string>
     <string name="upload">Upload</string>
     <string name="upload_text">Upload proof documents</string>
-    <string name="tnc">I have read and agree the Terms and Conditions.</string>
+    <string name="agree_tnc">I have read and agree the</string>
+    <string name="tnc">Terms and Conditions</string>
+    <string name="tnc_underlined"><u>Terms and Conditions</u></string>
+    <string name="close">Close</string>
+    <string name="agree">Agree</string>
     <string name="submit">Submit</string>
+    <string name="marital_required">Please choose a marital status</string>
+    <string name="job_required">Please choose a job status</string>
+    <string name="value_required">Value Required</string>
+    <string name="invalid_input">Invalid Input</string>
+    <string name="tnc_required">Please read and accept the Terms and Conditions.</string>
+    <string name="tnc_content">
+        Privacy Policy\n==============\n\nLast updated: December 26, 2022\n\n
+        Personal Data\n~~~~~~~~~~~~~\n\n By agreeing these Terms and Conditions, We may submit Your certain personally identifiable information provided that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:\n\n
+          * Email address\n  * First name and last name\n  * IC number\n  * Phone number\n   * Address\n\n
+        Use of Your Personal Data\n-------------------------\nThe Company may use Personal Data for the following purposes:\n\n  * For the performance of a contract: the development, compliance and undertaking of the purchase contract for the products, items or request You have of any other contract with Us through the Service.
+        \n\n  * To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application\'s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates,
+        when necessary or reasonable for their implementation.\n\n  * To manage Your requests: To attend and manage Your requests to Us.\n\nSecurity of Your Personal Data\n---------------------------\n\nThe security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method
+        of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.\n\n
+    </string>
 
     <!--  Survey Fragment  -->
     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->
@@ -51,5 +68,4 @@
     <string name="result">Your BMI is </string>
     <string name="fragment_name">com.example.MyFragment</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>
