@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout_request"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.request.RequestFragment">
@@ -30,7 +31,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageViewBowl"
         app:layout_constraintEnd_toEndOf="@+id/imageViewBowl"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageViewBowl" />
+        app:layout_constraintStart_toStartOf="@+id/imageViewBowl"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView2"
@@ -69,7 +71,8 @@
         android:minHeight="@dimen/edit_text_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView4"
@@ -95,7 +98,8 @@
         android:minHeight="@dimen/edit_text_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView6"
@@ -256,7 +260,7 @@
         android:id="@+id/textViewTnc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -363,12 +367,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/brown_dark"
-                android:text="Agree"
+                android:fontFamily="@font/abeezee_regular"
+                android:text="@string/agree"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/abeezee_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -378,6 +382,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:backgroundTint="@color/brown"
+                android:contentDescription="@string/close"
                 android:src="@drawable/ic_baseline_close_24"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewTncTitle"
                 app:layout_constraintEnd_toEndOf="parent"
