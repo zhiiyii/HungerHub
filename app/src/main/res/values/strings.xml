@@ -73,4 +73,13 @@
     <string name="fragment_name">com.example.MyFragment</string>
     <string name="next">Next</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Donation Fragment-->
+    <string name="food_donation">Food Donation</string>
+    <string name="donation_amount">Amount of donation:</string>
+    <string name="donation_50">50</string>
+    <string name="donation_100">100</string>
+    <string name="donation_500">500</string>
+    <string name="donation_1000">1000</string>
+    <string name="donation_details">Donation Details</string>
 </resources>
