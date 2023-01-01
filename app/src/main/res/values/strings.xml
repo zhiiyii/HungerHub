@@ -82,4 +82,45 @@
     <string name="donation_500">500</string>
     <string name="donation_1000">1000</string>
     <string name="donation_details">Donation Details</string>
+
+    <!-- zhi hong part -->
+    <string name="started_title">Hello You!</string>
+    <string name="started_sub_title">
+        Nice to meet you, come join our application!
+        <br><b>Login</b> If you already have an account.</br>
+        <br><b>Register</b> To get started with the application.</br>
+    </string>
+    <string name="btn_register">Register</string>
+    <string name="btn_login">Login</string>
+    <string name="login_title">Login to app</string>
+    <string name="login_sub_title">
+        <font color="00C988"><b>Login</b></font>
+        if you already have an account.
+    </string>
+    <string name="login_email">Your email or username</string>
+    <string name="login_password">Your password</string>
+    <string name="login_forgot_pw">Forgot Password?</string>
+    <string name="login_havent_account">
+        I don\'t have an account
+        <font color="#00C988"><b>Register</b></font>
+    </string>
+    <string name="register_title">Create an account</string>
+    <string name="register_sub_title">
+        <font color="00C988"><b>Register</b></font>
+        to get started with the app.
+    </string>
+    <string name="register_fullname">Your fullname</string>
+    <string name="register_email">Your email</string>
+    <string name="register_comfirm_password">Comfirm Password</string>
+    <string name="register_have_account">
+        I already have an account
+        <font color="#00C988"><b>Login</b></font>
+    </string>
+    <string name="home_title">Hello World</string>
+    <string name="home_sub_title">Welcome to home</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="illustration_img">illustration_image</string>
+    <string name="illustration_image">illustration_img</string>
+    <string name="started_text">Welcome </string>
+    <string name="register_username">Your username</string>
 </resources>
