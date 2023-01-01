@@ -2,7 +2,6 @@ package my.edu.tarc.hungerhub.ui.request
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
@@ -14,10 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
 import java.util.*
+
 
 class RequestFragment : Fragment() {
 
@@ -60,7 +61,7 @@ class RequestFragment : Fragment() {
 
         binding.buttonSubmit.setOnClickListener {
             // check empty fields
-            if (binding.radioGroupMarital.checkedRadioButtonId == -1) {
+            if (binding.spinnerMarital.selectedItemPosition == 0) {
                 Snackbar.make(this.requireView(), getString(R.string.marital_required), Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -76,6 +77,16 @@ class RequestFragment : Fragment() {
                 binding.editTextReason.error = getString(R.string.value_required)
                 return@setOnClickListener
             }
+            if (binding.editTextPax.text.toString().isEmpty()) {
+                binding.editTextPax.error = getString(R.string.value_required)
+                return@setOnClickListener
+            }
+
+            // validate pax amount
+            if (binding.editTextPax.text.toString().toInt() > 10) {
+                binding.editTextPax.error = getString(R.string.invalid_pax)
+                return@setOnClickListener
+            }
 
             // check agreement of TNC
             if (!binding.checkBoxTnc.isChecked) {
@@ -89,6 +100,7 @@ class RequestFragment : Fragment() {
             builder.setMessage(R.string.dialog_message)
             builder.setIcon(R.drawable.alert)
 
+            // TODO: maybe 1 time a week?
             // press submit in dialog
             builder.setPositiveButton(R.string.submit) { _, _ ->
                 /*
@@ -127,26 +139,21 @@ class RequestFragment : Fragment() {
                 val format = SimpleDateFormat(" d MMM yyyy HH:mm:ss ")
                 val time = format.format(calendar.time)
 
-                // TODO: test date and time display
-                binding.textView5.text = time
-
                 val request = Request(
-                    binding.radioGroupMarital.toString(),
-                    binding.radioGroupJob.toString(),
+                    binding.spinnerMarital.selectedItem.toString(),
+                    binding.radioGroupJob.checkedRadioButtonId.toString(), //TODO: bug
                     binding.editTextIncome.text.toString().toInt(),
                     binding.editTextReason.text.toString(),
                     binding.editTextPax.text.toString().toInt(),
                     time
                 )
 
-                // MainActivity.contactList.add(contact)
                 requestViewModel.insert(request)
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()
 
-                // TODO: navigate up to home page
-                //findNavController().navigateUp()
+                findNavController().navigateUp()
             }
 
             // press cancel in dialog

@@ -5,12 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Request::class), version = 1, exportSchema = false)
+@Database(entities = [Request::class], version = 1, exportSchema = false)
 abstract class RequestDatabase: RoomDatabase() {
     abstract fun requestDao(): RequestDao
 
     companion object {
-        // Singleton prevents multiple instance of the database opening at the same time
         @Volatile // can be destroyed, uninstall app, data destroyed
         private var INSTANCE: RequestDatabase? = null
 
