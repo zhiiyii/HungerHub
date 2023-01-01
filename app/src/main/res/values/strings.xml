@@ -31,7 +31,8 @@
     <string name="unemployed">Unemployed</string>
     <string name="student">Student</string>
     <string name="income">Household Income *</string>
-    <string name="reason">Why do you have insufficient food? *</string>
+    <string name="reason_food">Why do you have insufficient food? *</string>
+    <string name="pax">Pax *</string>
     <string name="agree_tnc">I have read and agree the</string>
     <string name="tnc">Terms and Conditions</string>
     <string name="tnc_underlined"><u>Terms and Conditions</u></string>
@@ -57,6 +58,15 @@
     <string name="form_submitted">Form submitted</string>
     <string name="action_cancelled">Action cancelled</string>
     <string name="form_pref">my.edu.tarc.hungerhub.ui.request.Form</string>
+    <string name="submit_time">Form Submit Time</string>
+
+    <!--  Request Status Fragment  -->
+    <string name="request_status">Request Status</string>
+    <string name="reason">Reason</string>
+    <string name="date">Date</string>
+    <string name="status">Status</string>
+    <string name="add_request">Add Request</string>
+    <string name="pending">Pending</string>
 
     <!--  Survey Fragment  -->
     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->
@@ -74,7 +84,7 @@
     <string name="next">Next</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--    Donation Fragment-->
+    <!--  Donation Fragment  -->
     <string name="food_donation">Food Donation</string>
     <string name="donation_amount">Amount of donation:</string>
     <string name="donation_50">50</string>
