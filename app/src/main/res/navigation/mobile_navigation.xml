@@ -30,8 +30,13 @@
     </fragment>
     <fragment
         android:id="@+id/nav_request"
-        android:name="my.edu.tarc.hungerhub.ui.request.RequestFragment"
-        android:label="@string/menu_request" />
+        android:name="my.edu.tarc.hungerhub.ui.request.RequestStatusFragment"
+        android:label="@string/request_status"
+        tools:layout="@layout/fragment_request_status" >
+        <action
+            android:id="@+id/action_nav_request_to_RequestFragment"
+            app:destination="@id/RequestFragment" />
+    </fragment>
     <fragment
         android:id="@+id/surveyFragment2"
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragment2"
@@ -45,4 +50,13 @@
         android:id="@+id/nav_donation2"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment2"
         android:label="DonationFragment2" />
+    <fragment
+        android:id="@+id/RequestFragment"
+        android:name="my.edu.tarc.hungerhub.ui.request.RequestFragment"
+        android:label="@string/menu_request"
+        tools:layout="@layout/fragment_request" >
+        <action
+            android:id="@+id/action_RequestFragment_to_nav_request"
+            app:destination="@id/nav_request" />
+    </fragment>
 </navigation>
