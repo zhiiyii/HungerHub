@@ -57,7 +57,17 @@ class SurveyFragment : Fragment() {
         }
 
         binding.buttonNav2.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_survey_to_surveyFragment2)
+            val heightStr = binding.editTextNumberHeight
+            val weightStr = binding.editTextNumberWeight
+            if(heightStr.text.isEmpty()){
+                heightStr.setError(getString(R.string.value_required))
+                return@setOnClickListener
+            }
+            if(weightStr.text.isEmpty()) {
+                weightStr.setError(getString(R.string.value_required))
+                return@setOnClickListener
+            }
+            findNavController().navigate(R.id.action_nav_survey_to_surveyFragmentGeneral)
         }
 
 
@@ -68,6 +78,10 @@ class SurveyFragment : Fragment() {
             binding.textViewStatus.text = ""
         }
     }
+
+
+
+
 
 
     private fun messages(bmi:Double):String{
@@ -84,4 +98,5 @@ class SurveyFragment : Fragment() {
         _binding = null
     }
 }
+
 

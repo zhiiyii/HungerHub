@@ -82,16 +82,31 @@
     <string name="result">Your BMI is </string>
     <string name="fragment_name">com.example.MyFragment</string>
     <string name="next">Next</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--  Donation Fragment  -->
-    <string name="food_donation">Food Donation</string>
-    <string name="donation_amount">Amount of donation:</string>
-    <string name="donation_50">50</string>
-    <string name="donation_100">100</string>
-    <string name="donation_500">500</string>
-    <string name="donation_1000">1000</string>
-    <string name="donation_details">Donation Details</string>
+    <string name="LackIntake">Lack of food intake</string>
+    <string name="selectDescription">Kindly select which section of food you are lacked of: </string>
+    <string name="wheat">Bread, Rice, Noodles, Cereal products</string>
+    <string name="Fruits_vege">Fruits and Vegetables</string>
+    <string name="Meat">Fish, Meat, Egg, Milk products</string>
+    <string name="fats">Fats, Oil, Sugar, Salt</string>
+    <string name="foodPyramidInfo"></string>
+    <string name="general_survey">Survey</string>
+    <string name="How_many_people">How many members are there in your household?</string>
+    <string name="How_many_working">How many members are working currently in your household?</string>
+    <string name="How_many_meals">How many meals do you and your family consume daily?</string>
+    <string name="family_can_cover">Is your family income able to cover daily food expenses?</string>
+    <string name="one_to_three">1 - 3</string>
+    <string name="four_to_six">4 - 6</string>
+    <string name="seven_to_nine">7 - 9</string>
+    <string name="ten_or_above">10 or above</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four_above">4 or above</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="rateHygiene">Rate 1-5 of how satisfied are you with the hygiene of your living environment</string>
+    <string name="reasonable_price">Do you think the food price in your area is reasonable/affordable?</string>
+    <string name="required_select">You are required to select a value before proceed</string>
 
     <!-- zhi hong part -->
     <string name="started_title">Hello You!</string>
@@ -129,4 +144,14 @@
     <string name="illustration_image">illustration_img</string>
     <string name="started_text">Welcome </string>
     <string name="register_username">Your username</string>
+
+
+    <!--  Donation Fragment  -->
+    <string name="food_donation">Food Donation</string>
+    <string name="donation_amount">Amount of donation:</string>
+    <string name="donation_50">50</string>
+    <string name="donation_100">100</string>
+    <string name="donation_500">500</string>
+    <string name="donation_1000">1000</string>
+    <string name="donation_details">Donation Details</string>
 </resources>
