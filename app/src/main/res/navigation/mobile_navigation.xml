@@ -40,7 +40,15 @@
     <fragment
         android:id="@+id/nav_donation2"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment2"
-        android:label="DonationFragment2" />
+        android:label="DonationFragment2" >
+        <action
+            android:id="@+id/action_nav_donation2_to_donationFragment3"
+            app:destination="@id/donationFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/donationFragment3"
+        android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment3"
+        android:label="DonationFragment3" />
     <fragment
         android:id="@+id/surveyFragmentGeneral"
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentGeneral"
