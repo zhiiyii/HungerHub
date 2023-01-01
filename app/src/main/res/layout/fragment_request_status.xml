@@ -5,7 +5,8 @@
     android:id="@+id/constraintLayout_requestStatus"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.request.RequestStatusFragment" >
+    tools:context=".ui.request.RequestStatusFragment"
+    android:background="@color/brown_lightest">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,5 +29,6 @@
         android:contentDescription="@string/add_request"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,83 +48,31 @@
         app:layout_constraintTop_toTopOf="@+id/imageViewBowl" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/abeezee_regular"
-        android:text="@string/reason_food"
+        android:text="@string/marital_status"
         android:textSize="@dimen/font_size_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIncome" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl" />
 
-    <EditText
-        android:id="@+id/editTextReason"
+    <Spinner
+        android:id="@+id/spinnerMarital"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="12dp"
         android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="@dimen/edit_text_height"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/pax"
-        android:textSize="@dimen/font_size_label"
+        android:entries="@array/marital_choice"
         android:fontFamily="@font/abeezee_regular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
-
-    <EditText
-        android:id="@+id/editTextPax"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/abeezee_regular"
-        android:text="@string/income"
+        android:minHeight="48dp"
         android:textSize="@dimen/font_size_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJob" />
-
-    <EditText
-        android:id="@+id/editTextIncome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="number"
-        android:minHeight="@dimen/edit_text_height"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView6"
@@ -132,69 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/abeezee_regular"
         android:text="@string/job_status"
         android:textSize="@dimen/font_size_label"
-        android:fontFamily="@font/abeezee_regular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupMarital" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/marital_status"
-        android:textSize="@dimen/font_size_label"
-        android:fontFamily="@font/abeezee_regular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupMarital"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-        <RadioButton
-            android:id="@+id/radioButtonSingle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/single" />
-
-        <RadioButton
-            android:id="@+id/radioButtonMarried"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/married" />
-
-        <RadioButton
-            android:id="@+id/radioButtonWidowed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/widowed" />
-
-        <RadioButton
-            android:id="@+id/radioButtonDivorced"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/divorced" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/spinnerMarital" />
 
     <RadioGroup
         android:id="@+id/radioGroupJob"
@@ -232,6 +122,87 @@
             android:paddingEnd="@dimen/padding_radio_button"
             android:text="@string/student" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/income"
+        android:textSize="@dimen/font_size_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupJob" />
+
+    <EditText
+        android:id="@+id/editTextIncome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="@dimen/edit_text_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/reason_food"
+        android:textSize="@dimen/font_size_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextIncome" />
+
+    <EditText
+        android:id="@+id/editTextReason"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="@dimen/edit_text_height"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/pax"
+        android:textSize="@dimen/font_size_label"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
+
+    <EditText
+        android:id="@+id/editTextPax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
         android:id="@+id/buttonSubmit"
@@ -278,6 +249,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/abeezee_italic"
         android:text="@string/agree_tnc"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -293,7 +265,7 @@
         android:gravity="center_vertical"
         android:minHeight="48dp"
         android:text="@string/tnc_underlined"
-        android:textSize="@dimen/font_size_label"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBoxTnc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBoxTnc"
@@ -414,15 +386,5 @@
                 app:layout_constraintTop_toTopOf="@+id/textViewTncTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,18 +21,22 @@
     <!--  Request Fragment  -->
     <string name="white_bg">White Background</string>
     <string name="request_donation_form">Request Donation Form</string>
-    <string name="marital_status">Marital Status *</string>
-    <string name="single">Single</string>
-    <string name="married">Married</string>
-    <string name="widowed">Widowed</string>
-    <string name="divorced">Divorced</string>
-    <string name="job_status">Job Status *</string>
+    <string name="marital_status">Marital Status</string>
+    <string-array name="marital_choice">
+        <item>Please choose a status</item>
+        <item>Single</item>
+        <item>Together</item>
+        <item>Married</item>
+        <item>Widowed</item>
+        <item>Divorced</item>
+    </string-array>
+    <string name="job_status">Job Status</string>
     <string name="employed">Employed</string>
     <string name="unemployed">Unemployed</string>
     <string name="student">Student</string>
-    <string name="income">Household Income *</string>
-    <string name="reason_food">Why do you have insufficient food? *</string>
-    <string name="pax">Pax *</string>
+    <string name="income">Household Income</string>
+    <string name="reason_food">Why do you have insufficient food?</string>
+    <string name="pax">Pax</string>
     <string name="agree_tnc">I have read and agree the</string>
     <string name="tnc">Terms and Conditions</string>
     <string name="tnc_underlined"><u>Terms and Conditions</u></string>
@@ -42,6 +46,7 @@
     <string name="marital_required">Please choose a marital status</string>
     <string name="job_required">Please choose a job status</string>
     <string name="value_required">Value Required</string>
+    <string name="invalid_pax">Maximum Pax is 10</string>
     <string name="tnc_required">Please read and accept the Terms and Conditions.</string>
     <string name="tnc_content">
         Privacy Policy\n==============\n\nLast updated: December 26, 2022\n\n
@@ -94,9 +99,9 @@
     <string name="How_many_working">How many members are working currently in your household?</string>
     <string name="How_many_meals">How many meals do you and your family consume daily?</string>
     <string name="family_can_cover">Is your family income able to cover daily food expenses?</string>
-    <string name="one_to_three">1 - 3</string>
-    <string name="four_to_six">4 - 6</string>
-    <string name="seven_to_nine">7 - 9</string>
+    <string name="one_to_three">1 – 3</string>
+    <string name="four_to_six">4 – 6</string>
+    <string name="seven_to_nine">7 – 9</string>
     <string name="ten_or_above">10 or above</string>
     <string name="one">1</string>
     <string name="two">2</string>
