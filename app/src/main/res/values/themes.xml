@@ -65,5 +65,6 @@
     <style name="TextInputEditText" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:background">@drawable/bg_text_feild</item>
         <item name="android:fontFamily">@font/abeezee_regular</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>
