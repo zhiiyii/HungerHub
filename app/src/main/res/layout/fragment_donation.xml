@@ -20,14 +20,14 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="408dp"
+        android:layout_width="417dp"
         android:layout_height="195dp"
         android:src="@drawable/food_donation5"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-23dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-19dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewDonationAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -44,53 +44,78 @@
         app:layout_constraintGuide_begin="35dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="147dp"
-        android:layout_height="120dp"
+        android:id="@+id/buttonDonation50"
+        android:layout_width="325dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/donation_50"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonationAmount" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="147dp"
-        android:layout_height="120dp"
+        android:id="@+id/buttonDonation500"
+        android:layout_width="325dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:text="@string/donation_500"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDonation100" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="147dp"
-        android:layout_height="120dp"
+        android:id="@+id/buttonDonation1000"
+        android:layout_width="325dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/donation_1000"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDonation500" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="147dp"
-        android:layout_height="120dp"
+        android:id="@+id/buttonDonation100"
+        android:layout_width="325dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/donation_100"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDonation50" />
 
     <Button
         android:id="@+id/buttonSubmitDonation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/submit"
+        android:layout_marginTop="10dp"
+        android:text="@string/next"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDonationPrice" />
 
+    <TextView
+        android:id="@+id/textViewDonationPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/enter_price_manual"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDonation1000" />
+
+    <EditText
+        android:id="@+id/editTextDonationPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonationPrice"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

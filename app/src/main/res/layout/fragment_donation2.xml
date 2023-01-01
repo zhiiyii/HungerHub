@@ -5,16 +5,161 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="156dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="172dp"
-        android:text="@string/donation_details"
+    <ImageView
+        android:id="@+id/imageViewMaster"
+        android:layout_width="59dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewVisa"
+        app:layout_constraintStart_toEndOf="@+id/imageViewVisa"
+        app:layout_constraintTop_toTopOf="@+id/imageViewVisa"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/mastercard_payment" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="38dp" />
+
+    <EditText
+        android:id="@+id/editTextCardNumber"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCardNumber"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewCardExpiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/card_expiry_date"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCardHolderName" />
+
+    <EditText
+        android:id="@+id/editTextCardHolderName"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editTextCVC"
+        android:layout_width="98dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageViewVisa"
+        android:layout_width="58dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewCardNumber"
+        app:layout_constraintStart_toEndOf="@+id/textViewCardNumber"
+        app:srcCompat="@drawable/visa_payment" />
+
+    <TextView
+        android:id="@+id/textViewCardNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/bank_card_num"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPayment" />
+
+    <Spinner
+        android:id="@+id/spinnerCardExpiryYear"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:entries="@array/year_group"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardExpiryMonth"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCardExpiryMonth"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewPayment"
+        android:layout_width="279dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/donation_payment"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="/"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardExpiryMonth"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCardExpiryMonth"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCardExpiryMonth"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/card_CVC"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCardExpiryMonth" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/card_holder_name"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCardNumber" />
+
+    <Button
+        android:id="@+id/buttonDonate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/donate"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCVC" />
+
+    <Spinner
+        android:id="@+id/spinnerCardExpiryMonth"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:entries="@array/month_group"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCardExpiry" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

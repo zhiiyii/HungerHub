@@ -148,10 +148,49 @@
 
     <!--  Donation Fragment  -->
     <string name="food_donation">Food Donation</string>
-    <string name="donation_amount">Amount of donation:</string>
+    <string name="donation_amount">Enter donation amount: </string>
     <string name="donation_50">50</string>
     <string name="donation_100">100</string>
     <string name="donation_500">500</string>
     <string name="donation_1000">1000</string>
     <string name="donation_details">Donation Details</string>
+    <string name="donation_payment">Payment</string>
+    <string name="enter_price_manual">Or enter price manually: </string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">MasterCard</string>
+    <string name="bank_card_num">Card Number</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="card_expiry_date">Card Expiry Date</string>
+    <string name="card_CVC">CVC/CVV/CID</string>
+    <string name="donate">Donate</string>
+    <string name="date_picker">Choose Date</string>
+    <string name="length_error">Length error</string>
+    <string name="invalid_format">Invalid Format</string>
+    <string-array name="month_group">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="year_group">
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+    </string-array>
 </resources>
