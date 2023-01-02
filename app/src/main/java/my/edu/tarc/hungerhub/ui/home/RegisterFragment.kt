@@ -30,36 +30,69 @@ class RegisterFragment : Fragment() {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         return binding.root
-
-        binding.textView.setOnClickListener{
-            findNavController().navigate(R.id.action_nav_home_to_loginFragment)
         }
-        firebaseAuth = FirebaseAuth.getInstance()
 
+    override fun onStart() {
+        super.onStart()
         binding.btnRegister.setOnClickListener {
-            val email = binding.emailEt.text.toString()
-            val pass = binding.passET.text.toString()
-            val comfirmPass = binding.confirmPassEt.text.toString()
+            firebaseAuth = FirebaseAuth.getInstance()
+            val email = binding.editTextRegisterEmail.text.toString()
+            val state = binding.editTextRegisterState.text.toString()
+            val pass = binding.editTextRegisterPassword.text.toString()
+            val comfirmPass = binding.editTextRegisterComfirmPassword.text.toString()
 
-            if(email.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
+            if (email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
                 if (pass == comfirmPass) {
-
-                    firebaseAuth.createUserWithEmailAndPassword(email , pass).addOnCompleteListener{
-                        if(it.isSuccessful){
+                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
+                        if (it.isSuccessful) {
                             findNavController().navigate(R.id.action_nav_home_to_loginFragment)
-                        }else{
-                            Toast.makeText(requireActivity(), it.exception.toString(), Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(
+                                requireActivity(),
+                                it.exception.toString(),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 } else {
-                    Toast.makeText(requireActivity(), "Password is not matching", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireActivity(), "Password is not matching", Toast.LENGTH_LONG)
+                        .show()
                 }
-            }else{
-                Toast.makeText(requireActivity(), "Empty Fields Are not Allowed!!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    requireActivity(),
+                    "Empty Fields Are not Allowed!!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+                }
+                if (binding.editTextRegisterFullname.text.isEmpty()) {
+                    binding.editTextRegisterFullname.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterIC.text.isEmpty()) {
+                    binding.editTextRegisterIC.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterPhoneNo.text.isEmpty()) {
+                    binding.editTextRegisterPhoneNo.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterEmail.text.isEmpty()) {
+                    binding.editTextRegisterEmail.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterAddress.text.isEmpty()) {
+                    binding.editTextRegisterAddress.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterState.text.isEmpty()) {
+                    binding.editTextRegisterState.setError(getString(R.string.emailrequired))
+                }
+                if (binding.editTextRegisterPostCode.text.isEmpty()) {
+                    binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
+                }
+                if (binding.Recipient.text.isEmpty() || binding.Donor.text.isEmpty()) {
+                    binding.Recipient.setError(getString(R.string.emailrequired))
                 }
             }
         }
-    }
+
 
 
 

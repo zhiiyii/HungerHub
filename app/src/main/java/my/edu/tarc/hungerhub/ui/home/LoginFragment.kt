@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        binding.buttonSignUp.setOnClickListener{
+        binding.buttonSignIn.setOnClickListener{
             if(binding.editTextLogInEmail.text.isEmpty()){
                 binding.editTextLogInEmail.setError(getString(R.string.emailrequired))
                 return@setOnClickListener
@@ -48,17 +48,14 @@ class LoginFragment : Fragment() {
             if(binding.editTextLogInEmail.text.toString() == email && binding.editTextLogInPassword.text.toString() == password ){
                 val snack = Snackbar.make(it,"Login Success!", Snackbar.LENGTH_LONG)
                 snack.show()
-                //TODO: navigate to next fragment
+                findNavController().navigate(R.id.action_nav_home_to_loginFragment)
             }else{
                 val snack = Snackbar.make(it,"Invalid email/Password!", Snackbar.LENGTH_LONG)
                 snack.show()
 
             }
         }
-
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
