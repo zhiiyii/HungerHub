@@ -122,7 +122,7 @@
     <string name="btn_register">Register</string>
     <string name="btn_login">Login</string>
     <string name="login_title">Login to app</string>
-    <string name="login_sub_title">
+    <string name="login_sub_title">\n
         <font color="00C988"><b>Login</b></font>
         if you already have an account.
     </string>
@@ -198,4 +198,7 @@
         <item>31</item>
         <item>32</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_address">Address</string>
 </resources>

@@ -13,7 +13,27 @@
         android:theme="@style/Theme.HungerHub"
         tools:targetApi="31">
         <activity
-            android:name=".ui.home.register_activity"
+            android:name=".ui.home.HomeFragment"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.home.LoginFragment"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.home.RegisterFragment"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -24,11 +44,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.HungerHub.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
