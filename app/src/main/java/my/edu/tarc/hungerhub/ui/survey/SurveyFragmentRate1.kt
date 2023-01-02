@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyGeneral4Binding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyRate1Binding
@@ -14,6 +18,12 @@ import my.edu.tarc.hungerhub.databinding.FragmentSurveyRate1Binding
 class SurveyFragmentRate1 : Fragment() {
     private var _binding: FragmentSurveyRate1Binding? = null
     private val binding get() = _binding!!
+
+    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
+
+    var database = FirebaseDatabase.getInstance().reference
+    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
 
 
     override fun onCreateView(
@@ -44,6 +54,12 @@ class SurveyFragmentRate1 : Fragment() {
             }
             findNavController().navigate(R.id.action_surveyFragmentRate1_to_surveyFragmentRate2)
         }
+
+        binding.ratingBar.setOnRatingBarChangeListener(RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            // Store the rating value in the Firebase Realtime Database
+            dataRef.child("RatingHygieneLivingEnvironment").setValue(rating)
+            //dataRef.setValue(rating)
+        })
 
 
     }

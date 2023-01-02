@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyGeneral2Binding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyLackBinding
@@ -15,6 +19,12 @@ class SurveyFragmentGeneral2 : Fragment() {
 
     private var _binding: FragmentSurveyGeneral2Binding? = null
     private val binding get() = _binding!!
+
+    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
+
+    var database = FirebaseDatabase.getInstance().reference
+    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
 
 
     override fun onCreateView(
@@ -49,6 +59,22 @@ class SurveyFragmentGeneral2 : Fragment() {
             }
             findNavController().navigate(R.id.action_surveyFragmentGeneral2_to_surveyFragmentGeneral3)
         }
+
+        binding.radioGroupWorking.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            val selectedOption = when (checkedId) {
+                R.id.radioButtonWork1_3 -> "1 - 3"
+                R.id.radioButtonWorking4_6 -> "4 - 6"
+                R.id.radioButtonWorking7_9 -> "7 - 9"
+                R.id.radioButtonWorking10_above -> "10 or above"
+                else -> ""
+            }
+            // Store the selected option in the Firebase Realtime Database
+            dataRef.child("NumberOfMemberWorking").setValue(selectedOption)
+            //dataRef.setValue(selectedOption)
+
+//            val checkedMember = binding.radioGroupMembersInHouse.checkedRadioButtonId.text.toString()
+//            writeNumMemberdata(checkedMember)
+        })
 
     }
 }

@@ -12,8 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.Observable
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentHomeBinding
 import my.edu.tarc.hungerhub.databinding.FragmentRegisterBinding

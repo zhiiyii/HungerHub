@@ -62,11 +62,11 @@
         android:label="fragment_survey_general"
         tools:layout="@layout/fragment_survey_general" >
         <action
-            android:id="@+id/action_surveyFragmentGeneral_to_nav_survey"
-            app:destination="@id/nav_survey" />
-        <action
             android:id="@+id/action_surveyFragmentGeneral_to_surveyFragmentGeneral2"
             app:destination="@id/surveyFragmentGeneral2" />
+        <action
+            android:id="@+id/action_surveyFragmentGeneral_to_nav_survey"
+            app:destination="@id/nav_survey" />
     </fragment>
     <fragment
         android:id="@+id/surveyFragmentGeneral2"

@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyGeneral3Binding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyLackBinding
@@ -14,6 +18,12 @@ import my.edu.tarc.hungerhub.databinding.FragmentSurveyLackBinding
 class SurveyFragmentGeneral3 : Fragment() {
     private var _binding: FragmentSurveyGeneral3Binding? = null
     private val binding get() = _binding!!
+
+    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
+
+    var database = FirebaseDatabase.getInstance().reference
+    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
 
 
     override fun onCreateView(
@@ -48,6 +58,25 @@ class SurveyFragmentGeneral3 : Fragment() {
             }
             findNavController().navigate(R.id.action_surveyFragmentGeneral3_to_surveyFragmentGeneral4)
         }
+
+        binding.radioGroupMeals.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            val selectedOption = when (checkedId) {
+                R.id.radioButtonMealOne -> "1"
+                R.id.radioButtonMealTwo -> "2"
+                R.id.radioButtonMealThree -> "3"
+                R.id.radioButtonMealFour_above -> "4 or above"
+                else -> ""
+            }
+
+            // Store the selected option in the Firebase Realtime Database
+            dataRef.child("NumberOfMealsDaily").setValue(selectedOption)
+            //dataRef.setValue(selectedOption)
+
+//            val checkedMember = binding.radioGroupMembersInHouse.checkedRadioButtonId.text.toString()
+//            writeNumMemberdata(checkedMember)
+
+
+        })
 
 
     }

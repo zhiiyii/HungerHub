@@ -1,26 +1,31 @@
 package my.edu.tarc.hungerhub.ui.survey
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import my.edu.tarc.hungerhub.R
-import my.edu.tarc.hungerhub.databinding.ActivityMainBinding
-import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
-import kotlin.math.pow
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import my.edu.tarc.hungerhub.R
+import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
+
 
 class SurveyFragment : Fragment() {
 
     private var _binding: FragmentSurveyBinding? = null
     private val binding get() = _binding!!
+    //val user = Firebase.auth.currentUser
+
+
+    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
+
+    var database = FirebaseDatabase.getInstance().reference
+    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
+
 
 
     override fun onCreateView(
@@ -34,8 +39,10 @@ class SurveyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+       // var dbRef = FirebaseDatabase.getInstance().getReference("survey_BMI_data")
         // Set up the button click listener
         binding.buttonCalculate.setOnClickListener {
+
             val heightStr = binding.editTextNumberHeight.text.toString()
             val weightStr = binding.editTextNumberWeight.text.toString()
 
@@ -59,6 +66,9 @@ class SurveyFragment : Fragment() {
         binding.buttonNav2.setOnClickListener {
             val heightStr = binding.editTextNumberHeight
             val weightStr = binding.editTextNumberWeight
+            val result = binding.textViewResult.text.toString()
+            val status = binding.textViewStatus.text.toString()
+            //database = FirebaseDatabase.getInstance().getReference("BMI_data")
             if(heightStr.text.isEmpty()){
                 heightStr.setError(getString(R.string.value_required))
                 return@setOnClickListener
@@ -67,9 +77,26 @@ class SurveyFragment : Fragment() {
                 weightStr.setError(getString(R.string.value_required))
                 return@setOnClickListener
             }
-            findNavController().navigate(R.id.action_nav_survey_to_surveyFragmentGeneral)
-        }
+            val height = binding.editTextNumberHeight.text.toString()
+            val weight = binding.editTextNumberWeight.text.toString()
+//            val bmi = binding.textViewResult.text.toString()
+//            val status = binding.textViewStatus.text.toString()
+//            val surveyId = dbRef.push().key!!
+//            val survey = Survey(height,weight,result,status)
+//            dbRef.child(surveyId).setValue(survey)
+//                .addOnCompleteListener{
+//                Toast.makeText(this,"Data inserted", Toast.LENGTH_LONG).show()
+//            }.addOnFailureListener(err ->
+//            Toast.makeText(this,"Error ${err.message}",Toast.LENGTH_LONG))
 
+            //database.child("users").child(currentUser!!.uid).setValue(userData)
+
+            writeBMIdata(height,weight,result,status)
+
+            findNavController().navigate(R.id.action_nav_survey_to_surveyFragmentGeneral)
+//            val intent = Intent(this, activity_survey::class.java)
+//            startActivity(intent)
+        }
 
         binding.buttonReset.setOnClickListener {
             binding.editTextNumberHeight.setText("")
@@ -77,11 +104,13 @@ class SurveyFragment : Fragment() {
             binding.textViewResult.text = ""
             binding.textViewStatus.text = ""
         }
+
     }
 
-
-
-
+    fun writeBMIdata(height:String, weight:String,bmi:String,status:String){
+        val bmiDatas = bmiData(height,weight, bmi, status)
+        dataRef.child("bmi").setValue(bmiDatas)
+    }
 
 
     private fun messages(bmi:Double):String{
