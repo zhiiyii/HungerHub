@@ -13,9 +13,6 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
     private val _requestList = MutableLiveData<List<Request>>()
     var requestList: LiveData<List<Request>> = _requestList
 
-    private val _queryList = MutableLiveData<List<Request>>()
-    var queryList: LiveData<List<Request>> = _queryList
-
     private val requestRepository: RequestRepository
 
     init {
@@ -34,5 +31,9 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
 
     fun filterByDate(date: String): List<Request> {
         return requestRepository.filterByDate(date)
+    }
+
+    fun removeFilter(): List<Request> {
+        return requestRepository.removeFilter()
     }
 }

@@ -10,7 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_survey">Survey</string>
     <string name="menu_donation">Donation</string>
-    <string name="menu_request">Request Food</string>
+    <string name="menu_request">Request Food Form</string>
 
     <!--  Login / Register  -->
     <string name="name">Name</string>
@@ -76,9 +76,10 @@
     <string name="pending">Pending</string>
     <string name="no_record">No record found!</string>
     <string name="filter">Filter</string>
-    <string name="week">By Day</string>
-    <string name="month">By Month</string>
-    <string name="year">By Year</string>
+    <string name="filter_by">Filter By</string>
+    <string name="remove_filter">Remove Filter</string>
+    <string name="remove_filter_msg">Filter Removed</string>
+    <string name="show_record">Showing records in</string>
 
     <!--  Survey Fragment  -->
     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->

@@ -17,4 +17,8 @@ class RequestRepository(private val requestDao: RequestDao) {
     fun filterByDate(date: String): List<Request> {
         return requestDao.filterByDate(date)
     }
+
+    fun removeFilter(): List<Request> {
+        return requestDao.removeFilter()
+    }
 }

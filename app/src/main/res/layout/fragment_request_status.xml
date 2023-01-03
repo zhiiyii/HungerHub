@@ -28,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/status_card" >
-
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,14 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true" />
 
-    <TextView
-        android:id="@+id/textView5"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        app:layout_constraintBottom_toBottomOf="@+id/floatingActionButtonAddForm"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddForm"
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonAddForm"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

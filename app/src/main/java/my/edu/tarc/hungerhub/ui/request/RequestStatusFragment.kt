@@ -1,14 +1,14 @@
 package my.edu.tarc.hungerhub.ui.request
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import my.edu.tarc.hungerhub.R
@@ -18,7 +18,8 @@ import my.edu.tarc.hungerhub.model.RequestViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RequestStatusFragment : Fragment(), MenuProvider {
+
+class RequestStatusFragment: Fragment() {
 
     private var _binding: FragmentRequestStatusBinding? = null
     private val binding get() = _binding!!
@@ -33,21 +34,14 @@ class RequestStatusFragment : Fragment(), MenuProvider {
         return binding.root
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // check for changes of live data
         requestViewModel.requestList.observe(viewLifecycleOwner) {
             requestAdapter.setForm(it)
-
-            if (binding.recyclerViewStatus.adapter?.itemCount == 0) {
-                binding.textViewEmpty.text = getString(R.string.no_record)
-            } else {
-                binding.textViewEmpty.text = ""
-            }
+            checkRecordNum()
         }
 
         with(binding.recyclerViewStatus) {
@@ -59,53 +53,77 @@ class RequestStatusFragment : Fragment(), MenuProvider {
         binding.floatingActionButtonAddForm.setOnClickListener {
             findNavController().navigate(R.id.action_nav_request_to_RequestFragment)
         }
-    }
 
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-//        menu.findItem(R.id.action_filterByDay).isVisible = true
-//        menu.findItem(R.id.action_filterByMonth).isVisible = true
-//        menu.findItem(R.id.action_filterByYear).isVisible = true
-    }
+        binding.floatingActionButtonFilter.setOnClickListener {
+            val builder = AlertDialog.Builder(this.requireContext())
+            builder.setTitle(R.string.filter_by)
+            builder.setIcon(R.drawable.ic_baseline_filter_alt_24)
 
-    @SuppressLint("SimpleDateFormat")
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        val calendar = Calendar.getInstance()
+            val filterBy = arrayOf("Day", "Month", "Year")
+            builder.setItems(filterBy, DialogInterface.OnClickListener { _, which ->
+                val calendar = Calendar.getInstance()
+                val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, month)
+                    calendar.set(Calendar.DAY_OF_MONTH, day)
 
-        if (menuItem.itemId == R.id.action_filterByDay) {
-            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                // set calendar value
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, day)
+                    var dateFormat = ""
+                    when (which) {
+                        0 -> dateFormat = "yyyy/MM/dd"
+                        1 -> dateFormat = "yyyy/MM"
+                        2 -> dateFormat = "yyyy"
+                    }
 
-                val dateFormat = "yyyy/MM/dd"
-                val standardFormat = SimpleDateFormat(dateFormat)
-                val selectedDate = standardFormat.format(calendar.time)
-                val queryList = requestViewModel.filterByDate(selectedDate)
-                requestAdapter.setForm(queryList)
+                    val standardFormat = SimpleDateFormat(dateFormat)
+                    val selectedDate = standardFormat.format(calendar.time)
 
-                if (binding.recyclerViewStatus.adapter?.itemCount == 0) {
-                    binding.textViewEmpty.text = getString(R.string.no_record)
-                } else {
-                    binding.textViewEmpty.text = ""
+                    val queryList = requestViewModel.filterByDate(selectedDate)
+                    requestAdapter.setForm(queryList)
+
+                    Toast.makeText(this.requireContext(), (getString(R.string.show_record) + " " + selectedDate), Toast.LENGTH_SHORT).show()
+
+                    checkRecordNum()
                 }
+
+                this.context?.let {
+                    DatePickerDialog(
+                        it,
+                        dateSetListener,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)
+                    ).show()
+                }
+            })
+
+            builder.setPositiveButton(R.string.remove_filter) { _, _ ->
+                val unfilteredList = requestViewModel.removeFilter()
+                requestAdapter.setForm(unfilteredList)
+                checkRecordNum()
+
+                Toast.makeText(this.requireContext(), R.string.remove_filter_msg, Toast.LENGTH_SHORT).show()
             }
 
-            this.context?.let {
-                DatePickerDialog(
-                    it,
-                    dateSetListener,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-                ).show()
+            builder.setNeutralButton(R.string.cancel) { _, _ ->
+                Toast.makeText(this.requireContext(), R.string.action_cancelled, Toast.LENGTH_SHORT).show()
             }
+
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
-        return true
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun checkRecordNum() {
+        if (binding.recyclerViewStatus.adapter?.itemCount == 0) {
+            binding.textViewEmpty.text = getString(R.string.no_record)
+        } else {
+            binding.textViewEmpty.text = ""
+        }
     }
 }
