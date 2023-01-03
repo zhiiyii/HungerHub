@@ -23,7 +23,7 @@
     <string name="request_donation_form">Request Donation Form</string>
     <string name="marital_status">Marital Status</string>
     <string-array name="marital_choice">
-        <item>Please choose a status</item>
+        <item>Select a choice</item>
         <item>Single</item>
         <item>Together</item>
         <item>Married</item>
@@ -31,9 +31,12 @@
         <item>Divorced</item>
     </string-array>
     <string name="job_status">Job Status</string>
-    <string name="employed">Employed</string>
-    <string name="unemployed">Unemployed</string>
-    <string name="student">Student</string>
+    <string-array name="job_choice">
+        <item>Select a choice</item>
+        <item>Employed</item>
+        <item>Unemployed</item>
+        <item>Student</item>
+    </string-array>
     <string name="income">Household Income</string>
     <string name="reason_food">Why do you have insufficient food?</string>
     <string name="pax">Pax</string>
@@ -62,8 +65,8 @@
     <string name="cancel">Cancel</string>
     <string name="form_submitted">Form submitted</string>
     <string name="action_cancelled">Action cancelled</string>
-    <string name="form_pref">my.edu.tarc.hungerhub.ui.request.Form</string>
-    <string name="submit_time">Form Submit Time</string>
+    <string name="date_format">"yyyy/MM/dd HH:mm:ss"</string>
+    <string name="firebase_req">Requests</string>
 
     <!--  Request Status Fragment  -->
     <string name="request_status">Request Status</string>
@@ -72,6 +75,7 @@
     <string name="status">Status</string>
     <string name="add_request">Add Request</string>
     <string name="pending">Pending</string>
+    <string name="no_record">No record found!</string>
 
     <!--  Survey Fragment  -->
     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->

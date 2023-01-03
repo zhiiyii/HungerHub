@@ -1,20 +1,31 @@
 package my.edu.tarc.hungerhub.model
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import my.edu.tarc.hungerhub.repository.RequestRepository
+import my.edu.tarc.hungerhub.database.RequestDatabase
 
-class RequestViewModel: ViewModel() {
-    // define private data
+class RequestViewModel(application: Application): AndroidViewModel(application) {
     private val _requestList = MutableLiveData<List<Request>>()
-    // define global data - expose to other classes
-    val requestList: LiveData<List<Request>> = _requestList
+    var requestList: LiveData<List<Request>> = _requestList
 
-    private val requestRepository: RequestRepository = RequestRepository().getInstance()
+    private val requestRepository: RequestRepository
 
     init {
-        // Get a copy of request list from the repository
-        requestRepository.loadRequest(_requestList)
+        // initialize DAO
+        val requestDao = RequestDatabase.getDatabase(application).requestDao()
+        // associate DAO to Repository
+        requestRepository = RequestRepository(requestDao)
+        // get a copy of request list from the repository
+        requestList = requestRepository.allRequest
+    }
+
+    // global scope can run from activity, view model scope is for coroutine
+    fun insert(request: Request) = viewModelScope.launch {
+        requestRepository.insert(request)
     }
 }

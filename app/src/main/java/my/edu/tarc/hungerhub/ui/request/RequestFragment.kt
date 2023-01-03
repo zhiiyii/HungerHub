@@ -20,24 +20,20 @@ import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
 import my.edu.tarc.hungerhub.model.Request
 import my.edu.tarc.hungerhub.model.RequestViewModel
-import java.util.*
+import java.util.Calendar
 
-class RequestFragment : Fragment() {
+class RequestFragment: Fragment() {
 
     private var _binding: FragmentRequestBinding? = null
     private val binding get() = _binding!!
 
+    private val requestViewModel: RequestViewModel by viewModels()
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRequestBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -45,14 +41,13 @@ class RequestFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        // open and close TNC popup card view
         binding.textViewTnc.setOnClickListener {
             binding.cardViewTnc.isVisible = true
         }
-
         binding.imageButtonCloseTnc.setOnClickListener {
             binding.cardViewTnc.isVisible = false
         }
-
         binding.buttonAgree.setOnClickListener {
             binding.checkBoxTnc.isChecked = true
             binding.cardViewTnc.isVisible = false
@@ -64,7 +59,7 @@ class RequestFragment : Fragment() {
                 Snackbar.make(this.requireView(), getString(R.string.marital_required), Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (binding.radioGroupJob.checkedRadioButtonId == -1) {
+            if (binding.spinnerJob.selectedItemPosition == 0) {
                 Snackbar.make(this.requireView(), getString(R.string.job_required), Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -102,23 +97,25 @@ class RequestFragment : Fragment() {
             // TODO: maybe 1 time a week?
             // press submit in dialog
             builder.setPositiveButton(R.string.submit) { _, _ ->
-                val reference = FirebaseDatabase.getInstance().getReference("Requests")
+                val reference = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
 
                 // get submit date and time
                 val calendar = Calendar.getInstance()
-                val format = SimpleDateFormat(" d MMM yyyy HH:mm:ss ")
+                val format = SimpleDateFormat(getString(R.string.date_format))
                 val time = format.format(calendar.time)
 
-                val request = Request(
-                    time,
+                val request = Request(time,
                     binding.editTextIncome.text.toString().toInt(),
-                    binding.radioGroupJob.checkedRadioButtonId.toString(), //TODO: bug
+                    binding.spinnerJob.selectedItem.toString(),
                     binding.spinnerMarital.selectedItem.toString(),
                     binding.editTextPax.text.toString().toInt(),
-                    binding.editTextReason.text.toString()
+                    binding.editTextReason.text.toString(),
+                    getString(R.string.pending)
                 )
 
+                // save data in firebase and DAO database
                 reference.child(time).setValue(request)
+                requestViewModel.insert(request)
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()

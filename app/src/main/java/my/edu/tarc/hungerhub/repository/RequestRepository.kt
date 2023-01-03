@@ -1,39 +1,16 @@
 package my.edu.tarc.hungerhub.repository
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.google.firebase.database.*
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
+import my.edu.tarc.hungerhub.database.RequestDao
 import my.edu.tarc.hungerhub.model.Request
 
-class RequestRepository {
-    private val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Requests")
+class RequestRepository(private val requestDao: RequestDao) {
+    // create a cache copy of data in the DAO
+    val allRequest: LiveData<List<Request>> = requestDao.getAllRequest()
 
-    @Volatile private var INSTANCE: RequestRepository ?= null
-
-    fun getInstance(): RequestRepository {
-        return INSTANCE ?: synchronized(this) {
-            val instance = RequestRepository()
-            INSTANCE = instance
-            instance
-        }
-    }
-
-    fun loadRequest(requestList: MutableLiveData<List<Request>>) {
-        reference.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                try {
-                    val _requestList: List<Request> = snapshot.children.map { dataSnapshot ->
-                        dataSnapshot.getValue(Request::class.java)!!
-                    }
-                    Log.d("request items", _requestList.toString())
-                } catch (_: Exception) {
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+    @WorkerThread // launch suspend function, only in coroutine
+    suspend fun insert(request: Request) {
+        requestDao.insert(request)
     }
 }

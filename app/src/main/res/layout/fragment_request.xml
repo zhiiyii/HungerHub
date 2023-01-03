@@ -47,93 +47,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageViewBowl" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="130dp" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/marital_status"
         android:textSize="@dimen/font_size_label"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerMarital"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerMarital" />
 
     <Spinner
         android:id="@+id/spinnerMarital"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:entries="@array/marital_choice"
         android:fontFamily="@font/abeezee_regular"
         android:minHeight="48dp"
         android:textSize="@dimen/font_size_label"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/job_status"
         android:textSize="@dimen/font_size_label"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerJob"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerMarital" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerJob" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupJob"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerJob"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-        <RadioButton
-            android:id="@+id/radioButtonEmployed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/employed" />
-
-        <RadioButton
-            android:id="@+id/radioButtonUnemployed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/unemployed" />
-
-        <RadioButton
-            android:id="@+id/radioButtonStudent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingStart="0dp"
-            android:paddingEnd="@dimen/padding_radio_button"
-            android:text="@string/student" />
-    </RadioGroup>
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/job_choice"
+        android:fontFamily="@font/abeezee_regular"
+        android:minHeight="48dp"
+        android:textSize="@dimen/font_size_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerMarital" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/income"
         android:textSize="@dimen/font_size_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJob" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerJob" />
 
     <EditText
         android:id="@+id/editTextIncome"
@@ -155,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/reason_food"
         android:textSize="@dimen/font_size_label"
@@ -170,9 +156,9 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:fontFamily="@font/abeezee_regular"
         android:inputType="textPersonName"
         android:minHeight="@dimen/edit_text_height"
-        android:fontFamily="@font/abeezee_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -183,10 +169,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/abeezee_regular"
         android:text="@string/pax"
         android:textSize="@dimen/font_size_label"
-        android:fontFamily="@font/abeezee_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
 
@@ -202,7 +188,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/buttonSubmit"
@@ -211,36 +198,36 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/submit"
-        android:textSize="@dimen/font_size_label"
         android:backgroundTint="@color/brown"
         android:fontFamily="@font/abeezee_regular"
+        android:text="@string/submit"
+        android:textSize="@dimen/font_size_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButtonUpload"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:contentDescription="@string/upload"-->
-<!--        android:src="@drawable/ic_baseline_upload_file_36"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/imageButtonUpload"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:contentDescription="@string/upload"-->
+    <!--        android:src="@drawable/ic_baseline_upload_file_36"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView8"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:fontFamily="@font/abeezee_italic"-->
-<!--        android:text="@string/upload_text"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload"-->
-<!--        app:layout_constraintVertical_bias="0.447" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView8"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:fontFamily="@font/abeezee_italic"-->
+    <!--        android:text="@string/upload_text"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload"-->
+    <!--        app:layout_constraintVertical_bias="0.447" />-->
 
     <CheckBox
         android:id="@+id/checkBoxTnc"
@@ -266,6 +253,7 @@
         android:minHeight="48dp"
         android:text="@string/tnc_underlined"
         android:textSize="15sp"
+        android:textColor="@color/brown_dark"
         app:layout_constraintBottom_toBottomOf="@+id/checkBoxTnc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBoxTnc"
@@ -277,27 +265,27 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tncLayout"
             android:layout_width="260dp"
-            android:background="@color/brown_light"
             android:layout_height="300dp"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:background="@color/brown_light">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:fillViewport="true"
                 app:layout_constraintBottom_toTopOf="@+id/buttonAgree"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle"
                 tools:layout_editor_absoluteX="1dp">
 
                 <TextView
@@ -308,50 +296,50 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/abeezee_regular"
                     android:text="@string/tnc_content"
                     android:textAlignment="textStart"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
-                    android:fontFamily="@font/abeezee_regular"
                     app:layout_constraintBottom_toTopOf="@+id/buttonAgree"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />
             </ScrollView>
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewTncContent"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:layout_marginBottom="8dp"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Content"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="#FFFFFF"-->
-<!--                android:textSize="14sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:fontFamily="@font/abeezee_regular"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/buttonAgree"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textViewTncContent"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginStart="8dp"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:layout_marginBottom="8dp"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="Content"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:textColor="#FFFFFF"-->
+            <!--                android:textSize="14sp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:fontFamily="@font/abeezee_regular"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/buttonAgree"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />-->
 
             <TextView
                 android:id="@+id/textViewTncTitle"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/brown"
-                android:text="@string/tnc"
+                android:fontFamily="@font/abeezee_regular"
                 android:gravity="center_vertical"
-                android:textAlignment="textStart"
                 android:paddingStart="12dp"
+                android:text="@string/tnc"
+                android:textAlignment="textStart"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/abeezee_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
