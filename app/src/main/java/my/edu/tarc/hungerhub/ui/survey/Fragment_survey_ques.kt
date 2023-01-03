@@ -68,13 +68,27 @@ class fragment_survey_ques : Fragment() {
             //dataRef.setValue(selectedOption)
 
         })
-
         index++
-
-
         }
 
         binding.buttonNextQues.setOnClickListener {
+            val member1 = binding.radioButtonQ1.isChecked
+            val member2 = binding.radioButtonQ2.isChecked
+            val member3 = binding.radioButtonQ3.isChecked
+            val member4 = binding.radioButtonQ4.isChecked
+
+            if((!member1)&&(!member2)&&(!member3)&&(!member4)){
+                // Show error message using alert dialog
+                val errorMessage = getString(R.string.value_required)
+                val builder = AlertDialog.Builder(requireActivity())
+                builder.setTitle("Error")
+                    .setMessage(errorMessage)
+                    .setPositiveButton("OK", null)
+                val alertDialog = builder.create()
+                alertDialog.show()
+
+                return@setOnClickListener
+            }
             //binding.radioGroupTest.clearCheck()
             if (index<=arrQuestion.size-1) {
 
