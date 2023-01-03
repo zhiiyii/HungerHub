@@ -1,4 +1,9 @@
 package my.edu.tarc.hungerhub.ui.home
 
-data class User(val username:String?=null , val password:String?=null)
+data class User(
+    val email: String? = null,
+    val state: String? = null,
+    val pass: String? = null,
+    val comfirmPass: String? =null
+)
 

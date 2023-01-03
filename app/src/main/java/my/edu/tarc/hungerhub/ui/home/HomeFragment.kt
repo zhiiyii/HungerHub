@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_loginFragment)
         }
+
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_registerFragment)
         }
