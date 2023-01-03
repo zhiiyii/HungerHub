@@ -1,5 +1,7 @@
 package my.edu.tarc.hungerhub.ui.home
 
+import android.widget.RadioGroup
+
 data class User(
     val ic: String? = null,
     val email: String? = null,
@@ -9,5 +11,6 @@ data class User(
     val phoneNo: String? = null,
     val address: String,
     val posCode: String,
+    val RorD: RadioGroup
     )
 

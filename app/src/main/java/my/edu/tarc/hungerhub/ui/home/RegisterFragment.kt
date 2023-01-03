@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -35,8 +36,12 @@ class RegisterFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        binding.btnRegister.setOnClickListener {
+
+        binding.buttonLogIn.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+        binding.btnRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
 
             firebaseAuth = FirebaseAuth.getInstance()
             val fullName = binding.editTextRegisterFullname.text.toString()
@@ -48,13 +53,14 @@ class RegisterFragment : Fragment() {
             val posCode = binding.editTextRegisterPostCode.text.toString()
             val pass = binding.editTextRegisterPassword.text.toString()
             val comfirmPass = binding.editTextRegisterComfirmPassword.text.toString()
+            val RorD = binding.radioGroupRandD
 
             //This variable is use to solve the problems that firebase cannot store the value with "."
 //            val newEmail = email.replace(".",",")
 
             database = FirebaseDatabase.getInstance().getReference("User")
 
-            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode)
+            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode,RorD)
 
 
 //            Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
@@ -128,6 +134,12 @@ class RegisterFragment : Fragment() {
         }
         if (binding.editTextRegisterPostCode.text.isEmpty()) {
             binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
+        }
+        if(binding.radioButtonDonor.isChecked || binding.radioButtonRecipient.isChecked){
+
+        }else{
+            //Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
+            Log.d("QAOD", "Gender is Null");
         }
 
     }

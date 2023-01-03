@@ -217,4 +217,9 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_title_welcome">Welcome to our application!</string>
+    <string name="login_notyet">If you not yet register --></string>
+    <string name="login_ic">Your IC</string>
+    <string name="signin_title">Sign In</string>
+    <string name="registered_account"><![CDATA[If you have an account -->]]></string>
 </resources>
