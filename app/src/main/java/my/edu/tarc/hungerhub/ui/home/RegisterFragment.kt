@@ -1,4 +1,5 @@
 package my.edu.tarc.hungerhub.ui.home
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -77,7 +78,7 @@ class RegisterFragment : Fragment() {
 
             if (ic.isNotEmpty() && email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
                 if (pass == comfirmPass) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    firebaseAuth.createUserWithEmailAndPassword(ic, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             findNavController().navigate(R.id.action_nav_home_to_loginFragment)
 

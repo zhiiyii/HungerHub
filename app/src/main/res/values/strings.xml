@@ -160,18 +160,19 @@
     <string name="illustration_image">illustration_img</string>
     <string name="started_text">Welcome </string>
     <string name="register_username">Your username</string>
-
+    <string name="register_state">Your State</string>
+    <string name="register_IC">Your IC</string>
+    <string name="register_posCode">Pos Code</string>
+    <string name="registerRoD">Recipient/Donor</string>
+    <string name="register_recipient">Recipient</string>
+    <string name="register_donor">Donor</string>
 
     <!--  Donation Fragment  -->
     <string name="food_donation">Food Donation</string>
     <string name="donation_amount">Enter donation amount: </string>
-    <string name="donation_50">50</string>
-    <string name="donation_100">100</string>
-    <string name="donation_500">500</string>
-    <string name="donation_1000">1000</string>
     <string name="donation_details">Donation Details</string>
-    <string name="donation_payment">Payment</string>
-    <string name="enter_price_manual">Or enter price manually: </string>
+    <string name="donation_payment">Donation Payment</string>
+    <string name="enter_price_manual">Enter Donation amount: </string>
     <string name="visa">Visa</string>
     <string name="mastercard">MasterCard</string>
     <string name="bank_card_num">Card Number</string>
@@ -182,12 +183,11 @@
     <string name="date_picker">Choose Date</string>
     <string name="length_error">Length error</string>
     <string name="invalid_format">Invalid Format</string>
-    <string name="register_state">Your State</string>
-    <string name="register_IC">Your IC</string>
-    <string name="register_posCode">Pos Code</string>
-    <string name="registerRoD">Recipient/Donor</string>
-    <string name="register_recipient">Recipient</string>
-    <string name="register_donor">Donor</string>
+    <string name="input_empty">Cannot be empty</string>
+    <string name="card_number_hints">XXXX XXXX XXXX XXXX</string>
+    <string name="card_CVC_hints">XXX</string>
+    <string name="donation_description">Spread the love, Share the happiness</string>
+    <string name="donation_text">Start donate money to help us in achieving "zero hunger". In 2020, between 720 million and 811 million persons worldwide were suffering from hunger, roughly 161 million more than in 2019.</string>
     <string-array name="month_group">
         <item>01</item>
         <item>02</item>
