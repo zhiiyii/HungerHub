@@ -6,6 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.RegisterFragment">
 
+    <ImageView
+        android:id="@+id/imageViewComfirmPassword"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_lock_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPassword" />
+
+    <ImageView
+        android:id="@+id/imageViewPosCode"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewState" />
+
+    <ImageView
+        android:id="@+id/imageViewState"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAddress" />
+
     <TextView
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
@@ -60,7 +93,7 @@
         android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="@string/register_email"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPhoneNo" />
@@ -131,7 +164,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="0dp"
         android:background="@color/primary_color"
         android:text="@string/btn_register"
         android:textColor="@color/black"
@@ -139,28 +171,93 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword"
+        app:layout_constraintVertical_bias="0.735" />
 
-    <RadioButton
-        android:id="@+id/Recipient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:text="@string/register_recipient"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+    <ImageView
+        android:id="@+id/imageViewFullName"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterFullname"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/Donor"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageViewIC"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterIC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFullName" />
+
+    <ImageView
+        android:id="@+id/imageViewEmail"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_email_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhone" />
+
+    <ImageView
+        android:id="@+id/imageViewAddress"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEmail" />
+
+    <ImageView
+        android:id="@+id/imageViewPassword"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_lock_24"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPosCode" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupRandD"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
-        android:text="@string/register_donor"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Recipient"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword">
+
+        <RadioButton
+            android:id="@+id/radioButtonRecipient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_recipient" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDonor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_donor" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imageViewPhone"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/black"
+        android:src="@android:drawable/stat_sys_speakerphone"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPhoneNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewIC"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

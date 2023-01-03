@@ -1,11 +1,11 @@
 package my.edu.tarc.hungerhub.ui.home
-
-
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -38,17 +38,35 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
             firebaseAuth = FirebaseAuth.getInstance()
+            val fullName = binding.editTextRegisterFullname.text.toString()
             val email = binding.editTextRegisterEmail.text.toString()
+            val ic = binding.editTextRegisterIC.text.toString()
+            val phoneNo = binding.editTextRegisterPhoneNo.text.toString()
+            val address = binding.editTextRegisterAddress.text.toString()
             val state = binding.editTextRegisterState.text.toString()
+            val posCode = binding.editTextRegisterPostCode.text.toString()
             val pass = binding.editTextRegisterPassword.text.toString()
             val comfirmPass = binding.editTextRegisterComfirmPassword.text.toString()
 
-            database = FirebaseDatabase.getInstance().getReference("User")
-            val User = User(email,state,pass,comfirmPass)
-            database.child(pass).setValue(User).addOnSuccessListener {
+            //This variable is use to solve the problems that firebase cannot store the value with "."
+//            val newEmail = email.replace(".",",")
 
+            database = FirebaseDatabase.getInstance().getReference("User")
+
+            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode)
+
+
+//            Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
+
+            database.child(ic).setValue(user).addOnSuccessListener {
+
+                binding.editTextRegisterFullname.text.clear()
                 binding.editTextRegisterEmail.text.clear()
+                binding.editTextRegisterIC.text.clear()
+                binding.editTextRegisterPhoneNo.text.clear()
+                binding.editTextRegisterAddress.text.clear()
                 binding.editTextRegisterState.text.clear()
+                binding.editTextRegisterPostCode.text.clear()
                 binding.editTextRegisterComfirmPassword.text.clear()
                 binding.editTextRegisterPassword.text.clear()
 
@@ -57,11 +75,12 @@ class RegisterFragment : Fragment() {
                 //Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
             }
 
-            if (email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
+            if (ic.isNotEmpty() && email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
                 if (pass == comfirmPass) {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             findNavController().navigate(R.id.action_nav_home_to_loginFragment)
+
                         } else {
                             toastMakeText(
                                 requireActivity(),
@@ -83,6 +102,11 @@ class RegisterFragment : Fragment() {
 
             }
         }
+
+
+//        binding.radioGroupRandD.setOnCheckedChangeListener {
+//
+//        }
         if (binding.editTextRegisterFullname.text.isEmpty()) {
             binding.editTextRegisterFullname.setError(getString(R.string.emailrequired))
         }
@@ -104,125 +128,7 @@ class RegisterFragment : Fragment() {
         if (binding.editTextRegisterPostCode.text.isEmpty()) {
             binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
         }
-        if (binding.Recipient.text.isEmpty() || binding.Donor.text.isEmpty()) {
-            binding.Recipient.setError(getString(R.string.emailrequired))
-        }
+
     }
+
 }
-
-
-
-
-
-
-//    override fun onStart() {
-//        super.onStart()
-//
-//        //Fullname validation
-//        val nameStream = RxTextView.textChanges(binding.etFullname)
-//            .skipInitialValue()
-//            .map { name ->
-//                name.isEmpty()
-//            }
-//        nameStream.subscribe {
-//            showNameExistAlert(it)
-//        }
-//
-////Email validation
-//    val emailStream = RxTextView.textChanges(binding.etEmail)
-//        .skipInitialValue()
-//        .map { email ->
-//            !Patterns.EMAIL_ADDRESS.matcher(email).matches()
-//        }
-//    emailStream.subscribe {
-//        showEmailValidAlert(it)
-//    }
-//
-////Username validation
-//    val usernameStream = RxTextView.textChanges(binding.etUsername)
-//        .skipInitialValue()
-//        .map { username ->
-//            username.length < 6
-//        }
-//    usernameStream.subscribe{
-//        showTextMinimalAlert(it,"Username")
-//    }
-//
-////Password validation
-//    val passwordStream = RxTextView.textChanges(binding.etPassword)
-//        .skipInitialValue()
-//        .map { password ->
-//            password.length < 6
-//        }
-//    passwordStream.subscribe{
-//        showTextMinimalAlert(it,"Password")
-//    }
-//
-////Comfirm Password validation
-//    val passwordComfirmStream = Observable.merge(
-//        RxTextView.textChanges(binding.etPassword)
-//            .skipInitialValue()
-//            .map{ password ->
-//                password.toString() != binding.etComfirmPassword.text.toString()
-//            },
-//        RxTextView.textChanges(binding.etComfirmPassword)
-//            .skipInitialValue()
-//            .map {comfirmPassword ->
-//                comfirmPassword.toString() != binding.etPassword.text.toString()
-//            })
-//    passwordComfirmStream.subscribe{
-//        showPasswordComfirmAlert(it)
-//    }
-//
-////Button Enable True or False
-//    val invalidFieldStream = Observable.combineLatest(
-//        nameStream,
-//        emailStream,
-//        usernameStream,
-//        passwordStream,
-//        passwordComfirmStream,
-//        {nameInvalid: Boolean, emailInvalid: Boolean, usernameInvalid: Boolean, passwordInvalid: Boolean, passwordComfirmInvalid: Boolean ->
-//            !nameInvalid && !emailInvalid && !usernameInvalid && !passwordInvalid && !passwordComfirmInvalid
-//        })
-//    invalidFieldStream.subscribe { isValid ->
-//        if(isValid){
-//            binding.btnRegister.isEnabled = true
-//            binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(this.requireContext(), R.color.primary_color)
-//        }else
-//            binding.btnRegister.isEnabled = false
-//        binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(this.requireContext(),android.R.color.darker_gray)
-//    }
-
-////click
-//    binding.btnRegister.setOnClickListener {
-//        findNavController().navigate(R.id.action_nav_home_to_loginFragment)
-//    }
-//    binding.tvHaveAccount.setOnClickListener {
-//        findNavController().navigate(R.id.action_nav_home_to_loginFragment)
-//    }
-//}
-//
-//    private fun showNameExistAlert(isNotValid:Boolean){
-//        binding.etFullname.error = if (isNotValid) "Name cannot be empty" else null
-//    }
-//
-//    private fun showTextMinimalAlert(isNotValid: Boolean, text: String){
-//        if (text == "Username")
-//            binding.etUsername.error = if (isNotValid) "$text must be more than 6!" else null
-//        else if (text == "Password")
-//            binding.etPassword.error = if (isNotValid) "$text must be more than 8!" else null
-//    }
-//
-//    private fun showEmailValidAlert(isNotValid: Boolean){
-//        binding.etEmail.error = if(isNotValid) "Email invalid!" else null
-//    }
-//
-//    private fun showPasswordComfirmAlert(isNotValid: Boolean){
-//        binding.etComfirmPassword.error = if(isNotValid)"Password is not same" else null
-//    }
-//
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
