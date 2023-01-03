@@ -23,8 +23,8 @@
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragment"
         android:label="@string/menu_survey" >
         <action
-            android:id="@+id/action_nav_survey_to_surveyFragmentGeneral"
-            app:destination="@id/surveyFragmentGeneral" />
+            android:id="@+id/action_nav_survey_to_fragment_survey_ques"
+            app:destination="@id/fragment_survey_ques" />
     </fragment>
 
     <fragment
@@ -57,88 +57,19 @@
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment3"
         android:label="DonationFragment3" />
     <fragment
-        android:id="@+id/surveyFragmentGeneral"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentGeneral"
-        android:label="fragment_survey_general"
-        tools:layout="@layout/fragment_survey_general" >
-        <action
-            android:id="@+id/action_surveyFragmentGeneral_to_surveyFragmentGeneral2"
-            app:destination="@id/surveyFragmentGeneral2" />
-        <action
-            android:id="@+id/action_surveyFragmentGeneral_to_nav_survey"
-            app:destination="@id/nav_survey" />
-    </fragment>
-    <fragment
-        android:id="@+id/surveyFragmentGeneral2"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentGeneral2"
-        android:label="fragment_survey_general2"
-        tools:layout="@layout/fragment_survey_general2" >
-        <action
-            android:id="@+id/action_surveyFragmentGeneral2_to_surveyFragmentGeneral"
-            app:destination="@id/surveyFragmentGeneral" />
-        <action
-            android:id="@+id/action_surveyFragmentGeneral2_to_surveyFragmentGeneral3"
-            app:destination="@id/surveyFragmentGeneral3" />
-    </fragment>
-    <fragment
-        android:id="@+id/surveyFragmentGeneral3"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentGeneral3"
-        android:label="fragment_survey_general3"
-        tools:layout="@layout/fragment_survey_general3" >
-        <action
-            android:id="@+id/action_surveyFragmentGeneral3_to_surveyFragmentGeneral2"
-            app:destination="@id/surveyFragmentGeneral2" />
-        <action
-            android:id="@+id/action_surveyFragmentGeneral3_to_surveyFragmentGeneral4"
-            app:destination="@id/surveyFragmentGeneral4" />
-    </fragment>
-    <fragment
-        android:id="@+id/surveyFragmentGeneral4"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentGeneral4"
-        android:label="fragment_survey_general4"
-        tools:layout="@layout/fragment_survey_general4" >
-        <action
-            android:id="@+id/action_surveyFragmentGeneral4_to_surveyFragmentGeneral3"
-            app:destination="@id/surveyFragmentGeneral3" />
-        <action
-            android:id="@+id/action_surveyFragmentGeneral4_to_surveyFragmentLack"
-            app:destination="@id/surveyFragmentLack" />
-        <action
-            android:id="@+id/action_surveyFragmentGeneral4_to_surveyFragmentRate1"
-            app:destination="@id/surveyFragmentRate1" />
-    </fragment>
-    <fragment
         android:id="@+id/surveyFragmentRate1"
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentRate1"
         android:label="fragment_survey_rate1"
         tools:layout="@layout/fragment_survey_rate1" >
         <action
-            android:id="@+id/action_surveyFragmentRate1_to_surveyFragmentGeneral4"
-            app:destination="@id/surveyFragmentGeneral4" />
-        <action
-            android:id="@+id/action_surveyFragmentRate1_to_surveyFragmentRate2"
-            app:destination="@id/surveyFragmentRate2" />
-    </fragment>
-    <fragment
-        android:id="@+id/surveyFragmentRate2"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentRate2"
-        android:label="SurveyFragmentRate2" >
-        <action
-            android:id="@+id/action_surveyFragmentRate2_to_surveyFragmentRate1"
-            app:destination="@id/surveyFragmentRate1" />
-        <action
-            android:id="@+id/action_surveyFragmentRate2_to_surveyFragmentLack"
+            android:id="@+id/action_surveyFragmentRate1_to_surveyFragmentLack"
             app:destination="@id/surveyFragmentLack" />
     </fragment>
     <fragment
         android:id="@+id/surveyFragmentLack"
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentLack"
         android:label="fragment_survey_lack"
-        tools:layout="@layout/fragment_survey_lack" >
-        <action
-            android:id="@+id/action_surveyFragmentLack2_to_surveyFragmentRate2"
-            app:destination="@id/surveyFragmentRate2" />
-    </fragment>
+        tools:layout="@layout/fragment_survey_lack" />
     <fragment
         android:id="@+id/RequestFragment"
         android:name="my.edu.tarc.hungerhub.ui.request.RequestFragment"
@@ -166,5 +97,22 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_survey_ques"
+        android:name="my.edu.tarc.hungerhub.ui.survey.fragment_survey_ques"
+        android:label="fragment_survey_ques"
+        tools:layout="@layout/fragment_survey_ques" >
+        <action
+            android:id="@+id/action_fragment_survey_ques_to_fragment_survey_ques1"
+            app:destination="@id/fragment_survey_ques1" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_survey_ques1"
+        android:name="my.edu.tarc.hungerhub.ui.survey.fragment_survey_ques1"
+        android:label="fragment_survey_ques1" >
+        <action
+            android:id="@+id/action_fragment_survey_ques1_to_surveyFragmentRate1"
+            app:destination="@id/surveyFragmentRate1" />
     </fragment>
 </navigation>

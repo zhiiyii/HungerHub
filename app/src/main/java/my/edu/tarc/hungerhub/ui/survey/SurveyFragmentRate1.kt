@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
-import my.edu.tarc.hungerhub.databinding.FragmentSurveyGeneral4Binding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyRate1Binding
 
 class SurveyFragmentRate1 : Fragment() {
@@ -52,7 +51,7 @@ class SurveyFragmentRate1 : Fragment() {
 
                 return@setOnClickListener
             }
-            findNavController().navigate(R.id.action_surveyFragmentRate1_to_surveyFragmentRate2)
+            findNavController().navigate(R.id.action_surveyFragmentRate1_to_surveyFragmentLack)
         }
 
         binding.ratingBar.setOnRatingBarChangeListener(RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->

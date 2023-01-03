@@ -93,7 +93,7 @@ class SurveyFragment : Fragment() {
 
             writeBMIdata(height,weight,result,status)
 
-            findNavController().navigate(R.id.action_nav_survey_to_surveyFragmentGeneral)
+            findNavController().navigate(R.id.action_nav_survey_to_fragment_survey_ques)
 //            val intent = Intent(this, activity_survey::class.java)
 //            startActivity(intent)
         }
