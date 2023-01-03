@@ -13,4 +13,8 @@ class RequestRepository(private val requestDao: RequestDao) {
     suspend fun insert(request: Request) {
         requestDao.insert(request)
     }
+
+    fun filterByDate(date: String): List<Request> {
+        return requestDao.filterByDate(date)
+    }
 }

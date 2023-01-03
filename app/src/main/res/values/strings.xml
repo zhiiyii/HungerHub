@@ -65,7 +65,6 @@
     <string name="cancel">Cancel</string>
     <string name="form_submitted">Form submitted</string>
     <string name="action_cancelled">Action cancelled</string>
-    <string name="date_format">"yyyy/MM/dd HH:mm:ss"</string>
     <string name="firebase_req">Requests</string>
 
     <!--  Request Status Fragment  -->
@@ -76,6 +75,10 @@
     <string name="add_request">Add Request</string>
     <string name="pending">Pending</string>
     <string name="no_record">No record found!</string>
+    <string name="filter">Filter</string>
+    <string name="week">By Day</string>
+    <string name="month">By Month</string>
+    <string name="year">By Year</string>
 
     <!--  Survey Fragment  -->
     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->

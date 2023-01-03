@@ -100,8 +100,9 @@ class RequestFragment: Fragment() {
                 val reference = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
 
                 // get submit date and time
+                val dateFormat = "yyyy/MM/dd HH:mm:ss"
                 val calendar = Calendar.getInstance()
-                val format = SimpleDateFormat(getString(R.string.date_format))
+                val format = SimpleDateFormat(dateFormat)
                 val time = format.format(calendar.time)
 
                 val request = Request(time,

@@ -31,7 +31,7 @@ abstract class RequestDatabase: RoomDatabase() {
                     context.applicationContext,
                     RequestDatabase::class.java,
                     "request_db"
-                ).build()
+                ).allowMainThreadQueries().build()
 
                 INSTANCE = instance
                 return instance

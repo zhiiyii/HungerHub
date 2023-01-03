@@ -13,6 +13,9 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
     private val _requestList = MutableLiveData<List<Request>>()
     var requestList: LiveData<List<Request>> = _requestList
 
+    private val _queryList = MutableLiveData<List<Request>>()
+    var queryList: LiveData<List<Request>> = _queryList
+
     private val requestRepository: RequestRepository
 
     init {
@@ -27,5 +30,9 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
     // global scope can run from activity, view model scope is for coroutine
     fun insert(request: Request) = viewModelScope.launch {
         requestRepository.insert(request)
+    }
+
+    fun filterByDate(date: String): List<Request> {
+        return requestRepository.filterByDate(date)
     }
 }

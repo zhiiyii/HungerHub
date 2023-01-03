@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
 
     <style name="Theme.HungerHub.NoActionBar">
@@ -22,6 +23,12 @@
     <style name="Theme.HungerHub.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.HungerHub.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_baseline_filter_alt_24</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">"@string/filter"</item>
+    </style>
 
     <!-- Login Part -->
     <style name="ButtonWhite">
