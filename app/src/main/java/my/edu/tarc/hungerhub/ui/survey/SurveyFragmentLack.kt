@@ -1,9 +1,11 @@
 package my.edu.tarc.hungerhub.ui.survey
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyLackBinding
 
@@ -22,12 +27,7 @@ class SurveyFragmentLack : Fragment() {
     private var _binding: FragmentSurveyLackBinding? = null
     private val binding get() = _binding!!
 
-    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
-    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
-
     var database = FirebaseDatabase.getInstance().reference
-    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +40,32 @@ class SurveyFragmentLack : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    Log.d("checkpoint", "got snapshot")
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
         binding.imageButtonFoodPyramidInfo.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
@@ -68,15 +94,15 @@ class SurveyFragmentLack : Fragment() {
             val snack = Snackbar.make(it,"Form submitted",Snackbar.LENGTH_LONG)
             snack.show()
 
-            //findNavController().navigate(R.id.action_surveyFragmentRate2_to_surveyFragmentLack2)
+            findNavController().navigate(R.id.action_surveyFragmentLack_to_mainMenuFragment)
         }
 
         binding.checkBoxWheat.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             // Store the selected option in the Firebase Realtime Database
             if (isChecked) {
-                dataRef.child("LackOfWheat").setValue(true)
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfWheat").setValue(true)
             } else {
-                dataRef.child("LackOfWheat").removeValue()
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfWheat").removeValue()
             }
             //dataRef.child("LackOfWheat").setValue(isChecked)
         })
@@ -84,9 +110,9 @@ class SurveyFragmentLack : Fragment() {
         binding.checkBoxVege.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             // Store the selected option in the Firebase Realtime Database
             if (isChecked) {
-                dataRef.child("LackOfVege").setValue(true)
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfVege").setValue(true)
             } else {
-                dataRef.child("LackOfVege").removeValue()
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfVege").removeValue()
             }
             //dataRef.child("LackOfVege").setValue(isChecked)
         })
@@ -94,17 +120,17 @@ class SurveyFragmentLack : Fragment() {
             // Store the selected option in the Firebase Realtime Database
             //dataRef.child("LackOfMeat").setValue(isChecked)
             if (isChecked) {
-                dataRef.child("LackOfMeat").setValue(true)
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfMeat").setValue(true)
             } else {
-                dataRef.child("LackOfMeat").removeValue()
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfMeat").removeValue()
             }
         })
         binding.checkBoxFats.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             // Store the selected option in the Firebase Realtime Database
             if (isChecked) {
-                dataRef.child("LackOfFats").setValue(true)
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfFats").setValue(true)
             } else {
-                dataRef.child("LackOfFats").removeValue()
+                database.child("User").child(loginIc.toString()).child("survey").child("LackOfFats").removeValue()
             }
             //dataRef.child("LackOfFats").setValue(isChecked)
         })

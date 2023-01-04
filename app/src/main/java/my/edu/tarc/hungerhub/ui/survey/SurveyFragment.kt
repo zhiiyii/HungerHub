@@ -1,6 +1,8 @@
 package my.edu.tarc.hungerhub.ui.survey
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,24 +10,25 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
+import my.edu.tarc.hungerhub.model.Request
+import my.edu.tarc.hungerhub.ui.home.User
+//import my.edu.tarc.hungerhub.ui.request.UserListCallback
 
 
 class SurveyFragment : Fragment() {
 
     private var _binding: FragmentSurveyBinding? = null
     private val binding get() = _binding!!
-    //val user = Firebase.auth.currentUser
-
-
-    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
-    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
 
     var database = FirebaseDatabase.getInstance().reference
-    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
-
 
 
     override fun onCreateView(
@@ -39,10 +42,9 @@ class SurveyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // var dbRef = FirebaseDatabase.getInstance().getReference("survey_BMI_data")
+
         // Set up the button click listener
         binding.buttonCalculate.setOnClickListener {
-
             val heightStr = binding.editTextNumberHeight.text.toString()
             val weightStr = binding.editTextNumberWeight.text.toString()
 
@@ -79,17 +81,6 @@ class SurveyFragment : Fragment() {
             }
             val height = binding.editTextNumberHeight.text.toString()
             val weight = binding.editTextNumberWeight.text.toString()
-//            val bmi = binding.textViewResult.text.toString()
-//            val status = binding.textViewStatus.text.toString()
-//            val surveyId = dbRef.push().key!!
-//            val survey = Survey(height,weight,result,status)
-//            dbRef.child(surveyId).setValue(survey)
-//                .addOnCompleteListener{
-//                Toast.makeText(this,"Data inserted", Toast.LENGTH_LONG).show()
-//            }.addOnFailureListener(err ->
-//            Toast.makeText(this,"Error ${err.message}",Toast.LENGTH_LONG))
-
-            //database.child("users").child(currentUser!!.uid).setValue(userData)
 
             writeBMIdata(height,weight,result,status)
 
@@ -107,11 +98,36 @@ class SurveyFragment : Fragment() {
 
     }
 
-    fun writeBMIdata(height:String, weight:String,bmi:String,status:String){
-        val bmiDatas = bmiData(height,weight, bmi, status)
-        dataRef.child("bmi").setValue(bmiDatas)
-    }
+    private fun writeBMIdata(height:String, weight:String, bmi:String, status:String){
 
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    Log.d("checkpoint", "got snapshot")
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        val bmiDatas = bmiData(height,weight, bmi, status)
+        database.child("User").child(loginIc.toString()).child("survey").child("bmi").setValue(bmiDatas)
+    }
 
     private fun messages(bmi:Double):String{
         return if (bmi<18.5)

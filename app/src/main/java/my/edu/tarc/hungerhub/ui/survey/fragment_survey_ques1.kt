@@ -1,7 +1,9 @@
 package my.edu.tarc.hungerhub.ui.survey
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,10 @@ import android.widget.RadioGroup
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyQues1Binding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyQuesBinding
@@ -19,11 +24,7 @@ class fragment_survey_ques1 : Fragment() {
     private var _binding: FragmentSurveyQues1Binding? = null
     private val binding get() = _binding!!
 
-    var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
-    var currentUser: FirebaseUser? = mAuth?.getCurrentUser()
-
     var database = FirebaseDatabase.getInstance().reference
-    var dataRef = database.child("survey").child(currentUser.toString()).child("data")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +50,32 @@ class fragment_survey_ques1 : Fragment() {
         binding.radioButtonQQ1.text = String.format(arrAnswerA.get(index))
         binding.radioButtonQQ2.text = String.format(arrAnswerB.get(index))
 
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    Log.d("checkpoint", "got snapshot")
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
         if (index == 0) {
             binding.radioGroupQues2.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val selectedOption = when (checkedId) {
@@ -59,7 +86,7 @@ class fragment_survey_ques1 : Fragment() {
 
 
                 // Store the selected option in the Firebase Realtime Database
-                dataRef.child("FamilyIncomeAbleToCoverDailyFoodExpenses").setValue(selectedOption)
+                database.child("User").child(loginIc.toString()).child("survey").child("FamilyIncomeAbleToCoverDailyFoodExpenses").setValue(selectedOption)
                 //dataRef.setValue(selectedOption)
 
             })
@@ -96,6 +123,32 @@ class fragment_survey_ques1 : Fragment() {
 
     private fun check(index: Int) {
 
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    Log.d("checkpoint", "got snapshot")
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
         if (index == 1) {
             binding.radioGroupQues2.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val selectedOption = when (checkedId) {
@@ -105,7 +158,7 @@ class fragment_survey_ques1 : Fragment() {
                 }
 
                 // Store the selected option in the Firebase Realtime Database
-                dataRef.child("FoodPriceReasonable").setValue(selectedOption)
+                database.child("User").child(loginIc.toString()).child("survey").child("FoodPriceReasonable").setValue(selectedOption)
                 //dataRef.setValue(selectedOption)
 
             })
