@@ -130,28 +130,26 @@ class RegisterFragment : Fragment() {
 //
 //        }
         if (binding.editTextRegisterFullname.text.isEmpty()) {
-            binding.editTextRegisterFullname.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterFullname.setError(getString(R.string.fullNameRequired))
         }
         if (binding.editTextRegisterIC.text.isEmpty()) {
-            binding.editTextRegisterIC.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterIC.setError(getString(R.string.emailRequired))
         }
         if (binding.editTextRegisterPhoneNo.text.isEmpty()) {
-            binding.editTextRegisterPhoneNo.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterPhoneNo.setError(getString(R.string.icRequired))
         }
         if (binding.editTextRegisterEmail.text.isEmpty()) {
-            binding.editTextRegisterEmail.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterEmail.setError(getString(R.string.emailRequired))
         }
         if (binding.editTextRegisterAddress.text.isEmpty()) {
-            binding.editTextRegisterAddress.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterAddress.setError(getString(R.string.addressRequired))
         }
         if (binding.editTextRegisterState.text.isEmpty()) {
-            binding.editTextRegisterState.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterState.setError(getString(R.string.stateRequired))
         }
         if (binding.editTextRegisterPostCode.text.isEmpty()) {
-            binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
+            binding.editTextRegisterPostCode.setError(getString(R.string.poscodeRequired))
         }
-
-    //TODO : radioGroup
 
     }
 
