@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#80cbc4">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textViewDonorDetails"
@@ -16,8 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -37,8 +35,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDonorDetails"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonorDetails" />
 
     <TextView
         android:id="@+id/textViewDonorIC"
@@ -51,8 +48,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.876"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -71,8 +67,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDonorIC"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonorIC" />
 
     <TextView
         android:id="@+id/textView16"
@@ -84,8 +79,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView17"
@@ -97,8 +91,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textViewDonorNameOutput"
@@ -108,8 +101,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textViewDonorICOutput"
@@ -119,8 +111,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewDonorIC"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textViewDonorIC"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="@+id/textViewDonorIC" />
 
     <TextView
         android:id="@+id/textViewDonorEmailOutput"
@@ -130,8 +121,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView14"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textViewDonorPhoneOutput"
@@ -141,8 +131,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView16"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textViewDonationAmtOutput"
@@ -152,8 +141,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView17"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <Button
         android:id="@+id/buttonDonorDetails"
@@ -163,24 +151,6 @@
         android:layout_marginBottom="68dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="#4f9a94"/>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="1dp"
-        android:layout_height="729dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="83dp"
-        android:textColor="#000000"/>
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="82dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

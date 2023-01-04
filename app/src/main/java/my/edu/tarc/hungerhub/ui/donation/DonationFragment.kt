@@ -2,7 +2,6 @@ package my.edu.tarc.hungerhub.ui.donation
 
 
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,16 +42,10 @@ class DonationFragment : Fragment(){
                 findNavController().navigate(R.id.action_nav_donation_to_donorDetailsFragment, Bundle().apply {
                     putInt("totalDonation", donationAmt.toInt())
                 })
-            }else{
-                Toast.makeText(context,"Please enter the amount of donation", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(context, "Please enter the amount of donation", Toast.LENGTH_SHORT)
+                    .show()
             }
-//            if(donationAmt.isNotEmpty()){
-//                findNavController().navigate(R.id.action_nav_donation_to_donorDetailsFragment)
-//
-//            }else{
-//                Toast.makeText(context,"Please enter the amount of donation", Toast.LENGTH_SHORT).show()
-//
-//            }
         }
 
     }

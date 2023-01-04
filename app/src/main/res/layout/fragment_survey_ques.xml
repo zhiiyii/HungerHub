@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.survey.fragment_survey_ques"
-    android:background="#80cbc4">
+    tools:context=".ui.survey.fragment_survey_ques">
 
 
     <TextView
@@ -14,7 +13,6 @@
         android:layout_height="143dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_regular"
-        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,29 +31,25 @@
             android:id="@+id/radioButtonQ1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:textColor="#000000" />
+            android:fontFamily="@font/abeezee_regular" />
 
         <RadioButton
             android:id="@+id/radioButtonQ2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:textColor="#000000" />
+            android:fontFamily="@font/abeezee_regular" />
 
         <RadioButton
             android:id="@+id/radioButtonQ3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:textColor="#000000" />
+            android:fontFamily="@font/abeezee_regular" />
 
         <RadioButton
             android:id="@+id/radioButtonQ4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abeezee_regular"
-            android:textColor="#000000" />
+            android:fontFamily="@font/abeezee_regular" />
     </RadioGroup>
 
     <Button
@@ -76,7 +70,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_italic"
         android:text="@string/Survey_text"
-        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

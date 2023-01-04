@@ -1,4 +1,4 @@
-package my.edu.tarc.hungerhub.ui.donation
+package my.edu.tarc.hungerhub.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

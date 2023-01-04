@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.survey.SurveyFragmentRate1"
-    android:background="#80cbc4"
-    android:textColor="@color/black">
+    tools:context=".ui.survey.SurveyFragmentRate1">
 
 
     <RatingBar
@@ -26,7 +24,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/rateHygiene"
-        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +36,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_italic"
         android:text="@string/general_survey"
-        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

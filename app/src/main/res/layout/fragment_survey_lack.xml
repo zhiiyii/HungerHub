@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80cbc4"
-    tools:context=".ui.survey.SurveyFragmentLack"
-    android:textColor="@color/black">
+    tools:context=".ui.survey.SurveyFragmentLack">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,7 +16,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_italic"
         android:text="@string/LackIntake"
-        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonFoodPyramidInfo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +100,6 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/selectDescription"
-        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
