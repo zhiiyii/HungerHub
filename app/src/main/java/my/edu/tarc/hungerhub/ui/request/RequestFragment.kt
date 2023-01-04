@@ -46,6 +46,7 @@ class RequestFragment: Fragment() {
     override fun onStart() {
         super.onStart()
 
+        // to get login user's data
         readLoginData()
 
         // open and close TNC popup card view
@@ -131,12 +132,13 @@ class RequestFragment: Fragment() {
                     if (ic != null && name != null && email != null && phone != null &&
                         address != null && postcode != null && state != null) {
                         val request = Request(
-                            time, ic, name, email,
-                            phone, address, postcode, state,
+                            time, name, ic, phone, email, address, postcode, state,
                             income, job, marital, pax, reason, pending
                         )
+
+                        // save data to room database and firebase
                         requestViewModel.insert(request)
-                        // referenceReq.child(time).setValue(request)
+                        referenceReq.child(time).setValue(request)
                     }
                 }
 
@@ -157,6 +159,7 @@ class RequestFragment: Fragment() {
         }
     }
 
+    // function to read the logged in user's data
     private fun readLoginData() {
         val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
 

@@ -24,16 +24,15 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
         requestList = requestRepository.allRequest
     }
 
-    // global scope can run from activity, view model scope is for coroutine
     fun insert(request: Request) = viewModelScope.launch {
         requestRepository.insert(request)
     }
 
-    fun filterByDate(date: String): List<Request> {
-        return requestRepository.filterByDate(date)
+    fun filterByDate(ic: String, date: String): List<Request> {
+        return requestRepository.filterByDate(ic, date)
     }
 
-    fun removeFilter(): List<Request> {
-        return requestRepository.removeFilter()
+    fun removeFilter(ic: String): List<Request> {
+        return requestRepository.removeFilter(ic)
     }
 }

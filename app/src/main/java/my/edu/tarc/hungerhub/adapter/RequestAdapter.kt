@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.model.Request
 
-class RequestAdapter(): RecyclerView.Adapter<RequestAdapter.ViewHolder>(){
+class RequestAdapter : RecyclerView.Adapter<RequestAdapter.ViewHolder>(){
     private var dataSet = emptyList<Request>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

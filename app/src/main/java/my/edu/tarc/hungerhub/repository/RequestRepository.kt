@@ -14,11 +14,11 @@ class RequestRepository(private val requestDao: RequestDao) {
         requestDao.insert(request)
     }
 
-    fun filterByDate(date: String): List<Request> {
-        return requestDao.filterByDate(date)
+    fun filterByDate(ic: String, date: String): List<Request> {
+        return requestDao.filterByDate(ic, date)
     }
 
-    fun removeFilter(): List<Request> {
-        return requestDao.removeFilter()
+    fun removeFilter(ic: String): List<Request> {
+        return requestDao.removeFilter(ic)
     }
 }

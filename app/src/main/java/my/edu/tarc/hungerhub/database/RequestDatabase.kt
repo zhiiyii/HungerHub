@@ -11,8 +11,7 @@ abstract class RequestDatabase: RoomDatabase() {
     abstract fun requestDao(): RequestDao
 
     companion object {
-        // TODO: Remove volatile
-        @Volatile // can be destroyed, uninstall app, data destroyed
+        @Volatile // data can be destroyed by uninstalling app
         private var INSTANCE: RequestDatabase? = null
 
         fun getDatabase(context: Context): RequestDatabase {
@@ -22,15 +21,12 @@ abstract class RequestDatabase: RoomDatabase() {
                 return tempInstance
             }
 
-            // TODO: Database depends on account
-            //val email = getEmail()
-
             // Create an instance of the database
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RequestDatabase::class.java,
-                    "request_dbb"
+                    "request_db"
                 ).allowMainThreadQueries().build()
 
                 INSTANCE = instance

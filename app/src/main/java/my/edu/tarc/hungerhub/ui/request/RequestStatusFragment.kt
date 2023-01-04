@@ -6,17 +6,12 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.adapter.RequestAdapter
 import my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding
@@ -49,6 +44,12 @@ class RequestStatusFragment: Fragment() {
         // check for changes of live data
         requestViewModel.requestList.observe(viewLifecycleOwner) {
             requestAdapter.setForm(it)
+
+            // query to select records only for login user
+            val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
+            if (unfilteredList != null) {
+                requestAdapter.setForm(unfilteredList)
+            }
             checkRecordNum()
         }
 
@@ -57,7 +58,6 @@ class RequestStatusFragment: Fragment() {
             adapter = requestAdapter
         }
 
-        // add request button
         binding.floatingActionButtonAddForm.setOnClickListener {
             findNavController().navigate(R.id.action_nav_request_to_RequestFragment)
         }
@@ -85,8 +85,10 @@ class RequestStatusFragment: Fragment() {
                     val standardFormat = SimpleDateFormat(dateFormat)
                     val selectedDate = standardFormat.format(calendar.time)
 
-                    val queryList = requestViewModel.filterByDate(selectedDate)
-                    requestAdapter.setForm(queryList)
+                    if (loginIc != null) {
+                        val queryList = requestViewModel.filterByDate(loginIc, selectedDate)
+                        requestAdapter.setForm(queryList)
+                    }
 
                     Toast.makeText(this.requireContext(), (getString(R.string.show_record) + " " + selectedDate), Toast.LENGTH_SHORT).show()
 
@@ -105,8 +107,10 @@ class RequestStatusFragment: Fragment() {
             })
 
             builder.setPositiveButton(R.string.remove_filter) { _, _ ->
-                val unfilteredList = requestViewModel.removeFilter()
-                requestAdapter.setForm(unfilteredList)
+                val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
+                if (unfilteredList != null) {
+                    requestAdapter.setForm(unfilteredList)
+                }
                 checkRecordNum()
 
                 Toast.makeText(this.requireContext(), R.string.remove_filter_msg, Toast.LENGTH_SHORT).show()
@@ -127,6 +131,7 @@ class RequestStatusFragment: Fragment() {
         _binding = null
     }
 
+    // function to display message to tell user there are no records
     private fun checkRecordNum() {
         if (binding.recyclerViewStatus.adapter?.itemCount == 0) {
             binding.textViewEmpty.text = getString(R.string.no_record)
