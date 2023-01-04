@@ -14,7 +14,7 @@
         android:layout_height="143dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_regular"
-        android:textColor="@color/brown"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,22 +32,26 @@
         <RadioButton
             android:id="@+id/radioButtonQ1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000000" />
 
         <RadioButton
             android:id="@+id/radioButtonQ2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000000" />
 
         <RadioButton
             android:id="@+id/radioButtonQ3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000000" />
 
         <RadioButton
             android:id="@+id/radioButtonQ4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#000000" />
     </RadioGroup>
 
     <Button
@@ -68,7 +72,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_italic"
         android:text="@string/Survey_text"
-        android:textColor="@color/brown_dark"
+        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
