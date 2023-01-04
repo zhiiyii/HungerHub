@@ -4,6 +4,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Username</string>
     <string name="nav_header_subtitle">user@gmail.com</string>
+    <string name="nav_header_subtitle2">012–3456789</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
