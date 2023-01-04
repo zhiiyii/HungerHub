@@ -194,6 +194,7 @@
     <string name="request_main_menu">REQUEST</string>
     <string name="donate_main_menu">DONATE</string>
     <string name="survey_main_menu">START A SURVEY</string>
+    <string name="info_main_menu">MORE INFO</string>
     <string-array name="month_group">
         <item>01</item>
         <item>02</item>

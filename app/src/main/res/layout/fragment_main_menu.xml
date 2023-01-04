@@ -23,6 +23,7 @@
         android:layout_height="167dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
+        android:contentDescription="@string/donate_main_menu"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMainMenuQuotesAuthor"
@@ -33,6 +34,7 @@
         android:layout_width="169dp"
         android:layout_height="167dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="@string/request_main_menu"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonDonate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,22 +44,32 @@
     <ImageButton
         android:id="@+id/imageButtonSurvey"
         android:layout_width="0dp"
-        android:layout_height="165dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="167dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/survey_main_menu"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRequestMainMenu"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonDonate"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonDonate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonateMainMenu"
         app:srcCompat="@drawable/survey_menu" />
+
+    <ImageButton
+        android:id="@+id/imageButtonInfo"
+        android:layout_width="0dp"
+        android:layout_height="167dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/info_main_menu"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonRequest"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonRequest"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestMainMenu"
+        app:srcCompat="@drawable/more_info" />
 
     <TextView
         android:id="@+id/textViewMainMenuQuotes"
         android:layout_width="292dp"
         android:layout_height="40dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="55dp"
         android:text="@string/main_menu_quotes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,45 +79,61 @@
         android:id="@+id/textViewMainMenuQuotesAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/main_menu_quotes_author"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewMainMenuQuotes"
         app:layout_constraintTop_toBottomOf="@+id/textViewMainMenuQuotes" />
 
     <TextView
         android:id="@+id/textViewDonateMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
         android:text="@string/donate_main_menu"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonDonate"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonDonate"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonDonate" />
 
     <TextView
         android:id="@+id/textViewRequestMainMenu"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="70dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
         android:text="@string/request_main_menu"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewDonateMainMenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewDonateMainMenu"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonDonate" />
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonRequest"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonRequest"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonRequest" />
 
     <TextView
         android:id="@+id/textViewSurveyMainMenu"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
         android:text="@string/survey_main_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonSurvey"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonSurvey"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonSurvey" />
+
+    <TextView
+        android:id="@+id/textViewMoreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:text="@string/info_main_menu"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonInfo"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonInfo"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
