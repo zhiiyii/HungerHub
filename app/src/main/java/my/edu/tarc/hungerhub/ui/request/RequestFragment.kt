@@ -100,7 +100,6 @@ class RequestFragment: Fragment() {
             builder.setMessage(R.string.dialog_message)
             builder.setIcon(R.drawable.alert)
 
-            // TODO: maybe 1 time a week?
             // press submit in dialog
             builder.setPositiveButton(R.string.submit) { _, _ ->
                 val referenceReq = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
@@ -111,41 +110,30 @@ class RequestFragment: Fragment() {
                 val format = SimpleDateFormat(dateFormat)
                 val time = format.format(calendar.time)
 
-                Log.d("hiii", "before read data")
+                val income = binding.editTextIncome.text.toString().toInt()
+                val job = binding.spinnerJob.selectedItem.toString()
+                val marital = binding.spinnerMarital.selectedItem.toString()
+                val pax = binding.editTextPax.text.toString().toInt()
+                val reason = binding.editTextReason.text.toString()
+                val pending = getString(R.string.pending)
 
-                readData(object: UserListCallback {
-                    override fun onCallback(value: List<String>) {
+                readData(object: MyCallback {
+                    override fun onCallback(value: List<String>): Request {
                         Log.d("hiii", "oncallback")
-//                        val request = Request(
-//                            time, value[0], value[1], value[2],
-//                            value[3], value[4], value[5], value[6],
-//                            binding.editTextIncome.text.toString().toInt(),
-//                            binding.spinnerJob.selectedItem.toString(),
-//                            binding.spinnerMarital.selectedItem.toString(),
-//                            binding.editTextPax.text.toString().toInt(),
-//                            binding.editTextReason.text.toString(),
-//                            getString(R.string.pending)
-//                        )
-//
-//                        requestViewModel.insert(request)
+                        val request = Request(
+                            time, value[0], value[1], value[2],
+                            value[3], value[4], value[5], value[6],
+                            income, job, marital, pax, reason, pending
+                        )
+                        Log.d("request", request.name)
+                        Log.d("request", request.maritalStatus) // no bug
+                        requestViewModel.insert(request) // TODO: here cannot work
+                        return request
                     }
                 })
 
-                Log.d("hiii", "after read data")
-
-//                val request = Request(
-//                    time,
-//                    value,
-//                    binding.editTextIncome.text.toString().toInt(),
-//                    binding.spinnerJob.selectedItem.toString(),
-//                    binding.spinnerMarital.selectedItem.toString(),
-//                    binding.editTextPax.text.toString().toInt(),
-//                    binding.editTextReason.text.toString(),
-//                    getString(R.string.pending)
-//                )
-
                 // save data in firebase and room database
-//                            referenceReq.child(time).setValue(request)
+//                referenceReq.child(time).setValue(request)
 //                requestViewModel.insert(request)
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
@@ -165,7 +153,7 @@ class RequestFragment: Fragment() {
         }
     }
 
-    private fun readData(myCallback: UserListCallback) {
+    private fun readData(myCallback: MyCallback) {
         val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
 
         val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
@@ -175,6 +163,7 @@ class RequestFragment: Fragment() {
         findUser.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists() && loginIc != null) {
+                    Log.d("hiii", "got snapshot")
                     val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
                     val name = children.child("name").value.toString()
                     val ic = children.child("ic").value.toString()
@@ -184,8 +173,10 @@ class RequestFragment: Fragment() {
                     val postcode = children.child("posCode").value.toString()
                     val state = children.child("state").value.toString()
                     userListFromFirebase = listOf(name, ic, phoneNo, email, address, postcode, state)
-                    Log.d("hiii", "list done")
-                    myCallback.onCallback(userListFromFirebase)
+                    val request = myCallback.onCallback(userListFromFirebase)
+                    // TODO: requestViewModel.insert(request) // here cannot work also
+                } else {
+                    Log.d("hiii", "no match or no loginIc")
                 }
             }
 
