@@ -16,8 +16,7 @@ import my.edu.tarc.hungerhub.adapter.RequestAdapter
 import my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding
 import my.edu.tarc.hungerhub.model.RequestViewModel
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Calendar
 
 class RequestStatusFragment: Fragment() {
 

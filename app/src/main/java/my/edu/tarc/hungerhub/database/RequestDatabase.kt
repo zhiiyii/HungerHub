@@ -30,7 +30,7 @@ abstract class RequestDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RequestDatabase::class.java,
-                    "request_db"
+                    "request_dbb"
                 ).allowMainThreadQueries().build()
 
                 INSTANCE = instance

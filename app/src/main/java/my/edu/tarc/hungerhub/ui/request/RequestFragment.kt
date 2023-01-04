@@ -2,9 +2,11 @@ package my.edu.tarc.hungerhub.ui.request
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
 import my.edu.tarc.hungerhub.model.Request
@@ -28,6 +33,7 @@ class RequestFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val requestViewModel: RequestViewModel by viewModels()
+    private lateinit var userListFromFirebase: List<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -97,7 +103,7 @@ class RequestFragment: Fragment() {
             // TODO: maybe 1 time a week?
             // press submit in dialog
             builder.setPositiveButton(R.string.submit) { _, _ ->
-                val reference = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
+                val referenceReq = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
 
                 // get submit date and time
                 val dateFormat = "yyyy/MM/dd HH:mm:ss"
@@ -105,18 +111,42 @@ class RequestFragment: Fragment() {
                 val format = SimpleDateFormat(dateFormat)
                 val time = format.format(calendar.time)
 
-                val request = Request(time,
-                    binding.editTextIncome.text.toString().toInt(),
-                    binding.spinnerJob.selectedItem.toString(),
-                    binding.spinnerMarital.selectedItem.toString(),
-                    binding.editTextPax.text.toString().toInt(),
-                    binding.editTextReason.text.toString(),
-                    getString(R.string.pending)
-                )
+                Log.d("hiii", "before read data")
 
-                // save data in firebase and DAO database
-                reference.child(time).setValue(request)
-                requestViewModel.insert(request)
+                readData(object: UserListCallback {
+                    override fun onCallback(value: List<String>) {
+                        Log.d("hiii", "oncallback")
+//                        val request = Request(
+//                            time, value[0], value[1], value[2],
+//                            value[3], value[4], value[5], value[6],
+//                            binding.editTextIncome.text.toString().toInt(),
+//                            binding.spinnerJob.selectedItem.toString(),
+//                            binding.spinnerMarital.selectedItem.toString(),
+//                            binding.editTextPax.text.toString().toInt(),
+//                            binding.editTextReason.text.toString(),
+//                            getString(R.string.pending)
+//                        )
+//
+//                        requestViewModel.insert(request)
+                    }
+                })
+
+                Log.d("hiii", "after read data")
+
+//                val request = Request(
+//                    time,
+//                    value,
+//                    binding.editTextIncome.text.toString().toInt(),
+//                    binding.spinnerJob.selectedItem.toString(),
+//                    binding.spinnerMarital.selectedItem.toString(),
+//                    binding.editTextPax.text.toString().toInt(),
+//                    binding.editTextReason.text.toString(),
+//                    getString(R.string.pending)
+//                )
+
+                // save data in firebase and room database
+//                            referenceReq.child(time).setValue(request)
+//                requestViewModel.insert(request)
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()
@@ -133,6 +163,36 @@ class RequestFragment: Fragment() {
             alertDialog.setCancelable(false)
             alertDialog.show()
         }
+    }
+
+    private fun readData(myCallback: UserListCallback) {
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
+                    userListFromFirebase = listOf(name, ic, phoneNo, email, address, postcode, state)
+                    Log.d("hiii", "list done")
+                    myCallback.onCallback(userListFromFirebase)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("firebase", "firebase error")
+            }
+        })
     }
 
     override fun onDestroyView() {

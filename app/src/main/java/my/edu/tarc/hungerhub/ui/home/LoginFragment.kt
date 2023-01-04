@@ -1,5 +1,6 @@
 package my.edu.tarc.hungerhub.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,9 +20,6 @@ class LoginFragment : Fragment() {
     private lateinit var database :DatabaseReference
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-//    private lateinit var firebaseAuth: FirebaseAuth
-//    val password = "123123"
-//    val email = "pinkkting@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,26 +60,39 @@ class LoginFragment : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("User")
         database.child(ic).get().addOnSuccessListener {
             database.child(pass).get().addOnSuccessListener {
-            if(binding.editTextLogInIC.text.toString() == ic && binding.editTextLogInPassword.text.toString() == pass ){
-                getActivity()?.let { it1 ->
-                    Snackbar.make(
-                        it1.findViewById(android.R.id.content),
-                        "Login Success!", Snackbar.LENGTH_LONG).show()
-                }
+                if(binding.editTextLogInIC.text.toString() == ic && binding.editTextLogInPassword.text.toString() == pass ){
+                    // create shared preference for login account details
+                    val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+                    if (sharedPref != null) {
+                        with(sharedPref.edit()) {
+                            this?.clear()
+                            this?.apply()
+                        }
+                    }
+                    with (sharedPref?.edit()) {
+                        this?.putString("ic", binding.editTextLogInIC.text.toString())
+                        this?.apply()
+                    }
 
-                findNavController().navigate(R.id.action_loginFragment_to_nav_request2)
-            }else{
+                    getActivity()?.let { it1 ->
+                        Snackbar.make(
+                            it1.findViewById(android.R.id.content),
+                            "Login Success!", Snackbar.LENGTH_LONG).show()
+                    }
+
+                    findNavController().navigate(R.id.action_loginFragment_to_nav_request2)
+                }else{
 //                val snack = Snackbar.make(it,"Invalid email/Password!", Snackbar.LENGTH_LONG)
 //                snack.show()
-                getActivity()?.let { it1 ->
-                    Snackbar.make(
-                        it1.findViewById(android.R.id.content),
-                        "Ic or Password are incorrect!", Snackbar.LENGTH_LONG).show()
+                    getActivity()?.let { it1 ->
+                        Snackbar.make(
+                            it1.findViewById(android.R.id.content),
+                            "Ic or Password are incorrect!", Snackbar.LENGTH_LONG).show()
+                    }
                 }
+            }.addOnFailureListener {
+                //Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener {
-            //Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
-        }
         }
 
     }
