@@ -43,11 +43,11 @@ class LoginFragment : Fragment() {
 
         binding.buttonSignIn.setOnClickListener {
             if (binding.editTextLogInIC.text.isEmpty()) {
-                binding.editTextLogInIC.setError(getString(R.string.emailrequired))
+                binding.editTextLogInIC.setError(getString(R.string.emailRequired))
                 return@setOnClickListener
             }
             if (binding.editTextLogInPassword.text.isEmpty()) {
-                binding.editTextLogInPassword.setError(getString(R.string.passwordrequired))
+                binding.editTextLogInPassword.setError(getString(R.string.passwordRequired))
                 return@setOnClickListener
             }
 
