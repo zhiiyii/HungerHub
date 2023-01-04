@@ -1,5 +1,5 @@
 package my.edu.tarc.hungerhub.ui.home
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -41,7 +41,7 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
             firebaseAuth = FirebaseAuth.getInstance()
             val fullName = binding.editTextRegisterFullname.text.toString()
@@ -53,18 +53,21 @@ class RegisterFragment : Fragment() {
             val posCode = binding.editTextRegisterPostCode.text.toString()
             val pass = binding.editTextRegisterPassword.text.toString()
             val comfirmPass = binding.editTextRegisterComfirmPassword.text.toString()
-            val RorD = binding.radioGroupRandD
+
+//            //create a data in firebase auth
+//            firebaseAuth.createUserWithEmailAndPassword(ic,pass).addOnCompleteListener {
+//                if(it.isSuccessful){
+//                    Log.e("cw","Register successfully cw")
+//                }else{
+//                    Log.e("cw","Register gg cw")
+//                }
+//            }
 
             //This variable is use to solve the problems that firebase cannot store the value with "."
 //            val newEmail = email.replace(".",",")
 
             database = FirebaseDatabase.getInstance().getReference("User")
-
-            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode,RorD)
-
-
-//            Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
-
+            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode)
             database.child(ic).setValue(user).addOnSuccessListener {
 
                 binding.editTextRegisterFullname.text.clear()
@@ -84,18 +87,18 @@ class RegisterFragment : Fragment() {
 
             if (ic.isNotEmpty() && email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
                 if (pass == comfirmPass) {
-                    firebaseAuth.createUserWithEmailAndPassword(ic, pass).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            findNavController().navigate(R.id.action_nav_home_to_loginFragment)
-
-                        } else {
-                            toastMakeText(
-                                requireActivity(),
-                                it.exception.toString(),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
+//                    firebaseAuth.createUserWithEmailAndPassword(ic, pass).addOnCompleteListener {
+//                        if (it.isSuccessful) {
+//                            findNavController().navigate(R.id.action_nav_home_to_loginFragment)
+//
+//                        } else {
+//                            toastMakeText(
+//                                requireActivity(),
+//                                it.exception.toString(),
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//                    }
                 } else {
                     toastMakeText(requireActivity(), "Password is not matching", Toast.LENGTH_LONG)
                         .show()
@@ -135,12 +138,7 @@ class RegisterFragment : Fragment() {
         if (binding.editTextRegisterPostCode.text.isEmpty()) {
             binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
         }
-        if(binding.radioButtonDonor.isChecked || binding.radioButtonRecipient.isChecked){
 
-        }else{
-            //Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
-            Log.d("QAOD", "Gender is Null");
-        }
 
     }
 

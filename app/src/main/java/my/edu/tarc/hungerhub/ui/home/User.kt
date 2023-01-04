@@ -11,6 +11,17 @@ data class User(
     val phoneNo: String? = null,
     val address: String,
     val posCode: String,
-    val RorD: RadioGroup
-    )
+) {
+    constructor() : this(null, null, null, null, null, null, "", "")
 
+    override fun toString(): String {
+        return "User(ic=$ic, email=$email, name=$name, state=$state, pass=$pass, phoneNo=$phoneNo, address='$address', posCode='$posCode')"
+    }
+
+}
+
+//class User(val ic: String? = null, val email: String? = null, val name: String? = null,
+//val state: String? = null, val pass: String? = null, val phoneNo: String? = null,
+//val address: String, val posCode: String,){
+//    constructor()
+//}

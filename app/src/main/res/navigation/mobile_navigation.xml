@@ -106,6 +106,9 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_self"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_survey_ques"
