@@ -30,10 +30,13 @@
     <fragment
         android:id="@+id/nav_donation"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment"
-        android:label="@string/menu_donation">
+        android:label="@string/food_donation">
         <action
             android:id="@+id/action_nav_donation_to_nav_donation2"
             app:destination="@id/nav_donation2" />
+        <argument
+            android:name="totalDonation"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/nav_request"
@@ -47,10 +50,13 @@
     <fragment
         android:id="@+id/nav_donation2"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment2"
-        android:label="DonationFragment2" >
+        android:label="@string/donation_payment">
         <action
             android:id="@+id/action_nav_donation2_to_donationFragment3"
             app:destination="@id/donationFragment3" />
+        <action
+            android:id="@+id/action_nav_donation2_to_nav_donation"
+            app:destination="@id/nav_donation" />
     </fragment>
     <fragment
         android:id="@+id/donationFragment3"
@@ -89,6 +95,9 @@
         <action
             android:id="@+id/action_loginFragment_to_nav_request2"
             app:destination="@id/nav_request" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

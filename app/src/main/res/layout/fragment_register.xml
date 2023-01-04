@@ -13,7 +13,6 @@
         android:layout_marginEnd="5dp"
         android:src="@drawable/ic_baseline_lock_24"
         app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPassword"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPassword" />
 
@@ -24,7 +23,6 @@
         android:layout_marginEnd="5dp"
         android:src="@drawable/ic_baseline_home_24"
         app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewState" />
 
@@ -171,8 +169,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupRandD"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageViewFullName"
@@ -258,6 +256,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewIC"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/buttonLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:text="@string/LogIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewRegisterAlready"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registered_account"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonLogIn"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLogIn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonLogIn"
+        app:layout_constraintVertical_bias="0.31" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

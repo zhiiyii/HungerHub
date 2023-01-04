@@ -26,10 +26,11 @@
     <EditText
         android:id="@+id/editTextCardNumber"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="51dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
+        android:hint="@string/card_number_hints"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -63,10 +64,11 @@
 
     <EditText
         android:id="@+id/editTextCVC"
-        android:layout_width="98dp"
-        android:layout_height="48dp"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
         android:layout_marginTop="5dp"
         android:ems="10"
+        android:hint="@string/card_CVC_hints"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
@@ -85,7 +87,7 @@
         android:id="@+id/textViewCardNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:text="@string/bank_card_num"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -95,7 +97,7 @@
         android:id="@+id/spinnerCardExpiryYear"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="28dp"
         android:entries="@array/year_group"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCardExpiryMonth"
         app:layout_constraintStart_toEndOf="@+id/textView12"
@@ -116,12 +118,12 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="16dp"
         android:text="/"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCardExpiryMonth"
         app:layout_constraintStart_toEndOf="@+id/spinnerCardExpiryMonth"
         app:layout_constraintTop_toTopOf="@+id/spinnerCardExpiryMonth"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.448" />
 
     <TextView
         android:id="@+id/textView15"
@@ -147,7 +149,8 @@
         android:id="@+id/buttonDonate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="84dp"
         android:text="@string/donate"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/editTextCVC" />
@@ -160,6 +163,15 @@
         android:entries="@array/month_group"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textViewCardExpiry" />
+
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCVC" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
