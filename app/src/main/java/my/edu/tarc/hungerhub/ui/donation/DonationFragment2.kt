@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentDonation2Binding
 import my.edu.tarc.hungerhub.model.Donor
+import my.edu.tarc.hungerhub.ui.home.User
 
 //import my.edu.tarc.hungerhub.ui.request.MyCallback
 
@@ -30,7 +31,9 @@ class DonationFragment2: Fragment() {
     private val dividerPosition = dividerModulo - 1 // means divider position is every 4th symbol beginning with 0
     private val divider= ' '
 
-    val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+    //val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+    val referenceUser = FirebaseDatabase.getInstance().getReference("User")
+
     var database = FirebaseDatabase.getInstance().reference
 
     val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
@@ -135,6 +138,8 @@ class DonationFragment2: Fragment() {
                     "Thanks for donating RM $donateAmt!",
                     Toast.LENGTH_SHORT
                 ).show()
+
+                //breakpoint
 
 
             }
