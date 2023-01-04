@@ -3,7 +3,6 @@ package my.edu.tarc.hungerhub
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -18,7 +17,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.databinding.ActivityMainBinding
-import my.edu.tarc.hungerhub.ui.donation.DonationFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration

@@ -11,7 +11,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_survey">Survey</string>
     <string name="menu_donation">Donation</string>
-    <string name="menu_request">Request Food Form</string>
+    <string name="menu_request">Request Food</string>
 
     <!--  Login / Register  -->
     <string name="name">Name</string>
@@ -20,6 +20,7 @@
     <string name="address">Address</string>
 
     <!--  Request Fragment  -->
+    <string name="request_form">Request Food Form</string>
     <string name="white_bg">White Background</string>
     <string name="request_donation_form">Request Donation Form</string>
     <string name="marital_status">Marital Status</string>

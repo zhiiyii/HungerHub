@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/Home">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/Home"
         android:name="my.edu.tarc.hungerhub.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
@@ -78,13 +78,13 @@
         tools:layout="@layout/fragment_survey_lack" >
         <action
             android:id="@+id/action_surveyFragmentLack_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/RequestFragment"
         android:name="my.edu.tarc.hungerhub.ui.request.RequestFragment"
-        android:label="@string/menu_request"
-        tools:layout="@layout/fragment_request" >
+        android:label="@string/request_form"
+        tools:layout="@layout/fragment_request">
         <action
             android:id="@+id/action_RequestFragment_to_nav_request"
             app:destination="@id/nav_request" />
@@ -98,7 +98,7 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -129,7 +129,7 @@
             app:destination="@id/surveyFragmentRate1" />
     </fragment>
     <fragment
-        android:id="@+id/mainMenuFragment"
+        android:id="@+id/nav_home"
         android:name="my.edu.tarc.hungerhub.MainMenuFragment"
         android:label="Main Menu" >
         <action
