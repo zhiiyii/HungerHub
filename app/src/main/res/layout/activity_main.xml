@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    android:background="#80cbc4">
+    tools:openDrawer="start">
 
     <include
         android:id="@+id/app_bar_main"

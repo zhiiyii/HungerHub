@@ -15,7 +15,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#4f9a94"
             app:popupTheme="@style/Theme.HungerHub.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
