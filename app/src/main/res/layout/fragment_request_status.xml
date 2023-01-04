@@ -50,10 +50,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:contentDescription="@string/filter"
+        android:focusable="true"
         android:src="@drawable/ic_baseline_filter_alt_24"
         app:layout_constraintBottom_toBottomOf="@+id/floatingActionButtonAddForm"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAddForm"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonAddForm"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonAddForm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

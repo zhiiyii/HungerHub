@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                     val phoneNo = children.child("phoneNo").value.toString()
 
                     with(sharedPref.edit()) {
-                        this?.clear()
                         this?.putString("name", name)
                         this?.putString("email", email)
                         this?.putString("phone", phoneNo)

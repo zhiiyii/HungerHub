@@ -1,13 +1,19 @@
 package my.edu.tarc.hungerhub
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.databinding.FragmentMainMenuBinding
 
 class MainMenuFragment: Fragment()  {
@@ -26,6 +32,8 @@ class MainMenuFragment: Fragment()  {
 
     override fun onStart() {
         super.onStart()
+
+        readLoginData()
 
         binding.imageButtonDonate.setOnClickListener{
             findNavController().navigate(R.id.action_mainMenuFragment_to_nav_donation)
@@ -60,7 +68,36 @@ class MainMenuFragment: Fragment()  {
         }
     }
 
-        override fun onDestroyView() {
+    private fun readLoginData() {
+        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+
+        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists() && loginIc != null) {
+                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+                    val name = children.child("name").value.toString()
+                    val email = children.child("email").value.toString()
+                    val phoneNo = children.child("phoneNo").value.toString()
+
+                    with(sharedPref.edit()) {
+                        this?.putString("name", name)
+                        this?.putString("email", email)
+                        this?.putString("phone", phoneNo)
+                        this?.apply()
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("firebase", "firebase error")
+            }
+        })
+    }
+
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
