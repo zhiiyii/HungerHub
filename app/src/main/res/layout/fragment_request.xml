@@ -206,29 +206,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/imageButtonUpload"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:contentDescription="@string/upload"-->
-    <!--        android:src="@drawable/ic_baseline_upload_file_36"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView8"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:fontFamily="@font/abeezee_italic"-->
-    <!--        android:text="@string/upload_text"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload"-->
-    <!--        app:layout_constraintVertical_bias="0.447" />-->
-
     <CheckBox
         android:id="@+id/checkBoxTnc"
         android:layout_width="wrap_content"
@@ -258,7 +235,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBoxTnc"
         app:layout_constraintTop_toTopOf="@+id/checkBoxTnc" />
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewTnc"
@@ -308,7 +284,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />
             </ScrollView>
 
-
             <TextView
                 android:id="@+id/textViewTncTitle"
                 android:layout_width="match_parent"
@@ -356,55 +331,4 @@
                 app:layout_constraintTop_toTopOf="@+id/textViewTncTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <!--  Data transferring purpose  -->
-    <TextView
-        android:id="@+id/invisibleName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisibleIc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisibleEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisiblePhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisibleAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisibleState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/invisiblePostcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

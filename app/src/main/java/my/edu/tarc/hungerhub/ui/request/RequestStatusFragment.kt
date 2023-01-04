@@ -3,14 +3,20 @@ package my.edu.tarc.hungerhub.ui.request
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.adapter.RequestAdapter
 import my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding
@@ -36,6 +42,9 @@ class RequestStatusFragment: Fragment() {
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
 
         // check for changes of live data
         requestViewModel.requestList.observe(viewLifecycleOwner) {

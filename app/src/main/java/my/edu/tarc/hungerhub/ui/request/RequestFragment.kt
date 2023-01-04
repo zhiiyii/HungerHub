@@ -33,7 +33,6 @@ class RequestFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val requestViewModel: RequestViewModel by viewModels()
-    private lateinit var userListFromFirebase: List<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -46,6 +45,8 @@ class RequestFragment: Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onStart() {
         super.onStart()
+
+        readLoginData()
 
         // open and close TNC popup card view
         binding.textViewTnc.setOnClickListener {
@@ -117,24 +118,27 @@ class RequestFragment: Fragment() {
                 val reason = binding.editTextReason.text.toString()
                 val pending = getString(R.string.pending)
 
-                readData(object: MyCallback {
-                    override fun onCallback(value: List<String>): Request {
-                        Log.d("hiii", "oncallback")
+                val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+                if (sharedPref != null) {
+                    val ic = sharedPref.getString("ic", null)
+                    val name = sharedPref.getString("name", null)
+                    val email = sharedPref.getString("email", null)
+                    val phone = sharedPref.getString("phoneNo", null)
+                    val address = sharedPref.getString("address", null)
+                    val postcode = sharedPref.getString("posCode", null)
+                    val state = sharedPref.getString("state", null)
+
+                    if (ic != null && name != null && email != null && phone != null &&
+                        address != null && postcode != null && state != null) {
                         val request = Request(
-                            time, value[0], value[1], value[2],
-                            value[3], value[4], value[5], value[6],
+                            time, ic, name, email,
+                            phone, address, postcode, state,
                             income, job, marital, pax, reason, pending
                         )
-                        Log.d("request", request.name)
-                        Log.d("request", request.maritalStatus) // no bug
-                        requestViewModel.insert(request) // TODO: here cannot work
-                        return request
+                        requestViewModel.insert(request)
+                        // referenceReq.child(time).setValue(request)
                     }
-                })
-
-                // save data in firebase and room database
-//                referenceReq.child(time).setValue(request)
-//                requestViewModel.insert(request)
+                }
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()
@@ -153,7 +157,7 @@ class RequestFragment: Fragment() {
         }
     }
 
-    private fun readData(myCallback: MyCallback) {
+    private fun readLoginData() {
         val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
 
         val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
@@ -163,7 +167,7 @@ class RequestFragment: Fragment() {
         findUser.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists() && loginIc != null) {
-                    Log.d("hiii", "got snapshot")
+                    Log.d("checkpoint", "got snapshot")
                     val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
                     val name = children.child("name").value.toString()
                     val ic = children.child("ic").value.toString()
@@ -172,11 +176,20 @@ class RequestFragment: Fragment() {
                     val address = children.child("address").value.toString()
                     val postcode = children.child("posCode").value.toString()
                     val state = children.child("state").value.toString()
-                    userListFromFirebase = listOf(name, ic, phoneNo, email, address, postcode, state)
-                    val request = myCallback.onCallback(userListFromFirebase)
-                    // TODO: requestViewModel.insert(request) // here cannot work also
+
+                    with(sharedPref.edit()) {
+                        this?.clear()
+                        this?.putString("ic", ic)
+                        this?.putString("name", name)
+                        this?.putString("email", email)
+                        this?.putString("phoneNo", phoneNo)
+                        this?.putString("address", address)
+                        this?.putString("posCode", postcode)
+                        this?.putString("state", state)
+                        this?.apply()
+                    }
                 } else {
-                    Log.d("hiii", "no match or no loginIc")
+                    Log.d("checkpoint", "no snapshot or not logged in")
                 }
             }
 
