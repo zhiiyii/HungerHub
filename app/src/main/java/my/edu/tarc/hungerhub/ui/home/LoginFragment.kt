@@ -1,5 +1,6 @@
 package my.edu.tarc.hungerhub.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -66,6 +67,19 @@ class LoginFragment : Fragment() {
                     database.child(pass).get().addOnSuccessListener {
 
                         if(binding.editTextLogInIC.text.toString() == ic && binding.editTextLogInPassword.text.toString() == pass ){
+                            // create shared preference for login account details
+                            val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+                            if (sharedPref != null) {
+                                with(sharedPref.edit()) {
+                                    this?.clear()
+                                    this?.apply()
+                                }
+                            }
+                            with (sharedPref?.edit()) {
+                                this?.putString("ic", binding.editTextLogInIC.text.toString())
+                                this?.apply()
+                            }
+
                             getActivity()?.let { it1 ->
                                 Snackbar.make(
                                     it1.findViewById(android.R.id.content),
