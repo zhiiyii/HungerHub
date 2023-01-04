@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
+import kotlinx.coroutines.delay
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
     private lateinit var database: DatabaseReference
@@ -27,19 +29,19 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onStart() {
         super.onStart()
         binding.buttonRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        //read data from firebase and add in to users
-        var users = mutableListOf<User>()
-        var setUsers = mutableSetOf<User>()
-        binding.buttonSignIn.setOnClickListener {
-            val ic: String = binding.editTextLogInIC.text.toString()
-            val pass: String = binding.editTextLogInPassword.text.toString()
+        //read data from firebase and set a user
+        var currentUser: User? = null
+        var isUser: Boolean = false
+        database = FirebaseDatabase.getInstance().getReference("User")
 
+        binding.buttonSignIn.setOnClickListener {
             if (binding.editTextLogInIC.text.isEmpty()) {
                 binding.editTextLogInIC.setError(getString(R.string.emailrequired))
                 return@setOnClickListener
@@ -49,72 +51,49 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            database = FirebaseDatabase.getInstance().getReference("User")
+            var ic: String = binding.editTextLogInIC.text.toString()
+            var pass: String = binding.editTextLogInPassword.text.toString()
 
-            database.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    for (userSnapshot in dataSnapshot.children) {
-                        var user = userSnapshot.getValue(User()::class.java)
-                        if (user != null) {
-                            if (user !in setUsers) {
-                                users.add(user)
-                                setUsers.add(user)
-                            }
-                        }
-                    }
+            database.child(ic).get().addOnSuccessListener {
+                if (it.exists()) {
+                    currentUser = it.getValue(User()::class.java)!!
+                    Log.d("cw", currentUser.toString())
                 }
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle error
-                }
-            })
+            }
 
-            var isUser: Boolean = false
-            if (ic.isNotEmpty() && pass.isNotEmpty()) {
-                for (user in users) {
-                    if (ic == user.ic && pass == user.pass) {
-                        isUser = true
-                        break;
-                    }
-                }
-                if (isUser) {
-                    // create shared preference for login account details
-                    val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
-                    if (sharedPref != null) {
-                        with(sharedPref.edit()) {
-                            this?.clear()
-                            this?.apply()
-                        }
-                    }
-                    with (sharedPref?.edit()) {
-                        this?.putString("ic", binding.editTextLogInIC.text.toString())
+            if (ic == currentUser?.ic && pass == currentUser?.pass) {
+                Log.d(
+                    "Test",
+                    "ic = $ic, pass = $pass, icFB = ${currentUser!!.ic} , icPw = ${currentUser!!.pass}"
+                )
+                isUser = true
+            }
+
+            if (isUser) {
+                // create shared preference for login account details
+                val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+                if (sharedPref != null) {
+                    with(sharedPref.edit()) {
+                        this?.clear()
                         this?.apply()
                     }
-
-                    getActivity()?.let { it1 ->
-                        Snackbar.make(
-                            it1.findViewById(android.R.id.content),
-                            "Login Success!", Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                    findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
-                } else {
-                    getActivity()?.let { it1 ->
-                        Snackbar.make(
-                            it1.findViewById(android.R.id.content),
-                            "Ic or Password are incorrect!", Snackbar.LENGTH_LONG
-                        ).show()
-                    }
                 }
-            }
-            else{
-                getActivity()?.let { it1 ->
+                with(sharedPref?.edit()) {
+                    this?.putString("ic", binding.editTextLogInIC.text.toString())
+                    this?.apply()
+                }
+
+                activity?.let { it1 ->
                     Snackbar.make(
                         it1.findViewById(android.R.id.content),
-                        "Invalid ic and password, please try again!", Snackbar.LENGTH_LONG
+                        "Login Success!", Snackbar.LENGTH_LONG
                     ).show()
                 }
+
+                findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
             }
         }
-
     }
 }
+
+
