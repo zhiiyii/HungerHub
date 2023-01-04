@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton7"-->
+<!--        android:layout_width="163dp"-->
+<!--        android:layout_height="161dp"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="208dp"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/donate_main"-->
+<!--        tools:ignore="SpeakableTextPresentCheck" />-->
+
+    <ImageButton
+        android:id="@+id/imageButtonDonate"
+        android:layout_width="169dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainMenuQuotesAuthor"
+        app:srcCompat="@drawable/donation_box_main" />
+
+    <ImageButton
+        android:id="@+id/imageButtonRequest"
+        android:layout_width="169dp"
+        android:layout_height="167dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDonate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDonate"
+        app:srcCompat="@drawable/healthcare" />
+
+    <ImageButton
+        android:id="@+id/imageButtonSurvey"
+        android:layout_width="0dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRequestMainMenu"
+        app:srcCompat="@drawable/survey_menu" />
+
+    <TextView
+        android:id="@+id/textViewMainMenuQuotes"
+        android:layout_width="292dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/main_menu_quotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMainMenuQuotesAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/main_menu_quotes_author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainMenuQuotes" />
+
+    <TextView
+        android:id="@+id/textViewDonateMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/donate_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDonate" />
+
+    <TextView
+        android:id="@+id/textViewRequestMainMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="70dp"
+        android:text="@string/request_main_menu"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewDonateMainMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewDonateMainMenu"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDonate" />
+
+    <TextView
+        android:id="@+id/textViewSurveyMainMenu"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/survey_main_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonSurvey" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

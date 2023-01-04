@@ -82,7 +82,7 @@ class LoginFragment : Fragment() {
                             "Login Success!", Snackbar.LENGTH_LONG
                         ).show()
                     }
-                    findNavController().navigate(R.id.action_loginFragment_to_nav_request2)
+                    findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
                 } else {
                     getActivity()?.let { it1 ->
                         Snackbar.make(
