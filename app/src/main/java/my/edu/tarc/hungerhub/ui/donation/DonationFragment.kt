@@ -40,13 +40,19 @@ class DonationFragment : Fragment(){
             val donationAmt = binding.editTextDonationPrice.text.toString()
 
             if(donationAmt.isNotEmpty()){
-                findNavController().navigate(R.id.action_nav_donation_to_nav_donation2, Bundle().apply {
+                findNavController().navigate(R.id.action_nav_donation_to_donorDetailsFragment, Bundle().apply {
                     putInt("totalDonation", donationAmt.toInt())
                 })
             }else{
                 Toast.makeText(context,"Please enter the amount of donation", Toast.LENGTH_SHORT).show()
-
             }
+//            if(donationAmt.isNotEmpty()){
+//                findNavController().navigate(R.id.action_nav_donation_to_donorDetailsFragment)
+//
+//            }else{
+//                Toast.makeText(context,"Please enter the amount of donation", Toast.LENGTH_SHORT).show()
+//
+//            }
         }
 
     }

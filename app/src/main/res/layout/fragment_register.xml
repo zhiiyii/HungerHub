@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.RegisterFragment">
+    tools:context=".ui.home.RegisterFragment"
+    android:background="#80cbc4">
 
     <ImageView
         android:id="@+id/imageViewComfirmPassword"
@@ -46,7 +47,8 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterFullname"
@@ -58,7 +60,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegister"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterIC"
@@ -70,7 +73,8 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterFullname" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterFullname"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterPhoneNo"
@@ -82,7 +86,8 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterIC" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterIC"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterEmail"
@@ -94,7 +99,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPhoneNo" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPhoneNo"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterAddress"
@@ -106,7 +112,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterEmail"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterState"
@@ -118,7 +125,8 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterAddress"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterPostCode"
@@ -130,7 +138,8 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterState" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterState"
+        android:textColor="@color/black"/>
 
 
     <EditText
@@ -143,7 +152,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPostCode" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPostCode"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextRegisterComfirmPassword"
@@ -155,7 +165,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPassword"
+        android:textColor="@color/black"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
@@ -278,7 +289,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonLogIn"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.31"
+        android:textColor="@color/black"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

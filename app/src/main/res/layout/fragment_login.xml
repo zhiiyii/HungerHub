@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.LoginFragment">
+    tools:context=".ui.home.LoginFragment"
+    android:background="#80cbc4">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignIn"
@@ -31,7 +32,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogIn" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLogIn"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textViewLogIn"
@@ -42,7 +44,8 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextLogInPassword"
@@ -54,7 +57,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLogInIC" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogInIC"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/LogIn_title"
@@ -64,7 +68,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextLogInIC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogIn" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLogIn"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/Login_Not_Yet_Register"
@@ -74,15 +79,16 @@
         android:text="@string/login_notyet"
         app:layout_constraintBottom_toBottomOf="@+id/buttonRegister"
         app:layout_constraintEnd_toStartOf="@+id/buttonRegister"
-        app:layout_constraintTop_toTopOf="@+id/buttonRegister" />
+        app:layout_constraintTop_toTopOf="@+id/buttonRegister"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
+        android:background="#4f9a94"
         android:text="@string/btn_register"
-        android:textColor="#795548"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

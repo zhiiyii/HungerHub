@@ -5,7 +5,9 @@
     android:id="@+id/constraintLayout_request"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.request.RequestFragment">
+    tools:context=".ui.request.RequestFragment"
+    android:background="#80cbc4"
+    android:textColor="@color/black">
 
     <ImageView
         android:id="@+id/imageViewBowl"

@@ -195,6 +195,9 @@
     <string name="donate_main_menu">DONATE</string>
     <string name="survey_main_menu">START A SURVEY</string>
     <string name="info_main_menu">MORE INFO</string>
+    <string name="donor_details">Donor Details</string>
+    <string name="donor_ic">IC</string>
+    <string name="donation_amount_details">Donation Amount</string>
     <string-array name="month_group">
         <item>01</item>
         <item>02</item>

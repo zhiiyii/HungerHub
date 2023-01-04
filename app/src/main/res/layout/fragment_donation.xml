@@ -4,22 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
     android:id="@+id/nav_donation"
-    tools:context=".ui.donation.DonationFragment">
-
-    <TextView
-        android:id="@+id/textFoodDonation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/food_donation"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".ui.donation.DonationFragment"
+    android:background="#80cbc4">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -42,24 +29,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:onClick="onSaveDonation"
         android:text="@string/next"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDonationPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDonationPrice"
+        android:background="#4f9a94"/>
 
     <EditText
         android:id="@+id/editTextDonationPrice"
         android:layout_width="159dp"
         android:layout_height="48dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="4dp"
         android:ems="10"
+        android:hint="RM"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewDonationPrice"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textViewDonationPrice"
@@ -68,8 +58,10 @@
         android:layout_marginStart="92dp"
         android:layout_marginTop="36dp"
         android:text="@string/enter_price_manual"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDonationText" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDonationText"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -77,22 +69,25 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:text="@string/donation_description"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView14"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textViewDonationText"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
+        android:layout_width="309dp"
+        android:layout_height="110dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="18dp"
         android:text="@string/donation_text"
-        android:textSize="10dp"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        android:textColor="#000000"/>
 
     <ImageView
         android:id="@+id/imageView14"
@@ -100,17 +95,9 @@
         android:layout_height="323dp"
         android:src="@drawable/food"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFoodDonation" />
-
-    <TextView
-        android:id="@+id/textViewSum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSubmitDonation" />
+        tools:layout_editor_absoluteY="57dp"
+        android:textColor="#000000"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
