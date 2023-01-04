@@ -11,11 +11,12 @@ data class User(
     val phoneNo: String? = null,
     val address: String,
     val posCode: String,
+    val type: String? = null
 ) {
-    constructor() : this(null, null, null, null, null, null, "", "")
+    constructor() : this(null, null, null, null, null, null, "", "",null)
 
     override fun toString(): String {
-        return "User(ic=$ic, email=$email, name=$name, state=$state, pass=$pass, phoneNo=$phoneNo, address='$address', posCode='$posCode')"
+        return "User(ic=$ic, email=$email, name=$name, state=$state, pass=$pass, phoneNo=$phoneNo, address='$address', posCode='$posCode', type = '$type')"
     }
 
 }

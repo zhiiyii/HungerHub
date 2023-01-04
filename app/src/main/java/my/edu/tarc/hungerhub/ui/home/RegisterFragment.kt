@@ -53,6 +53,18 @@ class RegisterFragment : Fragment() {
             val posCode = binding.editTextRegisterPostCode.text.toString()
             val pass = binding.editTextRegisterPassword.text.toString()
             val comfirmPass = binding.editTextRegisterComfirmPassword.text.toString()
+            var type: String? = null
+            if(binding.radioButtonDonor.isChecked){
+                type = "Donor"
+            } else if(binding.radioButtonRecipient.isChecked) {
+                type = "Recipient"
+            }
+
+
+
+//            al radioGroup: RadioGroup = findViewById(R.id.radioGroup)
+//                findViewById(R.id.radioGroup)
+
 
 //            //create a data in firebase auth
 //            firebaseAuth.createUserWithEmailAndPassword(ic,pass).addOnCompleteListener {
@@ -67,7 +79,7 @@ class RegisterFragment : Fragment() {
 //            val newEmail = email.replace(".",",")
 
             database = FirebaseDatabase.getInstance().getReference("User")
-            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode)
+            val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode,type)
             database.child(ic).setValue(user).addOnSuccessListener {
 
                 binding.editTextRegisterFullname.text.clear()
@@ -139,6 +151,7 @@ class RegisterFragment : Fragment() {
             binding.editTextRegisterPostCode.setError(getString(R.string.emailrequired))
         }
 
+    //TODO : radioGroup
 
     }
 
