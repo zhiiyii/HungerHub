@@ -2,7 +2,7 @@ package my.edu.tarc.hungerhub.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import my.edu.tarc.hungerhub.database.RequestDao
+import my.edu.tarc.hungerhub.dao.RequestDao
 import my.edu.tarc.hungerhub.model.Request
 
 class RequestRepository(private val requestDao: RequestDao) {

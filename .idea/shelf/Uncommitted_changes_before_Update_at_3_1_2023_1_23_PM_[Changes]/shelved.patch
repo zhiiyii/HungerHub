@@ -1,0 +1,1432 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.HungerHub\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".ui.home.register_activity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\"\r\n            android:label=\"@string/app_name\"\r\n            android:theme=\"@style/Theme.HungerHub.NoActionBar\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/AndroidManifest.xml	(date 1672717714339)
+@@ -13,8 +13,9 @@
+         android:theme="@style/Theme.HungerHub"
+         tools:targetApi="31">
+         <activity
+-            android:name=".ui.home.register_activity"
+-            android:exported="false">
++            android:name=".ui.home.HomeFragment"
++            android:exported="false"
++            android:screenOrientation="portrait">
+             <meta-data
+                 android:name="android.app.lib_name"
+                 android:value="" />
+@@ -22,11 +23,10 @@
+         <activity
+             android:name=".MainActivity"
+             android:exported="true"
+-            android:label="@string/app_name"
+-            android:theme="@style/Theme.HungerHub.NoActionBar">
++            android:theme="@style/Theme.HungerHub.NoActionBar"
++            android:screenOrientation="portrait">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+-
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+ 
+@@ -35,5 +35,4 @@
+                 android:value="" />
+         </activity>
+     </application>
+-
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.ui.request\r\n\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.lifecycle.Observer\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport my.edu.tarc.hungerhub.R\r\nimport my.edu.tarc.hungerhub.adapter.RequestAdapter\r\nimport my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding\r\nimport my.edu.tarc.hungerhub.model.RequestViewModel\r\n\r\nclass RequestStatusFragment : Fragment() {\r\n\r\n    private var _binding: FragmentRequestStatusBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    //private lateinit var requestViewModel: RequestViewModel\r\n    private val requestViewModel: RequestViewModel by viewModels()\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentRequestStatusBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        // Attach adapter to the RecyclerView\r\n        val requestAdapter = RequestAdapter()\r\n\r\n        with(binding.recyclerViewStatus) {\r\n            layoutManager = LinearLayoutManager(context)\r\n            adapter = requestAdapter\r\n        }\r\n\r\n        //requestViewModel = ViewModelProvider(this)[RequestViewModel::class.java]\r\n\r\n        Log.d(\"bug2\", \"bug2\")\r\n\r\n        requestViewModel.requestList.observe(viewLifecycleOwner, Observer {\r\n            Log.d(\"bug3\", \"bug3\")\r\n            requestAdapter.updateRequestList(it)\r\n        })\r\n\r\n        Log.d(\"bug4\", \"bug4\")\r\n\r\n        binding.floatingActionButtonAddForm.setOnClickListener {\r\n            findNavController().navigate(R.id.action_nav_request_to_RequestFragment)\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt	(date 1672723198793)
+@@ -1,14 +1,11 @@
+ package my.edu.tarc.hungerhub.ui.request
+ 
+ import android.os.Bundle
+-import android.util.Log
+ import androidx.fragment.app.Fragment
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+ import androidx.fragment.app.viewModels
+-import androidx.lifecycle.Observer
+-import androidx.lifecycle.ViewModelProvider
+ import androidx.navigation.fragment.findNavController
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import my.edu.tarc.hungerhub.R
+@@ -21,13 +18,10 @@
+     private var _binding: FragmentRequestStatusBinding? = null
+     private val binding get() = _binding!!
+ 
+-    //private lateinit var requestViewModel: RequestViewModel
+     private val requestViewModel: RequestViewModel by viewModels()
+ 
+     override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
++        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+     ): View {
+         _binding = FragmentRequestStatusBinding.inflate(inflater, container, false)
+         return binding.root
+@@ -36,25 +30,26 @@
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+ 
+-        // Attach adapter to the RecyclerView
++        // attach adapter to the RecyclerView
+         val requestAdapter = RequestAdapter()
+ 
++        // check for changes of live data
++        requestViewModel.requestList.observe(viewLifecycleOwner) {
++            requestAdapter.setForm(it)
++
++            if (binding.recyclerViewStatus.adapter?.itemCount == 0) {
++                binding.textViewEmpty.text = getString(R.string.no_record)
++            } else {
++                binding.textViewEmpty.text = ""
++            }
++        }
++
+         with(binding.recyclerViewStatus) {
+-            layoutManager = LinearLayoutManager(context)
++            layoutManager = LinearLayoutManager(requireActivity())
+             adapter = requestAdapter
+         }
+ 
+-        //requestViewModel = ViewModelProvider(this)[RequestViewModel::class.java]
+-
+-        Log.d("bug2", "bug2")
+-
+-        requestViewModel.requestList.observe(viewLifecycleOwner, Observer {
+-            Log.d("bug3", "bug3")
+-            requestAdapter.updateRequestList(it)
+-        })
+-
+-        Log.d("bug4", "bug4")
+-
++        // add request button
+         binding.floatingActionButtonAddForm.setOnClickListener {
+             findNavController().navigate(R.id.action_nav_request_to_RequestFragment)
+         }
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">HungerHub</string>\r\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\r\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\r\n    <string name=\"nav_header_title\">Username</string>\r\n    <string name=\"nav_header_subtitle\">user@gmail.com</string>\r\n    <string name=\"nav_header_desc\">Navigation header</string>\r\n    <string name=\"action_settings\">Settings</string>\r\n\r\n    <string name=\"menu_home\">Home</string>\r\n    <string name=\"menu_survey\">Survey</string>\r\n    <string name=\"menu_donation\">Donation</string>\r\n    <string name=\"menu_request\">Request Food</string>\r\n\r\n    <!--  Login / Register  -->\r\n    <string name=\"name\">Name</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"phone\">Phone Number</string>\r\n    <string name=\"address\">Address</string>\r\n\r\n    <!--  Request Fragment  -->\r\n    <string name=\"white_bg\">White Background</string>\r\n    <string name=\"request_donation_form\">Request Donation Form</string>\r\n    <string name=\"marital_status\">Marital Status</string>\r\n    <string-array name=\"marital_choice\">\r\n        <item>Please choose a status</item>\r\n        <item>Single</item>\r\n        <item>Together</item>\r\n        <item>Married</item>\r\n        <item>Widowed</item>\r\n        <item>Divorced</item>\r\n    </string-array>\r\n    <string name=\"job_status\">Job Status</string>\r\n    <string name=\"employed\">Employed</string>\r\n    <string name=\"unemployed\">Unemployed</string>\r\n    <string name=\"student\">Student</string>\r\n    <string name=\"income\">Household Income</string>\r\n    <string name=\"reason_food\">Why do you have insufficient food?</string>\r\n    <string name=\"pax\">Pax</string>\r\n    <string name=\"agree_tnc\">I have read and agree the</string>\r\n    <string name=\"tnc\">Terms and Conditions</string>\r\n    <string name=\"tnc_underlined\"><u>Terms and Conditions</u></string>\r\n    <string name=\"close\">Close</string>\r\n    <string name=\"agree\">Agree</string>\r\n    <string name=\"submit\">Submit</string>\r\n    <string name=\"marital_required\">Please choose a marital status</string>\r\n    <string name=\"job_required\">Please choose a job status</string>\r\n    <string name=\"value_required\">Value Required</string>\r\n    <string name=\"invalid_pax\">Maximum Pax is 10</string>\r\n    <string name=\"tnc_required\">Please read and accept the Terms and Conditions.</string>\r\n    <string name=\"tnc_content\">\r\n        Privacy Policy\\n==============\\n\\nLast updated: December 26, 2022\\n\\n\r\n        Personal Data\\n~~~~~~~~~~~~~\\n\\n By agreeing these Terms and Conditions, We may submit Your certain personally identifiable information provided that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:\\n\\n\r\n          * Email address\\n  * First name and last name\\n  * IC number\\n  * Phone number\\n   * Address\\n\\n\r\n        Use of Your Personal Data\\n-------------------------\\nThe Company may use Personal Data for the following purposes:\\n\\n  * For the performance of a contract: the development, compliance and undertaking of the purchase contract for the products, items or request You have of any other contract with Us through the Service.\r\n        \\n\\n  * To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application\\'s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates,\r\n        when necessary or reasonable for their implementation.\\n\\n  * To manage Your requests: To attend and manage Your requests to Us.\\n\\nSecurity of Your Personal Data\\n---------------------------\\n\\nThe security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method\r\n        of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.\\n\\n\r\n    </string>\r\n    <string name=\"dialog_title\">Submit Form</string>\r\n    <string name=\"dialog_message\">Are you sure you want to submit this form?</string>\r\n    <string name=\"cancel\">Cancel</string>\r\n    <string name=\"form_submitted\">Form submitted</string>\r\n    <string name=\"action_cancelled\">Action cancelled</string>\r\n    <string name=\"form_pref\">my.edu.tarc.hungerhub.ui.request.Form</string>\r\n    <string name=\"submit_time\">Form Submit Time</string>\r\n\r\n    <!--  Request Status Fragment  -->\r\n    <string name=\"request_status\">Request Status</string>\r\n    <string name=\"reason\">Reason</string>\r\n    <string name=\"date\">Date</string>\r\n    <string name=\"status\">Status</string>\r\n    <string name=\"add_request\">Add Request</string>\r\n    <string name=\"pending\">Pending</string>\r\n\r\n    <!--  Survey Fragment  -->\r\n    <string name=\"Survey_text\">Survey</string> <!--  got menu_survey up there  -->\r\n    <string name=\"Height\">Height (cm)</string>\r\n    <string name=\"Weight\">Weight (kg)</string>\r\n    <string name=\"BMI_calc\">BMI calculator</string>\r\n    <string name=\"calc\">Calculate</string>\r\n    <string name=\"reset\">Reset</string>\r\n    <string name=\"underweight\">Underweight</string>\r\n    <string name=\"Healthy\">Healthy</string>\r\n    <string name=\"Overweight\">Overweight</string>\r\n    <string name=\"Status\">Status: </string>\r\n    <string name=\"result\">Your BMI is </string>\r\n    <string name=\"fragment_name\">com.example.MyFragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"LackIntake\">Lack of food intake</string>\r\n    <string name=\"selectDescription\">Kindly select which section of food you are lacked of: </string>\r\n    <string name=\"wheat\">Bread, Rice, Noodles, Cereal products</string>\r\n    <string name=\"Fruits_vege\">Fruits and Vegetables</string>\r\n    <string name=\"Meat\">Fish, Meat, Egg, Milk products</string>\r\n    <string name=\"fats\">Fats, Oil, Sugar, Salt</string>\r\n    <string name=\"foodPyramidInfo\"></string>\r\n    <string name=\"general_survey\">Survey</string>\r\n    <string name=\"How_many_people\">How many members are there in your household?</string>\r\n    <string name=\"How_many_working\">How many members are working currently in your household?</string>\r\n    <string name=\"How_many_meals\">How many meals do you and your family consume daily?</string>\r\n    <string name=\"family_can_cover\">Is your family income able to cover daily food expenses?</string>\r\n    <string name=\"one_to_three\">1 – 3</string>\r\n    <string name=\"four_to_six\">4 – 6</string>\r\n    <string name=\"seven_to_nine\">7 – 9</string>\r\n    <string name=\"ten_or_above\">10 or above</string>\r\n    <string name=\"one\">1</string>\r\n    <string name=\"two\">2</string>\r\n    <string name=\"three\">3</string>\r\n    <string name=\"four_above\">4 or above</string>\r\n    <string name=\"Yes\">Yes</string>\r\n    <string name=\"No\">No</string>\r\n    <string name=\"rateHygiene\">Rate 1-5 of how satisfied are you with the hygiene of your living environment</string>\r\n    <string name=\"reasonable_price\">Do you think the food price in your area is reasonable/affordable?</string>\r\n    <string name=\"required_select\">You are required to select a value before proceed</string>\r\n\r\n    <!-- zhi hong part -->\r\n    <string name=\"started_title\">Hello You!</string>\r\n    <string name=\"LogIn\">Log In</string>\r\n    <string name=\"emailrequired\">Email Required!</string>\r\n    <string name=\"passwordrequired\">Password Required</string>\r\n    <string name=\"started_sub_title\">\\nNice to meet you, come join our application!\r\n        \\n<b>Login</b> If you already have an account.\r\n        \\n<b>Register</b> To get started with the application.\r\n    </string>\r\n    <string name=\"btn_register\">Register</string>\r\n    <string name=\"btn_login\">Login</string>\r\n    <string name=\"login_title\">Login to app</string>\r\n    <string name=\"login_sub_title\">\r\n        <font color=\"00C988\"><b>Login</b></font>\r\n        if you already have an account.\r\n    </string>\r\n    <string name=\"login_email\">Your email or username</string>\r\n    <string name=\"login_password\">Your password</string>\r\n    <string name=\"login_forgot_pw\">Forgot Password?</string>\r\n    <string name=\"login_havent_account\">\r\n        I don\\'t have an account\r\n        <font color=\"#00C988\"><b>Register</b></font>\r\n    </string>\r\n    <string name=\"register_title\">Create an account</string>\r\n    <string name=\"register_sub_title\">\r\n        <font color=\"00C988\"><b>Register</b></font>\r\n        to get started with the app.\r\n    </string>\r\n    <string name=\"register_fullname\">Your fullname</string>\r\n    <string name=\"register_email\">Your email</string>\r\n    <string name=\"register_comfirm_password\">Comfirm Password</string>\r\n    <string name=\"register_have_account\">I already have an account\\n<font color=\"#00C988\"><b>Login</b></font></string>\r\n    <string name=\"home_title\">Hello World</string>\r\n    <string name=\"home_sub_title\">Welcome to home</string>\r\n    <string name=\"btn_logout\">LOGOUT</string>\r\n    <string name=\"illustration_img\">illustration_image</string>\r\n    <string name=\"illustration_image\">illustration_img</string>\r\n    <string name=\"started_text\">Welcome </string>\r\n    <string name=\"register_username\">Your username</string>\r\n\r\n\r\n    <!--  Donation Fragment  -->\r\n    <string name=\"food_donation\">Food Donation</string>\r\n    <string name=\"donation_amount\">Enter donation amount: </string>\r\n    <string name=\"donation_50\">50</string>\r\n    <string name=\"donation_100\">100</string>\r\n    <string name=\"donation_500\">500</string>\r\n    <string name=\"donation_1000\">1000</string>\r\n    <string name=\"donation_details\">Donation Details</string>\r\n    <string name=\"donation_payment\">Payment</string>\r\n    <string name=\"enter_price_manual\">Or enter price manually: </string>\r\n    <string name=\"visa\">Visa</string>\r\n    <string name=\"mastercard\">MasterCard</string>\r\n    <string name=\"bank_card_num\">Card Number</string>\r\n    <string name=\"card_holder_name\">Card Holder Name</string>\r\n    <string name=\"card_expiry_date\">Card Expiry Date</string>\r\n    <string name=\"card_CVC\">CVC/CVV/CID</string>\r\n    <string name=\"donate\">Donate</string>\r\n    <string name=\"date_picker\">Choose Date</string>\r\n    <string name=\"length_error\">Length error</string>\r\n    <string name=\"invalid_format\">Invalid Format</string>\r\n    <string-array name=\"month_group\">\r\n        <item>01</item>\r\n        <item>02</item>\r\n        <item>03</item>\r\n        <item>04</item>\r\n        <item>05</item>\r\n        <item>06</item>\r\n        <item>07</item>\r\n        <item>08</item>\r\n        <item>09</item>\r\n        <item>10</item>\r\n        <item>11</item>\r\n        <item>12</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"year_group\">\r\n        <item>23</item>\r\n        <item>24</item>\r\n        <item>25</item>\r\n        <item>26</item>\r\n        <item>27</item>\r\n        <item>28</item>\r\n        <item>29</item>\r\n        <item>30</item>\r\n        <item>31</item>\r\n        <item>32</item>\r\n    </string-array>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/res/values/strings.xml	(date 1672716848469)
+@@ -23,7 +23,7 @@
+     <string name="request_donation_form">Request Donation Form</string>
+     <string name="marital_status">Marital Status</string>
+     <string-array name="marital_choice">
+-        <item>Please choose a status</item>
++        <item>Select a choice</item>
+         <item>Single</item>
+         <item>Together</item>
+         <item>Married</item>
+@@ -31,9 +31,12 @@
+         <item>Divorced</item>
+     </string-array>
+     <string name="job_status">Job Status</string>
+-    <string name="employed">Employed</string>
+-    <string name="unemployed">Unemployed</string>
+-    <string name="student">Student</string>
++    <string-array name="job_choice">
++        <item>Select a choice</item>
++        <item>Employed</item>
++        <item>Unemployed</item>
++        <item>Student</item>
++    </string-array>
+     <string name="income">Household Income</string>
+     <string name="reason_food">Why do you have insufficient food?</string>
+     <string name="pax">Pax</string>
+@@ -62,8 +65,8 @@
+     <string name="cancel">Cancel</string>
+     <string name="form_submitted">Form submitted</string>
+     <string name="action_cancelled">Action cancelled</string>
+-    <string name="form_pref">my.edu.tarc.hungerhub.ui.request.Form</string>
+-    <string name="submit_time">Form Submit Time</string>
++    <string name="date_format">"yyyy/MM/dd HH:mm:ss"</string>
++    <string name="firebase_req">Requests</string>
+ 
+     <!--  Request Status Fragment  -->
+     <string name="request_status">Request Status</string>
+@@ -72,6 +75,7 @@
+     <string name="status">Status</string>
+     <string name="add_request">Add Request</string>
+     <string name="pending">Pending</string>
++    <string name="no_record">No record found!</string>
+ 
+     <!--  Survey Fragment  -->
+     <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->
+Index: app/src/debug/res/values/ic_profile_background.xml
+===================================================================
+diff --git a/app/src/debug/res/values/ic_profile_background.xml b/app/src/debug/res/values/ic_profile_background.xml
+deleted file mode 100644
+--- a/app/src/debug/res/values/ic_profile_background.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="ic_profile_background">#FFFFFF</color>
+-</resources>
+\ No newline at end of file
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+deleted file mode 100644
+--- a/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: app/src/debug/res/mipmap-anydpi-v26/ic_profile_round.xml
+===================================================================
+diff --git a/app/src/debug/res/mipmap-anydpi-v26/ic_profile_round.xml b/app/src/debug/res/mipmap-anydpi-v26/ic_profile_round.xml
+deleted file mode 100644
+--- a/app/src/debug/res/mipmap-anydpi-v26/ic_profile_round.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@color/ic_profile_background"/>
+-    <foreground android:drawable="@drawable/ic_profile_foreground"/>
+-</adaptive-icon>
+\ No newline at end of file
+Index: app/src/debug/res/drawable/ic_launcher_foreground.xml
+===================================================================
+diff --git a/app/src/debug/res/drawable/ic_launcher_foreground.xml b/app/src/debug/res/drawable/ic_launcher_foreground.xml
+deleted file mode 100644
+--- a/app/src/debug/res/drawable/ic_launcher_foreground.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,15 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108"
+-    android:tint="#111111">
+-  <group android:scaleX="2.61"
+-      android:scaleY="2.61"
+-      android:translateX="22.68"
+-      android:translateY="22.68">
+-    <path
+-        android:fillColor="@android:color/white"
+-        android:pathData="M12,12c2.21,0 4,-1.79 4,-4s-1.79,-4 -4,-4 -4,1.79 -4,4 1.79,4 4,4zM12,14c-2.67,0 -8,1.34 -8,4v2h16v-2c0,-2.66 -5.33,-4 -8,-4z"/>
+-  </group>
+-</vector>
+Index: app/src/debug/res/mipmap-anydpi-v26/ic_profile.xml
+===================================================================
+diff --git a/app/src/debug/res/mipmap-anydpi-v26/ic_profile.xml b/app/src/debug/res/mipmap-anydpi-v26/ic_profile.xml
+deleted file mode 100644
+--- a/app/src/debug/res/mipmap-anydpi-v26/ic_profile.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@color/ic_profile_background"/>
+-    <foreground android:drawable="@drawable/ic_profile_foreground"/>
+-</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_launcher_background.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_launcher_background.xml b/app/src/main/res/drawable/ic_launcher_background.xml
+deleted file mode 100644
+--- a/app/src/main/res/drawable/ic_launcher_background.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,170 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path
+-        android:fillColor="#3DDC84"
+-        android:pathData="M0,0h108v108h-108z" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M9,0L9,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,0L19,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,0L29,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,0L39,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,0L49,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,0L59,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,0L69,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,0L79,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M89,0L89,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M99,0L99,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,9L108,9"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,19L108,19"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,29L108,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,39L108,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,49L108,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,59L108,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,69L108,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,79L108,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,89L108,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,99L108,99"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,29L89,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,39L89,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,49L89,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,59L89,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,69L89,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,79L89,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,19L29,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,19L39,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,19L49,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,19L59,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,19L69,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,19L79,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-</vector>
+Index: app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+===================================================================
+diff --git a/app/src/main/res/drawable-v24/ic_launcher_foreground.xml b/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+deleted file mode 100644
+--- a/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,30 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:aapt="http://schemas.android.com/aapt"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
+-        <aapt:attr name="android:fillColor">
+-            <gradient
+-                android:endX="85.84757"
+-                android:endY="92.4963"
+-                android:startX="42.9492"
+-                android:startY="49.59793"
+-                android:type="linear">
+-                <item
+-                    android:color="#44000000"
+-                    android:offset="0.0" />
+-                <item
+-                    android:color="#00000000"
+-                    android:offset="1.0" />
+-            </gradient>
+-        </aapt:attr>
+-    </path>
+-    <path
+-        android:fillColor="#FFFFFF"
+-        android:fillType="nonZero"
+-        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+-        android:strokeWidth="1"
+-        android:strokeColor="#00000000" />
+-</vector>
+\ No newline at end of file
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+deleted file mode 100644
+--- a/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: app/src/debug/res/values/ic_launcher_background.xml
+===================================================================
+diff --git a/app/src/debug/res/values/ic_launcher_background.xml b/app/src/debug/res/values/ic_launcher_background.xml
+deleted file mode 100644
+--- a/app/src/debug/res/values/ic_launcher_background.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ /dev/null	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="ic_launcher_background">#FFFFFF</color>
+-</resources>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'org.jetbrains.kotlin.android'\r\n    id 'kotlin-kapt'\r\n    id 'com.google.gms.google-services'\r\n}\r\n\r\nandroid {\r\n    namespace 'my.edu.tarc.hungerhub'\r\n    compileSdk 33\r\n\r\n    defaultConfig {\r\n        minSdk 21\r\n        targetSdk 32\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    buildFeatures{\r\n        viewBinding true\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_11\r\n        targetCompatibility JavaVersion.VERSION_11\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n    buildFeatures {\r\n        viewBinding true\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation platform('com.google.firebase:firebase-bom:31.1.1')\r\n    implementation 'androidx.core:core-ktx:1.9.0'\r\n    implementation 'androidx.appcompat:appcompat:1.5.1'\r\n    implementation 'com.google.android.material:material:1.7.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'\r\n    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.4'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'\r\n\r\n    def room_version = \"2.4.3\"\r\n    implementation \"androidx.room:room-runtime:$room_version\"\r\n    implementation \"androidx.room:room-ktx:$room_version\"\r\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\r\n    kapt \"androidx.room:room-compiler:$room_version\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/build.gradle	(date 1672712221478)
+@@ -11,7 +11,7 @@
+ 
+     defaultConfig {
+         minSdk 21
+-        targetSdk 32
++        targetSdk 33
+         versionCode 1
+         versionName "1.0"
+ 
+@@ -35,9 +35,6 @@
+     kotlinOptions {
+         jvmTarget = '1.8'
+     }
+-    buildFeatures {
+-        viewBinding true
+-    }
+ }
+ 
+ dependencies {
+Index: app/src/main/res/layout/fragment_request_status.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/constraintLayout_requestStatus\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.request.RequestStatusFragment\"\r\n    android:background=\"@color/brown_lightest\">\r\n\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recyclerViewStatus\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:listitem=\"@layout/status_card\" />\r\n\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/floatingActionButtonAddForm\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:clickable=\"true\"\r\n        android:contentDescription=\"@string/add_request\"\r\n        android:src=\"@android:drawable/ic_input_add\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        android:focusable=\"true\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_request_status.xml b/app/src/main/res/layout/fragment_request_status.xml
+--- a/app/src/main/res/layout/fragment_request_status.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/res/layout/fragment_request_status.xml	(date 1672711881537)
+@@ -8,6 +8,16 @@
+     tools:context=".ui.request.RequestStatusFragment"
+     android:background="@color/brown_lightest">
+ 
++    <TextView
++        android:id="@+id/textViewEmpty"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:fontFamily="@font/abeezee_italic"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recyclerViewStatus"
+@@ -17,7 +27,9 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        tools:listitem="@layout/status_card" />
++        tools:listitem="@layout/status_card" >
++
++    </androidx.recyclerview.widget.RecyclerView>
+ 
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
+         android:id="@+id/floatingActionButtonAddForm"
+@@ -31,4 +43,5 @@
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         android:focusable="true" />
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/database/RequestDao.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDao.kt b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDao.kt
+new file mode 100644
+--- /dev/null	(date 1672716848442)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDao.kt	(date 1672716848442)
+@@ -0,0 +1,21 @@
++package my.edu.tarc.hungerhub.database
++
++import androidx.lifecycle.LiveData
++import androidx.room.Dao
++import androidx.room.Insert
++import androidx.room.Query
++import my.edu.tarc.hungerhub.model.Request
++
++// TODO: add query
++@Dao
++interface RequestDao {
++    @Query("SELECT * FROM request ORDER BY date DESC")
++    fun getAllRequest(): LiveData<List<Request>>
++
++//    @Query("SELECT * FROM request WHERE date LIKE :date")
++//    fun findByDate(name: String): List<Request>
++
++    // Data Manipulation function (CUD - create, update, delete)
++    @Insert
++    suspend fun insert(request: Request)
++}
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.model\r\n\r\ndata class Request (\r\n    var date: String,\r\n    var income: Int,\r\n    var jobStatus: String,\r\n    var maritalStatus: String,\r\n    var pax: Int,\r\n    var reason: String\r\n    )
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt b/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt	(date 1672711881546)
+@@ -1,10 +1,15 @@
+ package my.edu.tarc.hungerhub.model
+ 
++import androidx.room.Entity
++import androidx.room.PrimaryKey
++
++@Entity
+ data class Request (
+-    var date: String,
++    @PrimaryKey var date: String,
+     var income: Int,
+     var jobStatus: String,
+     var maritalStatus: String,
+     var pax: Int,
+-    var reason: String
++    var reason: String,
++    var approvalStatus: String
+     )
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/adapter/RequestAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.adapter\r\n\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.TextView\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport my.edu.tarc.hungerhub.R\r\nimport my.edu.tarc.hungerhub.model.Request\r\n\r\nclass RequestAdapter: RecyclerView.Adapter<RequestAdapter.ViewHolder>(){\r\n    private val dataSet = ArrayList<Request>()\r\n\r\n    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {\r\n        val textViewReason: TextView = view.findViewById(R.id.textViewReason)\r\n        val textViewDate: TextView = view.findViewById(R.id.textViewDate)\r\n    }\r\n\r\n    internal fun updateRequestList(requestList: List<Request>) {\r\n        this.dataSet.clear()\r\n        this.dataSet.addAll(requestList)\r\n        notifyDataSetChanged()\r\n    }\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\r\n        // Create a new view, which defines the UI of the list item\r\n        val view = LayoutInflater.from(parent.context).inflate(\r\n            R.layout.status_card, parent, false\r\n        )\r\n\r\n        return ViewHolder(view)\r\n    }\r\n\r\n    override fun getItemCount(): Int {\r\n        return dataSet.size\r\n    }\r\n\r\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\r\n        val currentRequest = dataSet[position]\r\n        holder.textViewReason.text = currentRequest.reason\r\n        holder.textViewDate.text = currentRequest.date\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/adapter/RequestAdapter.kt b/app/src/main/java/my/edu/tarc/hungerhub/adapter/RequestAdapter.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/adapter/RequestAdapter.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/adapter/RequestAdapter.kt	(date 1672714966463)
+@@ -1,5 +1,6 @@
+ package my.edu.tarc.hungerhub.adapter
+ 
++import android.annotation.SuppressLint
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+@@ -8,26 +9,23 @@
+ import my.edu.tarc.hungerhub.R
+ import my.edu.tarc.hungerhub.model.Request
+ 
+-class RequestAdapter: RecyclerView.Adapter<RequestAdapter.ViewHolder>(){
+-    private val dataSet = ArrayList<Request>()
++class RequestAdapter(): RecyclerView.Adapter<RequestAdapter.ViewHolder>(){
++    private var dataSet = emptyList<Request>()
+ 
+     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+         val textViewReason: TextView = view.findViewById(R.id.textViewReason)
+         val textViewDate: TextView = view.findViewById(R.id.textViewDate)
++        val textViewApprovalStatus: TextView = view.findViewById(R.id.textViewApprovalStatus)
+     }
+ 
+-    internal fun updateRequestList(requestList: List<Request>) {
+-        this.dataSet.clear()
+-        this.dataSet.addAll(requestList)
++    @SuppressLint("NotifyDataSetChanged")
++    internal fun setForm(request: List<Request>){
++        dataSet = request
+         notifyDataSetChanged()
+     }
+ 
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+-        // Create a new view, which defines the UI of the list item
+-        val view = LayoutInflater.from(parent.context).inflate(
+-            R.layout.status_card, parent, false
+-        )
+-
++        val view = LayoutInflater.from(parent.context).inflate(R.layout.status_card, parent, false)
+         return ViewHolder(view)
+     }
+ 
+@@ -36,9 +34,10 @@
+     }
+ 
+     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+-        val currentRequest = dataSet[position]
+-        holder.textViewReason.text = currentRequest.reason
+-        holder.textViewDate.text = currentRequest.date
++        val request = dataSet[position]
++        holder.textViewReason.text = request.reason
++        holder.textViewDate.text = request.date
++        holder.textViewApprovalStatus.text = request.approvalStatus
+     }
+ }
+ 
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.ui.request\r\n\r\nimport android.annotation.SuppressLint\r\nimport android.app.AlertDialog\r\nimport android.icu.text.SimpleDateFormat\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.annotation.RequiresApi\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.google.firebase.database.FirebaseDatabase\r\nimport my.edu.tarc.hungerhub.R\r\nimport my.edu.tarc.hungerhub.databinding.FragmentRequestBinding\r\nimport my.edu.tarc.hungerhub.model.Request\r\nimport my.edu.tarc.hungerhub.model.RequestViewModel\r\nimport java.util.*\r\n\r\nclass RequestFragment : Fragment() {\r\n\r\n    private var _binding: FragmentRequestBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentRequestBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n    }\r\n\r\n    @SuppressLint(\"SimpleDateFormat\")\r\n    @RequiresApi(Build.VERSION_CODES.N)\r\n    override fun onStart() {\r\n        super.onStart()\r\n\r\n        binding.textViewTnc.setOnClickListener {\r\n            binding.cardViewTnc.isVisible = true\r\n        }\r\n\r\n        binding.imageButtonCloseTnc.setOnClickListener {\r\n            binding.cardViewTnc.isVisible = false\r\n        }\r\n\r\n        binding.buttonAgree.setOnClickListener {\r\n            binding.checkBoxTnc.isChecked = true\r\n            binding.cardViewTnc.isVisible = false\r\n        }\r\n\r\n        binding.buttonSubmit.setOnClickListener {\r\n            // check empty fields\r\n            if (binding.spinnerMarital.selectedItemPosition == 0) {\r\n                Snackbar.make(this.requireView(), getString(R.string.marital_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.radioGroupJob.checkedRadioButtonId == -1) {\r\n                Snackbar.make(this.requireView(), getString(R.string.job_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextIncome.text.toString().isEmpty()) {\r\n                binding.editTextIncome.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextReason.text.toString().isEmpty()) {\r\n                binding.editTextReason.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextPax.text.toString().isEmpty()) {\r\n                binding.editTextPax.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // validate pax amount\r\n            if (binding.editTextPax.text.toString().toInt() > 10) {\r\n                binding.editTextPax.error = getString(R.string.invalid_pax)\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // check agreement of TNC\r\n            if (!binding.checkBoxTnc.isChecked) {\r\n                Snackbar.make(this.requireView(), getString(R.string.tnc_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // alert dialog to prompt confirmation\r\n            val builder = AlertDialog.Builder(this.requireContext())\r\n            builder.setTitle(R.string.dialog_title)\r\n            builder.setMessage(R.string.dialog_message)\r\n            builder.setIcon(R.drawable.alert)\r\n\r\n            // TODO: maybe 1 time a week?\r\n            // press submit in dialog\r\n            builder.setPositiveButton(R.string.submit) { _, _ ->\r\n                val reference = FirebaseDatabase.getInstance().getReference(\"Requests\")\r\n\r\n                // get submit date and time\r\n                val calendar = Calendar.getInstance()\r\n                val format = SimpleDateFormat(\" d MMM yyyy HH:mm:ss \")\r\n                val time = format.format(calendar.time)\r\n\r\n                val request = Request(\r\n                    time,\r\n                    binding.editTextIncome.text.toString().toInt(),\r\n                    binding.radioGroupJob.checkedRadioButtonId.toString(), //TODO: bug\r\n                    binding.spinnerMarital.selectedItem.toString(),\r\n                    binding.editTextPax.text.toString().toInt(),\r\n                    binding.editTextReason.text.toString()\r\n                )\r\n\r\n                reference.child(time).setValue(request)\r\n\r\n                Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),\r\n                    getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()\r\n\r\n                findNavController().navigateUp()\r\n            }\r\n\r\n            // press cancel in dialog\r\n            builder.setNeutralButton(R.string.cancel) { _, _ ->\r\n                Toast.makeText(this.requireContext(), R.string.action_cancelled, Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n            val alertDialog: AlertDialog = builder.create()\r\n            alertDialog.setCancelable(false)\r\n            alertDialog.show()\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt	(date 1672716848451)
+@@ -20,39 +20,34 @@
+ import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
+ import my.edu.tarc.hungerhub.model.Request
+ import my.edu.tarc.hungerhub.model.RequestViewModel
+-import java.util.*
++import java.util.Calendar
+ 
+-class RequestFragment : Fragment() {
++class RequestFragment: Fragment() {
+ 
+     private var _binding: FragmentRequestBinding? = null
+     private val binding get() = _binding!!
+ 
++    private val requestViewModel: RequestViewModel by viewModels()
++
+     override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
++        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+     ): View {
+         _binding = FragmentRequestBinding.inflate(inflater, container, false)
+         return binding.root
+     }
+ 
+-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+-        super.onViewCreated(view, savedInstanceState)
+-    }
+-
+     @SuppressLint("SimpleDateFormat")
+     @RequiresApi(Build.VERSION_CODES.N)
+     override fun onStart() {
+         super.onStart()
+ 
++        // open and close TNC popup card view
+         binding.textViewTnc.setOnClickListener {
+             binding.cardViewTnc.isVisible = true
+         }
+-
+         binding.imageButtonCloseTnc.setOnClickListener {
+             binding.cardViewTnc.isVisible = false
+         }
+-
+         binding.buttonAgree.setOnClickListener {
+             binding.checkBoxTnc.isChecked = true
+             binding.cardViewTnc.isVisible = false
+@@ -64,7 +59,7 @@
+                 Snackbar.make(this.requireView(), getString(R.string.marital_required), Snackbar.LENGTH_SHORT).show()
+                 return@setOnClickListener
+             }
+-            if (binding.radioGroupJob.checkedRadioButtonId == -1) {
++            if (binding.spinnerJob.selectedItemPosition == 0) {
+                 Snackbar.make(this.requireView(), getString(R.string.job_required), Snackbar.LENGTH_SHORT).show()
+                 return@setOnClickListener
+             }
+@@ -102,23 +97,25 @@
+             // TODO: maybe 1 time a week?
+             // press submit in dialog
+             builder.setPositiveButton(R.string.submit) { _, _ ->
+-                val reference = FirebaseDatabase.getInstance().getReference("Requests")
++                val reference = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
+ 
+                 // get submit date and time
+                 val calendar = Calendar.getInstance()
+-                val format = SimpleDateFormat(" d MMM yyyy HH:mm:ss ")
++                val format = SimpleDateFormat(getString(R.string.date_format))
+                 val time = format.format(calendar.time)
+ 
+-                val request = Request(
+-                    time,
++                val request = Request(time,
+                     binding.editTextIncome.text.toString().toInt(),
+-                    binding.radioGroupJob.checkedRadioButtonId.toString(), //TODO: bug
++                    binding.spinnerJob.selectedItem.toString(),
+                     binding.spinnerMarital.selectedItem.toString(),
+                     binding.editTextPax.text.toString().toInt(),
+-                    binding.editTextReason.text.toString()
++                    binding.editTextReason.text.toString(),
++                    getString(R.string.pending)
+                 )
+ 
++                // save data in firebase and DAO database
+                 reference.child(time).setValue(request)
++                requestViewModel.insert(request)
+ 
+                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
+                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()
+Index: app/src/main/res/layout/fragment_request.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/constraintLayout_request\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.request.RequestFragment\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageViewBowl\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"100dp\"\r\n        android:adjustViewBounds=\"true\"\r\n        android:contentDescription=\"@string/menu_request\"\r\n        android:scaleType=\"centerCrop\"\r\n        android:src=\"@drawable/hunger_bowl\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:ignore=\"ImageContrastCheck\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageViewWhite\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:adjustViewBounds=\"true\"\r\n        android:alpha=\"0.5\"\r\n        android:contentDescription=\"@string/white_bg\"\r\n        android:src=\"@drawable/white_background\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageViewBowl\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageViewBowl\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageViewBowl\"\r\n        tools:ignore=\"ImageContrastCheck\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:fontFamily=\"@font/abeezee_italic\"\r\n        android:text=\"@string/request_donation_form\"\r\n        android:textSize=\"28sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageViewBowl\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageViewBowl\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView7\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        android:text=\"@string/marital_status\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageViewBowl\" />\r\n\r\n    <Spinner\r\n        android:id=\"@+id/spinnerMarital\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"12dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:entries=\"@array/marital_choice\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        android:minHeight=\"48dp\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/textView7\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView7\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/textView7\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView6\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        android:text=\"@string/job_status\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/spinnerMarital\" />\r\n\r\n    <RadioGroup\r\n        android:id=\"@+id/radioGroupJob\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView6\">\r\n\r\n        <RadioButton\r\n            android:id=\"@+id/radioButtonEmployed\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            android:paddingStart=\"0dp\"\r\n            android:paddingEnd=\"@dimen/padding_radio_button\"\r\n            android:text=\"@string/employed\" />\r\n\r\n        <RadioButton\r\n            android:id=\"@+id/radioButtonUnemployed\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            android:paddingStart=\"0dp\"\r\n            android:paddingEnd=\"@dimen/padding_radio_button\"\r\n            android:text=\"@string/unemployed\" />\r\n\r\n        <RadioButton\r\n            android:id=\"@+id/radioButtonStudent\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            android:paddingStart=\"0dp\"\r\n            android:paddingEnd=\"@dimen/padding_radio_button\"\r\n            android:text=\"@string/student\" />\r\n    </RadioGroup>\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        android:text=\"@string/income\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/radioGroupJob\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextIncome\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"3dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"number\"\r\n        android:minHeight=\"@dimen/edit_text_height\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView4\"\r\n        tools:ignore=\"SpeakableTextPresentCheck\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        android:text=\"@string/reason_food\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextIncome\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextReason\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"3dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:minHeight=\"@dimen/edit_text_height\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView3\"\r\n        tools:ignore=\"SpeakableTextPresentCheck\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView9\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:text=\"@string/pax\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextReason\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/editTextPax\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"3dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"number\"\r\n        android:minHeight=\"48dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView9\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/buttonSubmit\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"8dp\"\r\n        android:text=\"@string/submit\"\r\n        android:textSize=\"@dimen/font_size_label\"\r\n        android:backgroundTint=\"@color/brown\"\r\n        android:fontFamily=\"@font/abeezee_regular\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n<!--    <ImageButton-->\r\n<!--        android:id=\"@+id/imageButtonUpload\"-->\r\n<!--        android:layout_width=\"wrap_content\"-->\r\n<!--        android:layout_height=\"wrap_content\"-->\r\n<!--        android:layout_marginStart=\"8dp\"-->\r\n<!--        android:layout_marginTop=\"8dp\"-->\r\n<!--        android:contentDescription=\"@string/upload\"-->\r\n<!--        android:src=\"@drawable/ic_baseline_upload_file_36\"-->\r\n<!--        app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--        app:layout_constraintTop_toBottomOf=\"@+id/editTextReason\" />-->\r\n\r\n<!--    <TextView-->\r\n<!--        android:id=\"@+id/textView8\"-->\r\n<!--        android:layout_width=\"wrap_content\"-->\r\n<!--        android:layout_height=\"wrap_content\"-->\r\n<!--        android:layout_marginStart=\"8dp\"-->\r\n<!--        android:fontFamily=\"@font/abeezee_italic\"-->\r\n<!--        android:text=\"@string/upload_text\"-->\r\n<!--        app:layout_constraintBottom_toBottomOf=\"@+id/imageButtonUpload\"-->\r\n<!--        app:layout_constraintStart_toEndOf=\"@+id/imageButtonUpload\"-->\r\n<!--        app:layout_constraintTop_toTopOf=\"@+id/imageButtonUpload\"-->\r\n<!--        app:layout_constraintVertical_bias=\"0.447\" />-->\r\n\r\n    <CheckBox\r\n        android:id=\"@+id/checkBoxTnc\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:fontFamily=\"@font/abeezee_italic\"\r\n        android:text=\"@string/agree_tnc\"\r\n        android:textSize=\"15sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/buttonSubmit\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textViewTnc\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"5dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:clickable=\"true\"\r\n        android:focusable=\"true\"\r\n        android:fontFamily=\"@font/abeezee_italic\"\r\n        android:gravity=\"center_vertical\"\r\n        android:minHeight=\"48dp\"\r\n        android:text=\"@string/tnc_underlined\"\r\n        android:textSize=\"15sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/checkBoxTnc\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/checkBoxTnc\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/checkBoxTnc\" />\r\n\r\n    <androidx.cardview.widget.CardView\r\n        android:id=\"@+id/cardViewTnc\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_centerHorizontal=\"true\"\r\n        android:layout_centerVertical=\"true\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintLeft_toLeftOf=\"parent\"\r\n        app:layout_constraintRight_toRightOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:visibility=\"invisible\">\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:id=\"@+id/tncLayout\"\r\n            android:layout_width=\"260dp\"\r\n            android:background=\"@color/brown_light\"\r\n            android:layout_height=\"300dp\"\r\n            android:layout_centerInParent=\"true\">\r\n\r\n            <ScrollView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"210dp\"\r\n                android:fillViewport=\"true\"\r\n                app:layout_constraintBottom_toTopOf=\"@+id/buttonAgree\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/textViewTncTitle\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                tools:layout_editor_absoluteX=\"1dp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginStart=\"8dp\"\r\n                    android:layout_marginTop=\"8dp\"\r\n                    android:layout_marginEnd=\"8dp\"\r\n                    android:layout_marginBottom=\"20dp\"\r\n                    android:text=\"@string/tnc_content\"\r\n                    android:textAlignment=\"textStart\"\r\n                    android:textColor=\"#FFFFFF\"\r\n                    android:textSize=\"14sp\"\r\n                    android:fontFamily=\"@font/abeezee_regular\"\r\n                    app:layout_constraintBottom_toTopOf=\"@+id/buttonAgree\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toBottomOf=\"@+id/textViewTncTitle\" />\r\n            </ScrollView>\r\n\r\n<!--            <TextView-->\r\n<!--                android:id=\"@+id/textViewTncContent\"-->\r\n<!--                android:layout_width=\"match_parent\"-->\r\n<!--                android:layout_height=\"match_parent\"-->\r\n<!--                android:layout_marginStart=\"8dp\"-->\r\n<!--                android:layout_marginTop=\"8dp\"-->\r\n<!--                android:layout_marginEnd=\"8dp\"-->\r\n<!--                android:layout_marginBottom=\"8dp\"-->\r\n<!--                android:gravity=\"center\"-->\r\n<!--                android:text=\"Content\"-->\r\n<!--                android:textAlignment=\"center\"-->\r\n<!--                android:textColor=\"#FFFFFF\"-->\r\n<!--                android:textSize=\"14sp\"-->\r\n<!--                android:textStyle=\"bold\"-->\r\n<!--                android:fontFamily=\"@font/abeezee_regular\"-->\r\n<!--                app:layout_constraintBottom_toTopOf=\"@+id/buttonAgree\"-->\r\n<!--                app:layout_constraintEnd_toEndOf=\"parent\"-->\r\n<!--                app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--                app:layout_constraintTop_toBottomOf=\"@+id/textViewTncTitle\" />-->\r\n\r\n            <TextView\r\n                android:id=\"@+id/textViewTncTitle\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"40dp\"\r\n                android:background=\"@color/brown\"\r\n                android:text=\"@string/tnc\"\r\n                android:gravity=\"center_vertical\"\r\n                android:textAlignment=\"textStart\"\r\n                android:paddingStart=\"12dp\"\r\n                android:textColor=\"@color/white\"\r\n                android:textSize=\"18sp\"\r\n                android:textStyle=\"bold\"\r\n                android:fontFamily=\"@font/abeezee_regular\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\"\r\n                tools:ignore=\"RtlCompat,RtlSymmetry\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/buttonAgree\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"40dp\"\r\n                android:layout_marginStart=\"8dp\"\r\n                android:layout_marginEnd=\"8dp\"\r\n                android:backgroundTint=\"@color/brown_dark\"\r\n                android:fontFamily=\"@font/abeezee_regular\"\r\n                android:text=\"@string/agree\"\r\n                android:textAllCaps=\"false\"\r\n                android:textColor=\"@color/white\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\"\r\n                app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n            <ImageButton\r\n                android:id=\"@+id/imageButtonCloseTnc\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"0dp\"\r\n                android:backgroundTint=\"@color/brown\"\r\n                android:contentDescription=\"@string/close\"\r\n                android:src=\"@drawable/ic_baseline_close_24\"\r\n                app:layout_constraintBottom_toBottomOf=\"@+id/textViewTncTitle\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"@+id/textViewTncTitle\" />\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n    </androidx.cardview.widget.CardView>\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_request.xml b/app/src/main/res/layout/fragment_request.xml
+--- a/app/src/main/res/layout/fragment_request.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/res/layout/fragment_request.xml	(date 1672717155218)
+@@ -47,93 +47,79 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/imageViewBowl" />
+ 
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline2"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        app:layout_constraintGuide_begin="130dp" />
++
+     <TextView
+         android:id="@+id/textView7"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:layout_marginTop="16dp"
+         android:fontFamily="@font/abeezee_regular"
+         android:text="@string/marital_status"
+         android:textSize="@dimen/font_size_label"
++        app:layout_constraintBottom_toBottomOf="@+id/spinnerMarital"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl" />
++        app:layout_constraintTop_toTopOf="@+id/spinnerMarital" />
+ 
+     <Spinner
+         android:id="@+id/spinnerMarital"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+-        android:layout_marginStart="12dp"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
+         android:layout_marginEnd="8dp"
+         android:entries="@array/marital_choice"
+         android:fontFamily="@font/abeezee_regular"
+         android:minHeight="48dp"
+         android:textSize="@dimen/font_size_label"
+-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/textView7"
+-        app:layout_constraintTop_toTopOf="@+id/textView7" />
++        app:layout_constraintStart_toStartOf="@+id/guideline2"
++        app:layout_constraintTop_toBottomOf="@+id/imageViewBowl"
++        tools:ignore="DuplicateSpeakableTextCheck" />
+ 
+     <TextView
+         android:id="@+id/textView6"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+         android:fontFamily="@font/abeezee_regular"
+         android:text="@string/job_status"
+         android:textSize="@dimen/font_size_label"
++        app:layout_constraintBottom_toBottomOf="@+id/spinnerJob"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/spinnerMarital" />
++        app:layout_constraintTop_toTopOf="@+id/spinnerJob" />
+ 
+-    <RadioGroup
+-        android:id="@+id/radioGroupJob"
+-        android:layout_width="wrap_content"
++    <Spinner
++        android:id="@+id/spinnerJob"
++        android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:orientation="horizontal"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+-
+-        <RadioButton
+-            android:id="@+id/radioButtonEmployed"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:fontFamily="@font/abeezee_regular"
+-            android:paddingStart="0dp"
+-            android:paddingEnd="@dimen/padding_radio_button"
+-            android:text="@string/employed" />
+-
+-        <RadioButton
+-            android:id="@+id/radioButtonUnemployed"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:fontFamily="@font/abeezee_regular"
+-            android:paddingStart="0dp"
+-            android:paddingEnd="@dimen/padding_radio_button"
+-            android:text="@string/unemployed" />
+-
+-        <RadioButton
+-            android:id="@+id/radioButtonStudent"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:fontFamily="@font/abeezee_regular"
+-            android:paddingStart="0dp"
+-            android:paddingEnd="@dimen/padding_radio_button"
+-            android:text="@string/student" />
+-    </RadioGroup>
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:entries="@array/job_choice"
++        android:fontFamily="@font/abeezee_regular"
++        android:minHeight="48dp"
++        android:textSize="@dimen/font_size_label"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="@+id/guideline2"
++        app:layout_constraintTop_toBottomOf="@+id/spinnerMarital" />
+ 
+     <TextView
+         android:id="@+id/textView4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
++        android:layout_marginTop="24dp"
+         android:fontFamily="@font/abeezee_regular"
+         android:text="@string/income"
+         android:textSize="@dimen/font_size_label"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/radioGroupJob" />
++        app:layout_constraintTop_toBottomOf="@+id/spinnerJob" />
+ 
+     <EditText
+         android:id="@+id/editTextIncome"
+@@ -155,7 +141,7 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:layout_marginTop="10dp"
++        android:layout_marginTop="16dp"
+         android:fontFamily="@font/abeezee_regular"
+         android:text="@string/reason_food"
+         android:textSize="@dimen/font_size_label"
+@@ -170,9 +156,9 @@
+         android:layout_marginTop="3dp"
+         android:layout_marginEnd="8dp"
+         android:ems="10"
++        android:fontFamily="@font/abeezee_regular"
+         android:inputType="textPersonName"
+         android:minHeight="@dimen/edit_text_height"
+-        android:fontFamily="@font/abeezee_regular"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textView3"
+@@ -183,10 +169,10 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="8dp"
+-        android:layout_marginTop="10dp"
++        android:layout_marginTop="16dp"
++        android:fontFamily="@font/abeezee_regular"
+         android:text="@string/pax"
+         android:textSize="@dimen/font_size_label"
+-        android:fontFamily="@font/abeezee_regular"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/editTextReason" />
+ 
+@@ -202,7 +188,8 @@
+         android:minHeight="48dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
++        app:layout_constraintTop_toBottomOf="@+id/textView9"
++        tools:ignore="SpeakableTextPresentCheck" />
+ 
+     <Button
+         android:id="@+id/buttonSubmit"
+@@ -211,36 +198,36 @@
+         android:layout_marginStart="8dp"
+         android:layout_marginEnd="8dp"
+         android:layout_marginBottom="8dp"
++        android:backgroundTint="@color/brown"
++        android:fontFamily="@font/abeezee_regular"
+         android:text="@string/submit"
+         android:textSize="@dimen/font_size_label"
+-        android:backgroundTint="@color/brown"
+-        android:fontFamily="@font/abeezee_regular"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent" />
+ 
+-<!--    <ImageButton-->
+-<!--        android:id="@+id/imageButtonUpload"-->
+-<!--        android:layout_width="wrap_content"-->
+-<!--        android:layout_height="wrap_content"-->
+-<!--        android:layout_marginStart="8dp"-->
+-<!--        android:layout_marginTop="8dp"-->
+-<!--        android:contentDescription="@string/upload"-->
+-<!--        android:src="@drawable/ic_baseline_upload_file_36"-->
+-<!--        app:layout_constraintStart_toStartOf="parent"-->
+-<!--        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />-->
++    <!--    <ImageButton-->
++    <!--        android:id="@+id/imageButtonUpload"-->
++    <!--        android:layout_width="wrap_content"-->
++    <!--        android:layout_height="wrap_content"-->
++    <!--        android:layout_marginStart="8dp"-->
++    <!--        android:layout_marginTop="8dp"-->
++    <!--        android:contentDescription="@string/upload"-->
++    <!--        android:src="@drawable/ic_baseline_upload_file_36"-->
++    <!--        app:layout_constraintStart_toStartOf="parent"-->
++    <!--        app:layout_constraintTop_toBottomOf="@+id/editTextReason" />-->
+ 
+-<!--    <TextView-->
+-<!--        android:id="@+id/textView8"-->
+-<!--        android:layout_width="wrap_content"-->
+-<!--        android:layout_height="wrap_content"-->
+-<!--        android:layout_marginStart="8dp"-->
+-<!--        android:fontFamily="@font/abeezee_italic"-->
+-<!--        android:text="@string/upload_text"-->
+-<!--        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"-->
+-<!--        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"-->
+-<!--        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload"-->
+-<!--        app:layout_constraintVertical_bias="0.447" />-->
++    <!--    <TextView-->
++    <!--        android:id="@+id/textView8"-->
++    <!--        android:layout_width="wrap_content"-->
++    <!--        android:layout_height="wrap_content"-->
++    <!--        android:layout_marginStart="8dp"-->
++    <!--        android:fontFamily="@font/abeezee_italic"-->
++    <!--        android:text="@string/upload_text"-->
++    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageButtonUpload"-->
++    <!--        app:layout_constraintStart_toEndOf="@+id/imageButtonUpload"-->
++    <!--        app:layout_constraintTop_toTopOf="@+id/imageButtonUpload"-->
++    <!--        app:layout_constraintVertical_bias="0.447" />-->
+ 
+     <CheckBox
+         android:id="@+id/checkBoxTnc"
+@@ -266,6 +253,7 @@
+         android:minHeight="48dp"
+         android:text="@string/tnc_underlined"
+         android:textSize="15sp"
++        android:textColor="@color/brown_dark"
+         app:layout_constraintBottom_toBottomOf="@+id/checkBoxTnc"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/checkBoxTnc"
+@@ -277,27 +265,27 @@
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
++        android:visibility="invisible"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        android:visibility="invisible">
++        app:layout_constraintTop_toTopOf="parent">
+ 
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:id="@+id/tncLayout"
+             android:layout_width="260dp"
+-            android:background="@color/brown_light"
+             android:layout_height="300dp"
+-            android:layout_centerInParent="true">
++            android:layout_centerInParent="true"
++            android:background="@color/brown_light">
+ 
+             <ScrollView
+                 android:layout_width="match_parent"
+                 android:layout_height="210dp"
+                 android:fillViewport="true"
+                 app:layout_constraintBottom_toTopOf="@+id/buttonAgree"
+-                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle"
+                 tools:layout_editor_absoluteX="1dp">
+ 
+                 <TextView
+@@ -308,50 +296,50 @@
+                     android:layout_marginTop="8dp"
+                     android:layout_marginEnd="8dp"
+                     android:layout_marginBottom="20dp"
++                    android:fontFamily="@font/abeezee_regular"
+                     android:text="@string/tnc_content"
+                     android:textAlignment="textStart"
+                     android:textColor="#FFFFFF"
+                     android:textSize="14sp"
+-                    android:fontFamily="@font/abeezee_regular"
+                     app:layout_constraintBottom_toTopOf="@+id/buttonAgree"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />
+             </ScrollView>
+ 
+-<!--            <TextView-->
+-<!--                android:id="@+id/textViewTncContent"-->
+-<!--                android:layout_width="match_parent"-->
+-<!--                android:layout_height="match_parent"-->
+-<!--                android:layout_marginStart="8dp"-->
+-<!--                android:layout_marginTop="8dp"-->
+-<!--                android:layout_marginEnd="8dp"-->
+-<!--                android:layout_marginBottom="8dp"-->
+-<!--                android:gravity="center"-->
+-<!--                android:text="Content"-->
+-<!--                android:textAlignment="center"-->
+-<!--                android:textColor="#FFFFFF"-->
+-<!--                android:textSize="14sp"-->
+-<!--                android:textStyle="bold"-->
+-<!--                android:fontFamily="@font/abeezee_regular"-->
+-<!--                app:layout_constraintBottom_toTopOf="@+id/buttonAgree"-->
+-<!--                app:layout_constraintEnd_toEndOf="parent"-->
+-<!--                app:layout_constraintStart_toStartOf="parent"-->
+-<!--                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />-->
++            <!--            <TextView-->
++            <!--                android:id="@+id/textViewTncContent"-->
++            <!--                android:layout_width="match_parent"-->
++            <!--                android:layout_height="match_parent"-->
++            <!--                android:layout_marginStart="8dp"-->
++            <!--                android:layout_marginTop="8dp"-->
++            <!--                android:layout_marginEnd="8dp"-->
++            <!--                android:layout_marginBottom="8dp"-->
++            <!--                android:gravity="center"-->
++            <!--                android:text="Content"-->
++            <!--                android:textAlignment="center"-->
++            <!--                android:textColor="#FFFFFF"-->
++            <!--                android:textSize="14sp"-->
++            <!--                android:textStyle="bold"-->
++            <!--                android:fontFamily="@font/abeezee_regular"-->
++            <!--                app:layout_constraintBottom_toTopOf="@+id/buttonAgree"-->
++            <!--                app:layout_constraintEnd_toEndOf="parent"-->
++            <!--                app:layout_constraintStart_toStartOf="parent"-->
++            <!--                app:layout_constraintTop_toBottomOf="@+id/textViewTncTitle" />-->
+ 
+             <TextView
+                 android:id="@+id/textViewTncTitle"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:background="@color/brown"
++                android:fontFamily="@font/abeezee_regular"
++                android:gravity="center_vertical"
++                android:paddingStart="12dp"
+                 android:text="@string/tnc"
+-                android:gravity="center_vertical"
+                 android:textAlignment="textStart"
+-                android:paddingStart="12dp"
+                 android:textColor="@color/white"
+                 android:textSize="18sp"
+                 android:textStyle="bold"
+-                android:fontFamily="@font/abeezee_regular"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+Index: app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt
+new file mode 100644
+--- /dev/null	(date 1672722828406)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt	(date 1672722828406)
+@@ -0,0 +1,41 @@
++package my.edu.tarc.hungerhub.database
++
++import android.content.Context
++import androidx.room.Database
++import androidx.room.Room
++import androidx.room.RoomDatabase
++import my.edu.tarc.hungerhub.model.Request
++
++@Database(entities = [Request::class], version = 1, exportSchema = false)
++abstract class RequestDatabase: RoomDatabase() {
++    abstract fun requestDao(): RequestDao
++
++    companion object {
++        // TODO: Remove volatile
++        @Volatile // can be destroyed, uninstall app, data destroyed
++        private var INSTANCE: RequestDatabase? = null
++
++        fun getDatabase(context: Context): RequestDatabase {
++            val tempInstance = INSTANCE
++
++            if (tempInstance != null) { // database exist
++                return tempInstance
++            }
++
++            // TODO: Database depends on account
++            //val email = getEmail()
++
++            // Create an instance of the database
++            synchronized(this) {
++                val instance = Room.databaseBuilder(
++                    context.applicationContext,
++                    RequestDatabase::class.java,
++                    "request_db"
++                ).build()
++
++                INSTANCE = instance
++                return instance
++            }
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.model\r\n\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport my.edu.tarc.hungerhub.repository.RequestRepository\r\n\r\nclass RequestViewModel: ViewModel() {\r\n    // define private data\r\n    private val _requestList = MutableLiveData<List<Request>>()\r\n    // define global data - expose to other classes\r\n    val requestList: LiveData<List<Request>> = _requestList\r\n\r\n    private val requestRepository: RequestRepository = RequestRepository().getInstance()\r\n\r\n    init {\r\n        // Get a copy of request list from the repository\r\n        requestRepository.loadRequest(_requestList)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt b/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt	(date 1672715671468)
+@@ -1,20 +1,31 @@
+ package my.edu.tarc.hungerhub.model
+ 
+-import androidx.lifecycle.ViewModel
++import android.app.Application
++import androidx.lifecycle.AndroidViewModel
+ import androidx.lifecycle.LiveData
+ import androidx.lifecycle.MutableLiveData
++import androidx.lifecycle.viewModelScope
++import kotlinx.coroutines.launch
+ import my.edu.tarc.hungerhub.repository.RequestRepository
++import my.edu.tarc.hungerhub.database.RequestDatabase
+ 
+-class RequestViewModel: ViewModel() {
+-    // define private data
++class RequestViewModel(application: Application): AndroidViewModel(application) {
+     private val _requestList = MutableLiveData<List<Request>>()
+-    // define global data - expose to other classes
+-    val requestList: LiveData<List<Request>> = _requestList
++    var requestList: LiveData<List<Request>> = _requestList
+ 
+-    private val requestRepository: RequestRepository = RequestRepository().getInstance()
++    private val requestRepository: RequestRepository
+ 
+     init {
+-        // Get a copy of request list from the repository
+-        requestRepository.loadRequest(_requestList)
++        // initialize DAO
++        val requestDao = RequestDatabase.getDatabase(application).requestDao()
++        // associate DAO to Repository
++        requestRepository = RequestRepository(requestDao)
++        // get a copy of request list from the repository
++        requestList = requestRepository.allRequest
++    }
++
++    // global scope can run from activity, view model scope is for coroutine
++    fun insert(request: Request) = viewModelScope.launch {
++        requestRepository.insert(request)
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"purple_200\">#FFBB86FC</color>\r\n    <color name=\"purple_500\">#FF6200EE</color>\r\n    <color name=\"purple_700\">#FF3700B3</color>\r\n    <color name=\"teal_200\">#FF03DAC5</color>\r\n    <color name=\"teal_700\">#FF018786</color>\r\n    <color name=\"black\">#FF000000</color>\r\n    <color name=\"white\">#FFFFFFFF</color>\r\n    <color name=\"brown_dark\">#5e4238</color>\r\n    <color name=\"brown\">#8d6e63</color>\r\n    <color name=\"brown_light\">#bd9b8f</color>\r\n    <color name=\"brown_lightest\">#efdcd5</color>\r\n    <color name=\"grey\">#888888</color>\r\n    <color name=\"primary_color\">#00C988</color>\r\n    <color name=\"grey_light\">#F0F0F0</color>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/res/values/colors.xml	(date 1672717231791)
+@@ -11,6 +11,7 @@
+     <color name="brown">#8d6e63</color>
+     <color name="brown_light">#bd9b8f</color>
+     <color name="brown_lightest">#efdcd5</color>
++    <color name="brown_extraLight">#f7f4f2</color>
+     <color name="grey">#888888</color>
+     <color name="primary_color">#00C988</color>
+     <color name="grey_light">#F0F0F0</color>
+Index: app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.repository\r\n\r\nimport android.util.Log\r\nimport androidx.lifecycle.MutableLiveData\r\nimport com.google.firebase.database.*\r\nimport my.edu.tarc.hungerhub.model.Request\r\n\r\nclass RequestRepository {\r\n    private val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference(\"Requests\")\r\n\r\n    @Volatile private var INSTANCE: RequestRepository ?= null\r\n\r\n    fun getInstance(): RequestRepository {\r\n        return INSTANCE ?: synchronized(this) {\r\n            val instance = RequestRepository()\r\n            INSTANCE = instance\r\n            instance\r\n        }\r\n    }\r\n\r\n    fun loadRequest(requestList: MutableLiveData<List<Request>>) {\r\n        reference.addValueEventListener(object: ValueEventListener {\r\n            override fun onDataChange(snapshot: DataSnapshot) {\r\n                try {\r\n                    val _requestList: List<Request> = snapshot.children.map { dataSnapshot ->\r\n                        dataSnapshot.getValue(Request::class.java)!!\r\n                    }\r\n                    Log.d(\"request items\", _requestList.toString())\r\n                } catch (_: Exception) {\r\n                }\r\n\r\n            }\r\n\r\n            override fun onCancelled(error: DatabaseError) {\r\n                TODO(\"Not yet implemented\")\r\n            }\r\n        })\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt b/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt	(date 1672715290453)
+@@ -1,39 +1,16 @@
+ package my.edu.tarc.hungerhub.repository
+ 
+-import android.util.Log
+-import androidx.lifecycle.MutableLiveData
+-import com.google.firebase.database.*
++import androidx.annotation.WorkerThread
++import androidx.lifecycle.LiveData
++import my.edu.tarc.hungerhub.database.RequestDao
+ import my.edu.tarc.hungerhub.model.Request
+ 
+-class RequestRepository {
+-    private val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Requests")
+-
+-    @Volatile private var INSTANCE: RequestRepository ?= null
+-
+-    fun getInstance(): RequestRepository {
+-        return INSTANCE ?: synchronized(this) {
+-            val instance = RequestRepository()
+-            INSTANCE = instance
+-            instance
+-        }
+-    }
+-
+-    fun loadRequest(requestList: MutableLiveData<List<Request>>) {
+-        reference.addValueEventListener(object: ValueEventListener {
+-            override fun onDataChange(snapshot: DataSnapshot) {
+-                try {
+-                    val _requestList: List<Request> = snapshot.children.map { dataSnapshot ->
+-                        dataSnapshot.getValue(Request::class.java)!!
+-                    }
+-                    Log.d("request items", _requestList.toString())
+-                } catch (_: Exception) {
+-                }
++class RequestRepository(private val requestDao: RequestDao) {
++    // create a cache copy of data in the DAO
++    val allRequest: LiveData<List<Request>> = requestDao.getAllRequest()
+ 
+-            }
+-
+-            override fun onCancelled(error: DatabaseError) {
+-                TODO("Not yet implemented")
+-            }
+-        })
++    @WorkerThread // launch suspend function, only in coroutine
++    suspend fun insert(request: Request) {
++        requestDao.insert(request)
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/status_card.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.cardview.widget.CardView\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:card_view=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"5dp\"\r\n    card_view:cardBackgroundColor=\"@color/white\"\r\n    card_view:cardCornerRadius=\"8dp\"\r\n    card_view:cardElevation=\"8dp\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <androidx.constraintlayout.widget.Guideline\r\n            android:id=\"@+id/guideline\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\"\r\n            app:layout_constraintGuide_begin=\"90dp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:text=\"@string/reason\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView2\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:text=\"@string/date\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/textView\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView6\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginBottom=\"8dp\"\r\n            android:text=\"@string/status\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/textView2\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textViewReason\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            app:layout_constraintBottom_toBottomOf=\"@+id/textView\"\r\n            app:layout_constraintStart_toStartOf=\"@+id/guideline\"\r\n            app:layout_constraintTop_toTopOf=\"@+id/textView\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textViewDate\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            app:layout_constraintBottom_toBottomOf=\"@+id/textView2\"\r\n            app:layout_constraintStart_toStartOf=\"@+id/guideline\"\r\n            app:layout_constraintTop_toTopOf=\"@+id/textView2\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textViewApprovalStatus\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:fontFamily=\"@font/abeezee_regular\"\r\n            android:text=\"@string/pending\"\r\n            android:textSize=\"@dimen/font_size_label\"\r\n            app:layout_constraintBottom_toBottomOf=\"@+id/textView6\"\r\n            app:layout_constraintStart_toStartOf=\"@+id/guideline\"\r\n            app:layout_constraintTop_toTopOf=\"@+id/textView6\" />\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</androidx.cardview.widget.CardView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/status_card.xml b/app/src/main/res/layout/status_card.xml
+--- a/app/src/main/res/layout/status_card.xml	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/res/layout/status_card.xml	(date 1672711881541)
+@@ -6,27 +6,28 @@
+     xmlns:card_view="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+-    android:layout_margin="5dp"
++    android:layout_margin="10dp"
+     card_view:cardBackgroundColor="@color/white"
+-    card_view:cardCornerRadius="8dp"
+-    card_view:cardElevation="8dp">
++    card_view:cardCornerRadius="30dp"
++    card_view:cardElevation="12dp">
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+-        android:layout_height="wrap_content">
++        android:layout_height="wrap_content"
++        android:padding="8dp">
+ 
+         <androidx.constraintlayout.widget.Guideline
+             android:id="@+id/guideline"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+-            app:layout_constraintGuide_begin="90dp" />
++            app:layout_constraintGuide_begin="95dp" />
+ 
+         <TextView
+             android:id="@+id/textView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginStart="8dp"
++            android:layout_marginStart="20dp"
+             android:layout_marginTop="8dp"
+             android:text="@string/reason"
+             android:textSize="@dimen/font_size_label"
+@@ -38,7 +39,7 @@
+             android:id="@+id/textView2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginStart="8dp"
++            android:layout_marginStart="20dp"
+             android:layout_marginTop="8dp"
+             android:text="@string/date"
+             android:textSize="@dimen/font_size_label"
+@@ -50,7 +51,7 @@
+             android:id="@+id/textView6"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+-            android:layout_marginStart="8dp"
++            android:layout_marginStart="20dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginBottom="8dp"
+             android:text="@string/status"
+@@ -66,6 +67,9 @@
+             android:layout_height="wrap_content"
+             android:textSize="@dimen/font_size_label"
+             android:fontFamily="@font/abeezee_regular"
++            android:singleLine="true"
++            android:ellipsize="end"
++            android:ems="13"
+             app:layout_constraintBottom_toBottomOf="@+id/textView"
+             app:layout_constraintStart_toStartOf="@+id/guideline"
+             app:layout_constraintTop_toTopOf="@+id/textView" />
+@@ -85,7 +89,6 @@
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/abeezee_regular"
+-            android:text="@string/pending"
+             android:textSize="@dimen/font_size_label"
+             app:layout_constraintBottom_toBottomOf="@+id/textView6"
+             app:layout_constraintStart_toStartOf="@+id/guideline"
+Index: app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub\r\n\r\nimport android.os.Bundle\r\nimport android.view.Menu\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.google.android.material.navigation.NavigationView\r\nimport androidx.navigation.findNavController\r\nimport androidx.navigation.ui.AppBarConfiguration\r\nimport androidx.navigation.ui.navigateUp\r\nimport androidx.navigation.ui.setupActionBarWithNavController\r\nimport androidx.navigation.ui.setupWithNavController\r\nimport androidx.drawerlayout.widget.DrawerLayout\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport my.edu.tarc.hungerhub.databinding.ActivityMainBinding\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n    private lateinit var appBarConfiguration: AppBarConfiguration\r\n    private lateinit var binding: ActivityMainBinding\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n\r\n        binding = ActivityMainBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        setSupportActionBar(binding.appBarMain.toolbar)\r\n\r\n        val drawerLayout: DrawerLayout = binding.drawerLayout\r\n        val navView: NavigationView = binding.navView\r\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\r\n        // Passing each menu ID as a set of Ids because each\r\n        // menu should be considered as top level destinations.\r\n        appBarConfiguration = AppBarConfiguration(\r\n            setOf(\r\n                R.id.nav_home, R.id.nav_survey, R.id.nav_donation, R.id.nav_request\r\n            ), drawerLayout\r\n        )\r\n        setupActionBarWithNavController(navController, appBarConfiguration)\r\n        navView.setupWithNavController(navController)\r\n    }\r\n\r\n    override fun onSupportNavigateUp(): Boolean {\r\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\r\n        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt b/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt	(revision 762eda832ff6ebd90f8d185ac4ea71f4ea0497f9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt	(date 1672717462248)
+@@ -1,8 +1,6 @@
+ package my.edu.tarc.hungerhub
+ 
+ import android.os.Bundle
+-import android.view.Menu
+-import com.google.android.material.snackbar.Snackbar
+ import com.google.android.material.navigation.NavigationView
+ import androidx.navigation.findNavController
+ import androidx.navigation.ui.AppBarConfiguration
+@@ -14,11 +12,9 @@
+ import my.edu.tarc.hungerhub.databinding.ActivityMainBinding
+ 
+ class MainActivity : AppCompatActivity() {
+-
+     private lateinit var appBarConfiguration: AppBarConfiguration
+     private lateinit var binding: ActivityMainBinding
+ 
+-
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+ 

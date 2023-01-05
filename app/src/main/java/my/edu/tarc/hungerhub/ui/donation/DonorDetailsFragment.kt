@@ -2,7 +2,6 @@ package my.edu.tarc.hungerhub.ui.donation
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentDonorDetailsBinding
-import my.edu.tarc.hungerhub.ui.home.User
+import my.edu.tarc.hungerhub.model.User
 
 class DonorDetailsFragment: Fragment() {
     private var _binding: FragmentDonorDetailsBinding? = null

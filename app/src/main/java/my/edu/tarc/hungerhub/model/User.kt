@@ -1,4 +1,4 @@
-package my.edu.tarc.hungerhub.ui.home
+package my.edu.tarc.hungerhub.model
 
 import android.widget.RadioGroup
 

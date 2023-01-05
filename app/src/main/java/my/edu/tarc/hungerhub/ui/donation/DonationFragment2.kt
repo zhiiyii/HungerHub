@@ -17,7 +17,6 @@ import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentDonation2Binding
 import my.edu.tarc.hungerhub.model.Donor
-import my.edu.tarc.hungerhub.ui.home.User
 
 //import my.edu.tarc.hungerhub.ui.request.MyCallback
 

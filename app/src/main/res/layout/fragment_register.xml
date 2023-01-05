@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.RegisterFragment">
+    tools:context=".ui.account.RegisterFragment">
 
     <ImageView
         android:id="@+id/imageViewComfirmPassword"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_lock_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPassword" />
 
@@ -20,9 +19,8 @@
         android:id="@+id/imageViewPosCode"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewState" />
 
@@ -30,10 +28,8 @@
         android:id="@+id/imageViewState"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewAddress" />
 
@@ -41,165 +37,182 @@
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/abeezee_regular"
         android:text="@string/register_title"
+        android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextRegisterFullname"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_fullname"
+        android:fontFamily="@font/abeezee_regular"
         android:inputType="text"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewFullName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegister"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewFullName"
+        app:layout_constraintTop_toTopOf="@+id/imageViewFullName" />
 
     <EditText
         android:id="@+id/editTextRegisterIC"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_IC"
+        android:fontFamily="@font/abeezee_regular"
         android:inputType="phone"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewIC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterFullname"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewIC"
+        app:layout_constraintTop_toTopOf="@+id/imageViewIC" />
 
     <EditText
         android:id="@+id/editTextRegisterPhoneNo"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="PhoneNumber"
+        android:fontFamily="@font/abeezee_regular"
         android:inputType="phone"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPhone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterIC"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewPhone"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPhone" />
 
     <EditText
         android:id="@+id/editTextRegisterEmail"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_email"
         android:inputType="text"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPhoneNo"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewEmail"
+        app:layout_constraintTop_toTopOf="@+id/imageViewEmail" />
 
     <EditText
         android:id="@+id/editTextRegisterAddress"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/address"
         android:inputType="text"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterEmail"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewAddress"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAddress" />
 
     <EditText
         android:id="@+id/editTextRegisterState"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_state"
         android:inputType="text"
+        android:textColor="@color/black"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewState"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterAddress"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewState"
+        app:layout_constraintTop_toTopOf="@+id/imageViewState" />
 
     <EditText
         android:id="@+id/editTextRegisterPostCode"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_posCode"
         android:inputType="phone"
+        android:textColor="@color/black"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPosCode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterState"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewPosCode"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPosCode" />
 
 
     <EditText
         android:id="@+id/editTextRegisterPassword"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/login_password"
         android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPostCode"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewPassword"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPassword" />
 
     <EditText
         android:id="@+id/editTextRegisterComfirmPassword"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/register_comfirm_password"
         android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:fontFamily="@font/abeezee_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewComfirmPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPassword"
-        android:textColor="@color/black"/>
+        app:layout_constraintStart_toEndOf="@+id/imageViewComfirmPassword"
+        app:layout_constraintTop_toTopOf="@+id/imageViewComfirmPassword" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        style="@style/ButtonGrey"
         android:text="@string/btn_register"
-        android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/abeezee_regular"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupRandD"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupRandD" />
 
     <ImageView
         android:id="@+id/imageViewFullName"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_baseline_account_circle_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterFullname"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegister" />
 
     <ImageView
         android:id="@+id/imageViewIC"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_account_circle_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterIC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewFullName" />
 
@@ -207,9 +220,8 @@
         android:id="@+id/imageViewEmail"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_email_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhone" />
 
@@ -217,9 +229,8 @@
         android:id="@+id/imageViewAddress"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewEmail" />
 
@@ -227,16 +238,19 @@
         android:id="@+id/imageViewPassword"
         android:layout_width="48dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_lock_24"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPosCode" />
 
     <RadioGroup
         android:id="@+id/radioGroupRandD"
-        android:layout_width="409dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:minWidth="200dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegisterComfirmPassword">
@@ -245,23 +259,27 @@
             android:id="@+id/radioButtonRecipient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:paddingEnd="16dp"
+            android:fontFamily="@font/abeezee_regular"
             android:text="@string/register_recipient" />
 
         <RadioButton
             android:id="@+id/radioButtonDonor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/abeezee_regular"
+            android:textSize="15sp"
+            android:paddingEnd="16dp"
             android:text="@string/register_donor" />
     </RadioGroup>
 
     <ImageView
         android:id="@+id/imageViewPhone"
-        android:layout_width="45dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="5dp"
-        android:background="@color/black"
-        android:src="@android:drawable/stat_sys_speakerphone"
-        app:layout_constraintEnd_toStartOf="@+id/editTextRegisterPhoneNo"
+        android:layout_width="48dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_phone_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewIC"
         tools:visibility="visible" />
@@ -270,25 +288,26 @@
         android:id="@+id/buttonLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="75dp"
         android:text="@string/LogIn"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:fontFamily="@font/abeezee_regular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
     <TextView
         android:id="@+id/textViewRegisterAlready"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registered_account"
+        android:textColor="@color/black"
+        android:fontFamily="@font/abeezee_regular"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonLogIn"
         app:layout_constraintEnd_toStartOf="@+id/buttonLogIn"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonLogIn"
-        app:layout_constraintVertical_bias="0.31"
-        android:textColor="@color/black"/>
+        app:layout_constraintVertical_bias="0.31" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

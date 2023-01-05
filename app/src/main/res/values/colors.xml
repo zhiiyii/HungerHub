@@ -13,8 +13,11 @@
     <color name="brown_light">#bd9b8f</color>
     <color name="brown_lightest">#efdcd5</color>
     <color name="brown_extraLight">#f7f4f2</color>
-    <color name="grey">#888888</color>
+    <color name="grey">#707070</color>
     <color name="primary_color">#80cbc4</color>
-    <color name="grey_light">#F0F0F0</color>
+    <color name="green_100">#fbfffc</color>
+    <color name="green_400">#c8e6c9</color>
+    <color name="green_600">#97b498</color>
+    <color name="grey_light">#e0e0e0</color>
     <color name="cyan">#0097a7</color>
 </resources>

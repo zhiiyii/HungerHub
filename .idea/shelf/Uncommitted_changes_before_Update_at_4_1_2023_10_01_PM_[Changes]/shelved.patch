@@ -1,0 +1,594 @@
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"purple_200\">#FFBB86FC</color>\r\n    <color name=\"purple_500\">#FF6200EE</color>\r\n    <color name=\"purple_700\">#FF3700B3</color>\r\n    <color name=\"teal_200\">#FF03DAC5</color>\r\n    <color name=\"teal_700\">#FF018786</color>\r\n    <color name=\"black\">#FF000000</color>\r\n    <color name=\"white\">#FFFFFFFF</color>\r\n    <color name=\"brown_dark\">#5e4238</color>\r\n    <color name=\"brown\">#8d6e63</color>\r\n    <color name=\"brown_light\">#bd9b8f</color>\r\n    <color name=\"brown_lightest\">#efdcd5</color>\r\n    <color name=\"brown_extraLight\">#f7f4f2</color>\r\n    <color name=\"grey\">#888888</color>\r\n    <color name=\"primary_color\">#80cbc4</color>\r\n    <color name=\"grey_light\">#F0F0F0</color>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ b/app/src/main/res/values/colors.xml	(date 1672840779315)
+@@ -15,5 +15,5 @@
+     <color name="grey">#888888</color>
+     <color name="primary_color">#80cbc4</color>
+     <color name="grey_light">#F0F0F0</color>
+-
++    <color name="cyan">#0097a7</color>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">HungerHub</string>\r\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\r\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\r\n    <string name=\"nav_header_title\">Username</string>\r\n    <string name=\"nav_header_subtitle\">user@gmail.com</string>\r\n    <string name=\"nav_header_desc\">Navigation header</string>\r\n    <string name=\"action_settings\">Settings</string>\r\n\r\n    <string name=\"menu_home\">Home</string>\r\n    <string name=\"menu_survey\">Survey</string>\r\n    <string name=\"menu_donation\">Donation</string>\r\n    <string name=\"menu_request\">Request Food Form</string>\r\n\r\n    <!--  Login / Register  -->\r\n    <string name=\"name\">Name</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"phone\">Phone Number</string>\r\n    <string name=\"address\">Address</string>\r\n\r\n    <!--  Request Fragment  -->\r\n    <string name=\"white_bg\">White Background</string>\r\n    <string name=\"request_donation_form\">Request Donation Form</string>\r\n    <string name=\"marital_status\">Marital Status</string>\r\n    <string-array name=\"marital_choice\">\r\n        <item>Select a choice</item>\r\n        <item>Single</item>\r\n        <item>Together</item>\r\n        <item>Married</item>\r\n        <item>Widowed</item>\r\n        <item>Divorced</item>\r\n    </string-array>\r\n    <string name=\"job_status\">Job Status</string>\r\n    <string-array name=\"job_choice\">\r\n        <item>Select a choice</item>\r\n        <item>Employed</item>\r\n        <item>Unemployed</item>\r\n        <item>Student</item>\r\n    </string-array>\r\n    <string name=\"income\">Household Income</string>\r\n    <string name=\"reason_food\">Why do you have insufficient food?</string>\r\n    <string name=\"pax\">Pax</string>\r\n    <string name=\"agree_tnc\">I have read and agree the</string>\r\n    <string name=\"tnc\">Terms and Conditions</string>\r\n    <string name=\"tnc_underlined\"><u>Terms and Conditions</u></string>\r\n    <string name=\"close\">Close</string>\r\n    <string name=\"agree\">Agree</string>\r\n    <string name=\"submit\">Submit</string>\r\n    <string name=\"marital_required\">Please choose a marital status</string>\r\n    <string name=\"job_required\">Please choose a job status</string>\r\n    <string name=\"value_required\">Value Required</string>\r\n    <string name=\"invalid_pax\">Maximum Pax is 10</string>\r\n    <string name=\"tnc_required\">Please read and accept the Terms and Conditions.</string>\r\n    <string name=\"tnc_content\">\r\n        Privacy Policy\\n==============\\n\\nLast updated: December 26, 2022\\n\\n\r\n        Personal Data\\n~~~~~~~~~~~~~\\n\\n By agreeing these Terms and Conditions, We may submit Your certain personally identifiable information provided that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:\\n\\n\r\n          * Email address\\n  * First name and last name\\n  * IC number\\n  * Phone number\\n   * Address\\n\\n\r\n        Use of Your Personal Data\\n-------------------------\\nThe Company may use Personal Data for the following purposes:\\n\\n  * For the performance of a contract: the development, compliance and undertaking of the purchase contract for the products, items or request You have of any other contract with Us through the Service.\r\n        \\n\\n  * To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application\\'s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates,\r\n        when necessary or reasonable for their implementation.\\n\\n  * To manage Your requests: To attend and manage Your requests to Us.\\n\\nSecurity of Your Personal Data\\n---------------------------\\n\\nThe security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method\r\n        of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.\\n\\n\r\n    </string>\r\n    <string name=\"dialog_title\">Submit Form</string>\r\n    <string name=\"dialog_message\">Are you sure you want to submit this form?</string>\r\n    <string name=\"cancel\">Cancel</string>\r\n    <string name=\"form_submitted\">Form submitted</string>\r\n    <string name=\"action_cancelled\">Action cancelled</string>\r\n    <string name=\"firebase_req\">Requests</string>\r\n    <string name=\"firebase_user\">User</string>\r\n\r\n    <!--  Request Status Fragment  -->\r\n    <string name=\"request_status\">Request Status</string>\r\n    <string name=\"reason\">Reason</string>\r\n    <string name=\"date\">Date</string>\r\n    <string name=\"status\">Status</string>\r\n    <string name=\"add_request\">Add Request</string>\r\n    <string name=\"pending\">Pending</string>\r\n    <string name=\"no_record\">No record found!</string>\r\n    <string name=\"filter\">Filter</string>\r\n    <string name=\"filter_by\">Filter By</string>\r\n    <string name=\"remove_filter\">Remove Filter</string>\r\n    <string name=\"remove_filter_msg\">Filter Removed</string>\r\n    <string name=\"show_record\">Showing records in</string>\r\n\r\n    <!--  Survey Fragment  -->\r\n    <string name=\"Survey_text\">Survey</string> <!--  got menu_survey up there  -->\r\n    <string name=\"Height\">Height (cm)</string>\r\n    <string name=\"Weight\">Weight (kg)</string>\r\n    <string name=\"BMI_calc\">BMI calculator</string>\r\n    <string name=\"calc\">Calculate</string>\r\n    <string name=\"reset\">Reset</string>\r\n    <string name=\"underweight\">Underweight</string>\r\n    <string name=\"Healthy\">Healthy</string>\r\n    <string name=\"Overweight\">Overweight</string>\r\n    <string name=\"Status\">Status: </string>\r\n    <string name=\"result\">Your BMI is </string>\r\n    <string name=\"fragment_name\">com.example.MyFragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"LackIntake\">Lack of food intake</string>\r\n    <string name=\"selectDescription\">Kindly select which section of food you are lacked of: </string>\r\n    <string name=\"wheat\">Bread, Rice, Noodles, Cereal products</string>\r\n    <string name=\"Fruits_vege\">Fruits and Vegetables</string>\r\n    <string name=\"Meat\">Fish, Meat, Egg, Milk products</string>\r\n    <string name=\"fats\">Fats, Oil, Sugar, Salt</string>\r\n    <string name=\"foodPyramidInfo\"></string>\r\n    <string name=\"general_survey\">Survey</string>\r\n    <string name=\"How_many_people\">How many members are there in your household?</string>\r\n    <string name=\"How_many_working\">How many members are working currently in your household?</string>\r\n    <string name=\"How_many_meals\">How many meals do you and your family consume daily?</string>\r\n    <string name=\"family_can_cover\">Is your family income able to cover daily food expenses?</string>\r\n    <string name=\"one_to_three\">1 – 3</string>\r\n    <string name=\"four_to_six\">4 – 6</string>\r\n    <string name=\"seven_to_nine\">7 – 9</string>\r\n    <string name=\"ten_or_above\">10 or above</string>\r\n    <string name=\"one\">1</string>\r\n    <string name=\"two\">2</string>\r\n    <string name=\"three\">3</string>\r\n    <string name=\"four_above\">4 or above</string>\r\n    <string name=\"Yes\">Yes</string>\r\n    <string name=\"No\">No</string>\r\n    <string name=\"rateHygiene\">Rate 1-5 of how satisfied are you with the hygiene of your living environment</string>\r\n    <string name=\"reasonable_price\">Do you think the food price in your area is reasonable/affordable?</string>\r\n    <string name=\"required_select\">You are required to select a value before proceed</string>\r\n\r\n    <!-- zhi hong part -->\r\n    <string name=\"started_title\">Hello You!</string>\r\n    <string name=\"LogIn\">Log In</string>\r\n    <string name=\"emailrequired\">Email Required!</string>\r\n    <string name=\"passwordrequired\">Password Required</string>\r\n    <string name=\"started_sub_title\">\\nNice to meet you, come join our application!\r\n        \\n<b>Login</b> If you already have an account.\r\n        \\n<b>Register</b> To get started with the application.\r\n    </string>\r\n    <string name=\"btn_register\">Register</string>\r\n    <string name=\"btn_login\">Login</string>\r\n    <string name=\"login_title\">Login to app</string>\r\n    <string name=\"login_sub_title\">\r\n        <font color=\"00C988\"><b>Login</b></font>\r\n        if you already have an account.\r\n    </string>\r\n    <string name=\"login_email\">Your email or username</string>\r\n    <string name=\"login_password\">Your password</string>\r\n    <string name=\"login_forgot_pw\">Forgot Password?</string>\r\n    <string name=\"login_havent_account\">\r\n        I don\\'t have an account\r\n        <font color=\"#00C988\"><b>Register</b></font>\r\n    </string>\r\n    <string name=\"register_title\">Create an account</string>\r\n    <string name=\"register_sub_title\">\r\n        <font color=\"00C988\"><b>Register</b></font>\r\n        to get started with the app.\r\n    </string>\r\n    <string name=\"register_fullname\">Your fullname</string>\r\n    <string name=\"register_email\">Your email</string>\r\n    <string name=\"register_comfirm_password\">Comfirm Password</string>\r\n    <string name=\"register_have_account\">I already have an account\\n<font color=\"#00C988\"><b>Login</b></font></string>\r\n    <string name=\"home_title\">Hello World</string>\r\n    <string name=\"home_sub_title\">Welcome to home</string>\r\n    <string name=\"btn_logout\">LOGOUT</string>\r\n    <string name=\"illustration_img\">illustration_image</string>\r\n    <string name=\"illustration_image\">illustration_img</string>\r\n    <string name=\"started_text\">Welcome </string>\r\n    <string name=\"register_username\">Your username</string>\r\n    <string name=\"register_state\">Your State</string>\r\n    <string name=\"register_IC\">Your IC</string>\r\n    <string name=\"register_posCode\">Pos Code</string>\r\n    <string name=\"registerRoD\">Recipient/Donor</string>\r\n    <string name=\"register_recipient\">Recipient</string>\r\n    <string name=\"register_donor\">Donor</string>\r\n\r\n    <!--  Donation Fragment  -->\r\n    <string name=\"food_donation\">Food Donation</string>\r\n    <string name=\"donation_amount\">Enter donation amount: </string>\r\n    <string name=\"donation_details\">Donation Details</string>\r\n    <string name=\"donation_payment\">Donation Payment</string>\r\n    <string name=\"enter_price_manual\">Enter Donation amount: </string>\r\n    <string name=\"visa\">Visa</string>\r\n    <string name=\"mastercard\">MasterCard</string>\r\n    <string name=\"bank_card_num\">Card Number</string>\r\n    <string name=\"card_holder_name\">Card Holder Name</string>\r\n    <string name=\"card_expiry_date\">Card Expiry Date</string>\r\n    <string name=\"card_CVC\">CVC/CVV/CID</string>\r\n    <string name=\"donate\">Donate</string>\r\n    <string name=\"date_picker\">Choose Date</string>\r\n    <string name=\"length_error\">Length error</string>\r\n    <string name=\"invalid_format\">Invalid Format</string>\r\n    <string name=\"input_empty\">Cannot be empty</string>\r\n    <string name=\"card_number_hints\">XXXX XXXX XXXX XXXX</string>\r\n    <string name=\"card_CVC_hints\">XXX</string>\r\n    <string name=\"donation_description\">Spread the love, Share the happiness</string>\r\n    <string name=\"donation_text\">Start donate money to help us in achieving \"zero hunger\". In 2020, between 720 million and 811 million persons worldwide were suffering from hunger, roughly 161 million more than in 2019.</string>\r\n    <string name=\"main_menu_quotes\">“Giving does not only precede receiving; it is the reason for it. It is in giving that we receive.\"</string>\r\n    <string name=\"main_menu_quotes_author\">Israelmore Ayivor</string>\r\n    <string name=\"request_main_menu\">REQUEST</string>\r\n    <string name=\"donate_main_menu\">DONATE</string>\r\n    <string name=\"survey_main_menu\">START A SURVEY</string>\r\n    <string name=\"info_main_menu\">MORE INFO</string>\r\n    <string name=\"donor_details\">Donor Details</string>\r\n    <string name=\"donor_ic\">IC</string>\r\n    <string name=\"donation_amount_details\">Donation Amount</string>\r\n    <string-array name=\"month_group\">\r\n        <item>01</item>\r\n        <item>02</item>\r\n        <item>03</item>\r\n        <item>04</item>\r\n        <item>05</item>\r\n        <item>06</item>\r\n        <item>07</item>\r\n        <item>08</item>\r\n        <item>09</item>\r\n        <item>10</item>\r\n        <item>11</item>\r\n        <item>12</item>\r\n    </string-array>\r\n\r\n    <string-array name=\"year_group\">\r\n        <item>23</item>\r\n        <item>24</item>\r\n        <item>25</item>\r\n        <item>26</item>\r\n        <item>27</item>\r\n        <item>28</item>\r\n        <item>29</item>\r\n        <item>30</item>\r\n        <item>31</item>\r\n        <item>32</item>\r\n    </string-array>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"login_title_welcome\">Welcome to our application!</string>\r\n    <string name=\"login_notyet\">If you not yet register --></string>\r\n    <string name=\"login_ic\">Your IC</string>\r\n    <string name=\"signin_title\">Sign In</string>\r\n    <string name=\"registered_account\"><![CDATA[If you have an account -->]]></string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ b/app/src/main/res/values/strings.xml	(date 1672839433682)
+@@ -4,6 +4,7 @@
+     <string name="navigation_drawer_close">Close navigation drawer</string>
+     <string name="nav_header_title">Username</string>
+     <string name="nav_header_subtitle">user@gmail.com</string>
++    <string name="nav_header_subtitle2">012–3456789</string>
+     <string name="nav_header_desc">Navigation header</string>
+     <string name="action_settings">Settings</string>
+ 
+Index: app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub\r\n\r\nimport android.os.Bundle\r\nimport com.google.android.material.navigation.NavigationView\r\nimport androidx.navigation.findNavController\r\nimport androidx.navigation.ui.AppBarConfiguration\r\nimport androidx.navigation.ui.navigateUp\r\nimport androidx.navigation.ui.setupActionBarWithNavController\r\nimport androidx.navigation.ui.setupWithNavController\r\nimport androidx.drawerlayout.widget.DrawerLayout\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport my.edu.tarc.hungerhub.databinding.ActivityMainBinding\r\nimport my.edu.tarc.hungerhub.ui.donation.DonationFragment\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n    private lateinit var appBarConfiguration: AppBarConfiguration\r\n    private lateinit var binding: ActivityMainBinding\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n\r\n        binding = ActivityMainBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n        setSupportActionBar(binding.appBarMain.toolbar)\r\n\r\n        val drawerLayout: DrawerLayout = binding.drawerLayout\r\n        val navView: NavigationView = binding.navView\r\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\r\n        // Passing each menu ID as a set of Ids because each\r\n        // menu should be considered as top level destinations.\r\n        appBarConfiguration = AppBarConfiguration(\r\n            setOf(\r\n                R.id.nav_home, R.id.nav_survey, R.id.nav_donation, R.id.nav_request\r\n            ), drawerLayout\r\n        )\r\n        setupActionBarWithNavController(navController, appBarConfiguration)\r\n        navView.setupWithNavController(navController)\r\n\r\n    }\r\n\r\n    override fun onSupportNavigateUp(): Boolean {\r\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\r\n        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt b/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/MainActivity.kt	(date 1672839433691)
+@@ -1,6 +1,10 @@
+ package my.edu.tarc.hungerhub
+ 
++import android.content.Context
+ import android.os.Bundle
++import android.util.Log
++import android.view.View
++import android.widget.TextView
+ import com.google.android.material.navigation.NavigationView
+ import androidx.navigation.findNavController
+ import androidx.navigation.ui.AppBarConfiguration
+@@ -9,6 +13,10 @@
+ import androidx.navigation.ui.setupWithNavController
+ import androidx.drawerlayout.widget.DrawerLayout
+ import androidx.appcompat.app.AppCompatActivity
++import com.google.firebase.database.DataSnapshot
++import com.google.firebase.database.DatabaseError
++import com.google.firebase.database.FirebaseDatabase
++import com.google.firebase.database.ValueEventListener
+ import my.edu.tarc.hungerhub.databinding.ActivityMainBinding
+ import my.edu.tarc.hungerhub.ui.donation.DonationFragment
+ 
+@@ -36,6 +44,19 @@
+         setupActionBarWithNavController(navController, appBarConfiguration)
+         navView.setupWithNavController(navController)
+ 
++        readLoginData()
++
++        val sharedPref = this.getSharedPreferences("Login", Context.MODE_PRIVATE)
++        if (sharedPref != null) {
++            val name = sharedPref.getString("name", null)
++            val email = sharedPref.getString("email", null)
++            val phone = sharedPref.getString("phoneNo", null)
++
++            val headerView = navView.getHeaderView(0)
++            headerView.findViewById<TextView>(R.id.textViewName).text = name
++            headerView.findViewById<TextView>(R.id.textViewEmail).text = email
++            headerView.findViewById<TextView>(R.id.textViewPhone).text = phone
++        }
+     }
+ 
+     override fun onSupportNavigateUp(): Boolean {
+@@ -43,4 +64,34 @@
+         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+     }
+ 
++    private fun readLoginData() {
++        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
++
++        val sharedPref = this.getSharedPreferences("Login", Context.MODE_PRIVATE)
++        val loginIc = sharedPref?.getString("ic", null)
++        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
++
++        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
++            override fun onDataChange(dataSnapshot: DataSnapshot) {
++                if (dataSnapshot.exists() && loginIc != null) {
++                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
++                    val name = children.child("name").value.toString()
++                    val email = children.child("email").value.toString()
++                    val phoneNo = children.child("phoneNo").value.toString()
++
++                    with(sharedPref.edit()) {
++                        this?.clear()
++                        this?.putString("name", name)
++                        this?.putString("email", email)
++                        this?.putString("phone", phoneNo)
++                        this?.apply()
++                    }
++                }
++            }
++            override fun onCancelled(databaseError: DatabaseError) {
++                Log.e("firebase", "firebase error")
++            }
++        })
++    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/nav_header_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"@dimen/nav_header_height\"\r\n    android:background=\"@drawable/side_nav_bar\"\r\n    android:gravity=\"bottom\"\r\n    android:orientation=\"vertical\"\r\n    android:paddingLeft=\"@dimen/activity_horizontal_margin\"\r\n    android:paddingTop=\"@dimen/activity_vertical_margin\"\r\n    android:paddingRight=\"@dimen/activity_horizontal_margin\"\r\n    android:paddingBottom=\"@dimen/activity_vertical_margin\"\r\n    android:theme=\"@style/ThemeOverlay.AppCompat.Dark\"\r\n    android:textColor=\"@color/black\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"100dp\"\r\n        android:layout_marginTop=\"@dimen/nav_header_margin_top\"\r\n        android:contentDescription=\"@string/nav_header_desc\"\r\n        android:paddingTop=\"@dimen/nav_header_vertical_spacing\"\r\n        app:srcCompat=\"@drawable/ic_profile_foreground\" />\r\n\r\n    <TextView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingTop=\"@dimen/nav_header_vertical_spacing\"\r\n        android:text=\"@string/nav_header_title\"\r\n        android:textAppearance=\"@style/TextAppearance.AppCompat.Body1\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/nav_header_subtitle\" />\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/nav_header_main.xml b/app/src/main/res/layout/nav_header_main.xml
+--- a/app/src/main/res/layout/nav_header_main.xml	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ b/app/src/main/res/layout/nav_header_main.xml	(date 1672840878854)
+@@ -3,7 +3,7 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="@dimen/nav_header_height"
+-    android:background="@drawable/side_nav_bar"
++    android:background="@color/cyan"
+     android:gravity="bottom"
+     android:orientation="vertical"
+     android:paddingLeft="@dimen/activity_horizontal_margin"
+@@ -15,23 +15,36 @@
+ 
+     <ImageView
+         android:id="@+id/imageView"
+-        android:layout_width="wrap_content"
++        android:layout_width="100dp"
+         android:layout_height="100dp"
+         android:layout_marginTop="@dimen/nav_header_margin_top"
+         android:contentDescription="@string/nav_header_desc"
+         android:paddingTop="@dimen/nav_header_vertical_spacing"
+-        app:srcCompat="@drawable/ic_profile_foreground" />
++        app:srcCompat="@drawable/user" />
+ 
+     <TextView
++        android:id="@+id/textViewName"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:paddingTop="@dimen/nav_header_vertical_spacing"
+         android:text="@string/nav_header_title"
+-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
++        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
++        android:fontFamily="@font/abeezee_regular"
++        android:textSize="20sp" />
++
++    <TextView
++        android:id="@+id/textViewEmail"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/nav_header_subtitle"
++        android:fontFamily="@font/abeezee_regular"
++        android:textSize="14sp"/>
+ 
+     <TextView
+-        android:id="@+id/textView"
++        android:id="@+id/textViewPhone"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="@string/nav_header_subtitle" />
++        android:text="@string/nav_header_subtitle2"
++        android:fontFamily="@font/abeezee_regular"
++        android:textSize="14sp" />
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Default screen margins, per the Android Design guidelines. -->\r\n    <dimen name=\"activity_horizontal_margin\">16dp</dimen>\r\n    <dimen name=\"activity_vertical_margin\">16dp</dimen>\r\n    <dimen name=\"nav_header_vertical_spacing\">8dp</dimen>\r\n    <dimen name=\"nav_header_height\">220dp</dimen>\r\n    <dimen name=\"nav_header_margin_top\">40dp</dimen>\r\n    <dimen name=\"fab_margin\">18dp</dimen>\r\n    <dimen name=\"font_size_label\">16sp</dimen>\r\n    <dimen name=\"padding_radio_button\">8dp</dimen>\r\n    <dimen name=\"edit_text_height\">48dp</dimen>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/dimens.xml b/app/src/main/res/values/dimens.xml
+--- a/app/src/main/res/values/dimens.xml	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ b/app/src/main/res/values/dimens.xml	(date 1672840779333)
+@@ -3,7 +3,7 @@
+     <dimen name="activity_horizontal_margin">16dp</dimen>
+     <dimen name="activity_vertical_margin">16dp</dimen>
+     <dimen name="nav_header_vertical_spacing">8dp</dimen>
+-    <dimen name="nav_header_height">220dp</dimen>
++    <dimen name="nav_header_height">300dp</dimen>
+     <dimen name="nav_header_margin_top">40dp</dimen>
+     <dimen name="fab_margin">18dp</dimen>
+     <dimen name="font_size_label">16sp</dimen>
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/survey/fragment_survey_ques1.kt
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/fragment_survey_ques1.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/fragment_survey_ques1.kt
+deleted file mode 100644
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/fragment_survey_ques1.kt	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ /dev/null	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
+@@ -1,168 +0,0 @@
+-package my.edu.tarc.hungerhub.ui.survey
+-
+-import android.app.AlertDialog
+-import android.content.Context
+-import android.os.Bundle
+-import android.util.Log
+-import androidx.fragment.app.Fragment
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.RadioGroup
+-import androidx.navigation.fragment.findNavController
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.auth.FirebaseUser
+-import com.google.firebase.database.DataSnapshot
+-import com.google.firebase.database.DatabaseError
+-import com.google.firebase.database.FirebaseDatabase
+-import com.google.firebase.database.ValueEventListener
+-import my.edu.tarc.hungerhub.R
+-import my.edu.tarc.hungerhub.databinding.FragmentSurveyQues1Binding
+-import my.edu.tarc.hungerhub.databinding.FragmentSurveyQuesBinding
+-
+-class fragment_survey_ques1 : Fragment() {
+-    private var _binding: FragmentSurveyQues1Binding? = null
+-    private val binding get() = _binding!!
+-
+-    var database = FirebaseDatabase.getInstance().reference
+-
+-    override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
+-    ): View? {
+-        _binding = FragmentSurveyQues1Binding.inflate(inflater, container, false)
+-        return binding.root
+-    }
+-
+-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+-        super.onViewCreated(view, savedInstanceState)
+-
+-        var index = 0
+-        val arrQuestion = arrayOf<String>(
+-            "Is your family income able to cover daily food expenses",
+-            "Do you think the food price in your area is reasonable/affordable?"
+-        )
+-        val arrAnswerA = arrayOf("Yes", "Yes")
+-        val arrAnswerB = arrayOf("No", "No")
+-
+-        binding.textViewQues1.text = String.format(arrQuestion.get(index))
+-        binding.radioButtonQQ1.text = String.format(arrAnswerA.get(index))
+-        binding.radioButtonQQ2.text = String.format(arrAnswerB.get(index))
+-
+-        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+-
+-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-        val loginIc = sharedPref?.getString("ic", null)
+-        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+-
+-        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+-                if (dataSnapshot.exists() && loginIc != null) {
+-                    Log.d("checkpoint", "got snapshot")
+-                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+-                    val name = children.child("name").value.toString()
+-                    val ic = children.child("ic").value.toString()
+-                    val email = children.child("email").value.toString()
+-                    val phoneNo = children.child("phoneNo").value.toString()
+-                    val address = children.child("address").value.toString()
+-                    val postcode = children.child("posCode").value.toString()
+-                    val state = children.child("state").value.toString()
+-                }
+-            }
+-
+-            override fun onCancelled(error: DatabaseError) {
+-
+-            }
+-        })
+-
+-        if (index == 0) {
+-            binding.radioGroupQues2.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+-                val selectedOption = when (checkedId) {
+-                    R.id.radioButtonQQ1 -> "Yes"
+-                    R.id.radioButtonQQ2 -> "No"
+-                    else -> ""
+-                }
+-
+-
+-                // Store the selected option in the Firebase Realtime Database
+-                database.child("User").child(loginIc.toString()).child("survey").child("FamilyIncomeAbleToCoverDailyFoodExpenses").setValue(selectedOption)
+-                //dataRef.setValue(selectedOption)
+-
+-            })
+-            index++
+-
+-        }
+-        binding.buttonNextSurvey.setOnClickListener {
+-            val member1 = binding.radioButtonQQ1.isChecked
+-            val member2 = binding.radioButtonQQ2.isChecked
+-
+-            if((!member1)&&(!member2)){
+-                // Show error message using alert dialog
+-                val errorMessage = getString(R.string.value_required)
+-                val builder = AlertDialog.Builder(requireActivity())
+-                builder.setTitle("Error")
+-                    .setMessage(errorMessage)
+-                    .setPositiveButton("OK", null)
+-                val alertDialog = builder.create()
+-                alertDialog.show()
+-
+-                return@setOnClickListener
+-            }
+-            if (index <= arrQuestion.size - 1) {
+-                binding.textViewQues1.text = String.format(arrQuestion.get(index))
+-                binding.radioButtonQQ1.text = String.format(arrAnswerA.get(index))
+-                binding.radioButtonQQ2.text = String.format(arrAnswerB.get(index))
+-                check(index)
+-                index++
+-            } else {
+-                findNavController().navigate(R.id.action_fragment_survey_ques1_to_surveyFragmentRate1)
+-            }
+-        }
+-    }
+-
+-    private fun check(index: Int) {
+-
+-        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+-
+-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-        val loginIc = sharedPref?.getString("ic", null)
+-        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+-
+-        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+-                if (dataSnapshot.exists() && loginIc != null) {
+-                    Log.d("checkpoint", "got snapshot")
+-                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+-                    val name = children.child("name").value.toString()
+-                    val ic = children.child("ic").value.toString()
+-                    val email = children.child("email").value.toString()
+-                    val phoneNo = children.child("phoneNo").value.toString()
+-                    val address = children.child("address").value.toString()
+-                    val postcode = children.child("posCode").value.toString()
+-                    val state = children.child("state").value.toString()
+-                }
+-            }
+-
+-            override fun onCancelled(error: DatabaseError) {
+-
+-            }
+-        })
+-
+-        if (index == 1) {
+-            binding.radioGroupQues2.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+-                val selectedOption = when (checkedId) {
+-                    R.id.radioButtonQQ1 -> "Yes"
+-                    R.id.radioButtonQQ2 -> "No"
+-                    else -> ""
+-                }
+-
+-                // Store the selected option in the Firebase Realtime Database
+-                database.child("User").child(loginIc.toString()).child("survey").child("FoodPriceReasonable").setValue(selectedOption)
+-                //dataRef.setValue(selectedOption)
+-
+-            })
+-            binding.radioGroupQues2.clearCheck()
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/survey/Fragment_survey_ques.kt
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/Fragment_survey_ques.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/Fragment_survey_ques.kt
+deleted file mode 100644
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/survey/Fragment_survey_ques.kt	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
++++ /dev/null	(revision 26a3ef57284e23e585fd2a4467214e97f77385c9)
+@@ -1,205 +0,0 @@
+-package my.edu.tarc.hungerhub.ui.survey
+-
+-import android.app.AlertDialog
+-import android.content.Context
+-import android.os.Bundle
+-import android.util.Log
+-import androidx.fragment.app.Fragment
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.RadioGroup
+-import androidx.navigation.fragment.findNavController
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.auth.FirebaseUser
+-import com.google.firebase.database.DataSnapshot
+-import com.google.firebase.database.DatabaseError
+-import com.google.firebase.database.FirebaseDatabase
+-import com.google.firebase.database.ValueEventListener
+-import my.edu.tarc.hungerhub.R
+-import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
+-import my.edu.tarc.hungerhub.databinding.FragmentSurveyQuesBinding
+-
+-class fragment_survey_ques : Fragment() {
+-
+-    private var _binding: FragmentSurveyQuesBinding? = null
+-    private val binding get() = _binding!!
+-
+-    var database = FirebaseDatabase.getInstance().reference
+-
+-    override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
+-    ): View? {
+-        _binding = FragmentSurveyQuesBinding.inflate(inflater, container, false)
+-        return binding.root
+-    }
+-
+-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+-        super.onViewCreated(view, savedInstanceState)
+-        var index = 0
+-        val arrQuestion = arrayOf<String>(
+-            "How many members are there in your household",
+-            "How many members are working currently in your household",
+-            "How many meals do you and your family consume daily"
+-        )
+-        val arrAnswerA = arrayOf("1-3", "1-3", "1")
+-        val arrAnswerB = arrayOf("4-6", "4-6", "2")
+-        val arrAnswerC = arrayOf("7-9", "7-9", "3")
+-        val arrAnswerD = arrayOf("10 or above", "10 or above", "4 or above")
+-
+-        binding.textViewQues.text = String.format(arrQuestion.get(index))
+-        binding.radioButtonQ1.text = String.format(arrAnswerA.get(index))
+-        binding.radioButtonQ2.text = String.format(arrAnswerB.get(index))
+-        binding.radioButtonQ3.text = String.format(arrAnswerC.get(index))
+-        binding.radioButtonQ4.text = String.format(arrAnswerD.get(index))
+-
+-        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+-
+-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-        val loginIc = sharedPref?.getString("ic", null)
+-        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+-
+-        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+-                if (dataSnapshot.exists() && loginIc != null) {
+-                    Log.d("checkpoint", "got snapshot")
+-                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+-                    val name = children.child("name").value.toString()
+-                    val ic = children.child("ic").value.toString()
+-                    val email = children.child("email").value.toString()
+-                    val phoneNo = children.child("phoneNo").value.toString()
+-                    val address = children.child("address").value.toString()
+-                    val postcode = children.child("posCode").value.toString()
+-                    val state = children.child("state").value.toString()
+-                }
+-            }
+-
+-            override fun onCancelled(error: DatabaseError) {
+-
+-            }
+-        })
+-        if(index==0) {
+-            binding.radioGroupTest.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+-                val selectedOption = when (checkedId) {
+-                R.id.radioButtonQ1 -> "1-3"
+-                R.id.radioButtonQ2 -> "4-6"
+-                R.id.radioButtonQ3 -> "7-9"
+-                R.id.radioButtonQ4 -> "10 or above"
+-                else -> ""
+-            }
+-
+-            // Store the selected option in the Firebase Realtime Database
+-                database.child("User").child(loginIc.toString()).child("survey").child("NumMemberInHouse").setValue(selectedOption)
+-            //dataRef.setValue(selectedOption)
+-
+-        })
+-        index++
+-        }
+-
+-        binding.buttonNextQues.setOnClickListener {
+-            val member1 = binding.radioButtonQ1.isChecked
+-            val member2 = binding.radioButtonQ2.isChecked
+-            val member3 = binding.radioButtonQ3.isChecked
+-            val member4 = binding.radioButtonQ4.isChecked
+-
+-            if((!member1)&&(!member2)&&(!member3)&&(!member4)){
+-                // Show error message using alert dialog
+-                val errorMessage = getString(R.string.value_required)
+-                val builder = AlertDialog.Builder(requireActivity())
+-                builder.setTitle("Error")
+-                    .setMessage(errorMessage)
+-                    .setPositiveButton("OK", null)
+-                val alertDialog = builder.create()
+-                alertDialog.show()
+-
+-                return@setOnClickListener
+-            }
+-            //binding.radioGroupTest.clearCheck()
+-            if (index<=arrQuestion.size-1) {
+-
+-                binding.textViewQues.text = String.format(arrQuestion.get(index))
+-                binding.radioButtonQ1.text = String.format(arrAnswerA.get(index))
+-                binding.radioButtonQ2.text = String.format(arrAnswerB.get(index))
+-                binding.radioButtonQ3.text = String.format(arrAnswerC.get(index))
+-                binding.radioButtonQ4.text = String.format(arrAnswerD.get(index))
+-                check(index)
+-                index++
+-
+-            }
+-
+-            else{
+-                findNavController().navigate(R.id.action_fragment_survey_ques_to_fragment_survey_ques1)
+-
+-            }
+-        }
+-    }
+-
+-    private fun check(index: Int) {
+-
+-        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
+-
+-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-        val loginIc = sharedPref?.getString("ic", null)
+-        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
+-
+-        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
+-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+-                if (dataSnapshot.exists() && loginIc != null) {
+-                    Log.d("checkpoint", "got snapshot")
+-                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
+-                    val name = children.child("name").value.toString()
+-                    val ic = children.child("ic").value.toString()
+-                    val email = children.child("email").value.toString()
+-                    val phoneNo = children.child("phoneNo").value.toString()
+-                    val address = children.child("address").value.toString()
+-                    val postcode = children.child("posCode").value.toString()
+-                    val state = children.child("state").value.toString()
+-                }
+-            }
+-
+-            override fun onCancelled(error: DatabaseError) {
+-
+-            }
+-        })
+-
+-        when (index) {
+-            1 -> {
+-                binding.radioGroupTest.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+-                    val selectedOption = when (checkedId) {
+-                        R.id.radioButtonQ1 -> "1-3"
+-                        R.id.radioButtonQ2 -> "4-6"
+-                        R.id.radioButtonQ3 -> "7-9"
+-                        R.id.radioButtonQ4 -> "10 or above"
+-                        else -> ""
+-                    }
+-
+-                    // Store the selected option in the Firebase Realtime Database
+-                    database.child("User").child(loginIc.toString()).child("survey").child("MembersWorking").setValue(selectedOption)
+-
+-                })
+-
+-                binding.radioGroupTest.clearCheck()
+-            }
+-            2 -> {
+-                binding.radioGroupTest.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+-                    val selectedOption = when (checkedId) {
+-                        R.id.radioButtonQ1 -> "1"
+-                        R.id.radioButtonQ2 -> "2"
+-                        R.id.radioButtonQ3 -> "3"
+-                        R.id.radioButtonQ4 -> "4 or above"
+-                        else -> ""
+-                    }
+-                    database.child("User").child(loginIc.toString()).child("survey").child("MealsConsumeDaily").setValue(selectedOption)
+-                })
+-                binding.radioGroupTest.clearCheck()
+-            }
+-//            3 -> {
+-//                findNavController().navigate(R.id.action_fragment_survey_ques_to_fragment_survey_ques1)
+-//            }
+-        }
+-
+-    }
+-
+-}
+\ No newline at end of file

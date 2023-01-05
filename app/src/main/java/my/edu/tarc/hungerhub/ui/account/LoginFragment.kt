@@ -1,4 +1,4 @@
-package my.edu.tarc.hungerhub.ui.home
+package my.edu.tarc.hungerhub.ui.account
 
 import android.content.Context
 import android.os.Bundle
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
-import kotlinx.coroutines.delay
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentLoginBinding
+import my.edu.tarc.hungerhub.model.User
 
 
 class LoginFragment : Fragment() {
@@ -91,6 +91,14 @@ class LoginFragment : Fragment() {
                 }
 
                 findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+
+            }else{
+                activity?.let { it1 ->
+                    Snackbar.make(
+                        it1.findViewById(android.R.id.content),
+                        "Invalid Password or IC!", Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }

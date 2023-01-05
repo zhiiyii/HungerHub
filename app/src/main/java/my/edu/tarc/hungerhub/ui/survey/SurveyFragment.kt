@@ -8,18 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
-import my.edu.tarc.hungerhub.model.Request
-import my.edu.tarc.hungerhub.ui.home.User
+import my.edu.tarc.hungerhub.model.bmiData
+
 //import my.edu.tarc.hungerhub.ui.request.UserListCallback
 
 

@@ -1,13 +1,10 @@
-package my.edu.tarc.hungerhub.ui.home
+package my.edu.tarc.hungerhub.ui.account
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRegisterBinding
+import my.edu.tarc.hungerhub.model.User
 import android.widget.Toast.makeText as toastMakeText
 
 @Suppress("UNREACHABLE_CODE")

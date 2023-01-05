@@ -1,4 +1,4 @@
-package my.edu.tarc.hungerhub.database
+package my.edu.tarc.hungerhub.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

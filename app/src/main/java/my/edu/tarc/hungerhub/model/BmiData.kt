@@ -1,4 +1,4 @@
-package my.edu.tarc.hungerhub.ui.survey
+package my.edu.tarc.hungerhub.model
 
 data class bmiData(
 val height:String?=null,

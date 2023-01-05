@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import my.edu.tarc.hungerhub.dao.RequestDao
 import my.edu.tarc.hungerhub.model.Request
 
 @Database(entities = [Request::class], version = 2, exportSchema = false)
