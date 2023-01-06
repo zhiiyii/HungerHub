@@ -52,8 +52,8 @@
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationPaymentFragment"
         android:label="@string/donation_payment">
         <action
-            android:id="@+id/action_nav_donation2_to_nav_donation"
-            app:destination="@id/DonationFragment" />
+            android:id="@+id/action_DonationPaymentFragment_to_MainMenuFragment"
+            app:destination="@id/MainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/SurveyRateFragment"

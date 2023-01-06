@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_4_1_2023_10_01_PM_[Changes]" date="1672840887160" recycled="true" deleted="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2023_10_01_PM_[Changes]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/1/2023 10:01 PM [Changes]" />
-  <binary>
-    <option name="BEFORE_PATH" />
-    <option name="AFTER_PATH" value="app/src/main/res/drawable/user.png" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2023_10_01_PM_[Changes]/user.png" />
-  </binary>
-</changelist>

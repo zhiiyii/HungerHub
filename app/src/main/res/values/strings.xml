@@ -205,6 +205,10 @@
     <string name="donor_details">Donor Details</string>
     <string name="donor_ic">IC</string>
     <string name="donation_amount_details">Donation Amount</string>
+    <string name="donation_dialog_title">Donation</string>
+    <string name="donation_dialog_message">Do you confirm to make this payment? </string>
+    <string name="confirm">confirm</string>
+
     <string-array name="month_group">
         <item>01</item>
         <item>02</item>

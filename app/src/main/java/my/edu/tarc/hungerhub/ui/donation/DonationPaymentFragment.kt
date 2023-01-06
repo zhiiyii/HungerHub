@@ -1,5 +1,6 @@
 package my.edu.tarc.hungerhub.ui.donation
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -128,16 +130,37 @@ class DonationPaymentFragment: Fragment() {
                     binding.editTextCVC.text.toString(),
                     donateAmt
                 )
-                database.child("User").child(loginIc.toString()).child("donation").child("payment").setValue(donor)
+                database.child("User").child("donation").child("payment").setValue(donor)
 
-                Toast.makeText(
-                    context,
-                    "Thanks for donating RM $donateAmt!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                // alert dialog to ask for confirmation
+                val builder = AlertDialog.Builder(this.requireContext())
+                builder.setTitle(R.string.donation_dialog_title)
+                builder.setMessage(R.string.donation_dialog_message)
+                builder.setIcon(R.drawable.alert)
 
-                //breakpoint
+                builder.setPositiveButton(R.string.confirm) { _, _ ->
+                    Toast.makeText(
+                        context,
+                        "Thanks for donating RM $donateAmt!",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
+                    findNavController().navigate(R.id.action_DonationPaymentFragment_to_MainMenuFragment)
+                }
+
+                builder.setNegativeButton(android.R.string.cancel) { _, _ ->
+                    Toast.makeText(
+                        context,
+                        "Payment has cancelled",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    findNavController().navigate(R.id.action_DonationPaymentFragment_to_MainMenuFragment)
+                }
+
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
 
             }
             }
