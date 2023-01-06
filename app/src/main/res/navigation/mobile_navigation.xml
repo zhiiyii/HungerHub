@@ -101,7 +101,7 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/LoginFragment" />
         <action
-            android:id="@+id/action_registerFragment_self"
+            android:id="@+id/action_RegisterFragment_self"
             app:destination="@id/RegisterFragment" />
     </fragment>
     <fragment

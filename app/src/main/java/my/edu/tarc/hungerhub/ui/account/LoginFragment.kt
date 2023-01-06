@@ -41,6 +41,8 @@ class LoginFragment : Fragment() {
         var isUser: Boolean = false
         database = FirebaseDatabase.getInstance().getReference("User")
 
+
+        //for demo account ,IC:021126040379 ps:999
         binding.buttonSignIn.setOnClickListener {
             if (binding.editTextLogInIC.text.isEmpty()) {
                 binding.editTextLogInIC.setError(getString(R.string.emailRequired))
@@ -57,15 +59,10 @@ class LoginFragment : Fragment() {
             database.child(ic).get().addOnSuccessListener {
                 if (it.exists()) {
                     currentUser = it.getValue(User()::class.java)!!
-                    Log.d("cw", currentUser.toString())
                 }
             }
 
             if (ic == currentUser?.ic && pass == currentUser?.pass) {
-                Log.d(
-                    "Test",
-                    "ic = $ic, pass = $pass, icFB = ${currentUser!!.ic} , icPw = ${currentUser!!.pass}"
-                )
                 isUser = true
             }
 
@@ -89,7 +86,6 @@ class LoginFragment : Fragment() {
                         "Login Success!", Snackbar.LENGTH_LONG
                     ).show()
                 }
-
                 findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
 
             }else{

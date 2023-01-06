@@ -2,6 +2,7 @@ package my.edu.tarc.hungerhub.ui.survey
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -30,7 +31,7 @@ class SurveyLackFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSurveyLackBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -88,10 +89,51 @@ class SurveyLackFragment : Fragment() {
 
                 return@setOnClickListener
             }
-            val snack = Snackbar.make(it,"Form submitted",Snackbar.LENGTH_LONG)
-            snack.show()
 
-            findNavController().navigate(R.id.action_surveyFragmentLack_to_mainMenuFragment)
+            // Initialize a new instance of alert dialog builder object
+            val builder = AlertDialog.Builder(this.requireContext())
+
+            // Set a title for alert dialog
+            builder.setTitle("Confirm Submit")
+
+            // Set a message for alert dialog
+            builder.setMessage("Are you sure you want to submit the form?")
+
+            // On click listener for dialog buttons
+            val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
+                when(which){
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        // Submit the form
+                        val snack = Snackbar.make(it,"Form submitted",Snackbar.LENGTH_LONG)
+                        snack.show()
+
+                        findNavController().navigate(R.id.action_surveyFragmentLack_to_mainMenuFragment)
+                    }
+                    DialogInterface.BUTTON_NEGATIVE -> {
+                        // Cancel the dialog
+                        val snack = Snackbar.make(it,"Action Cancelled",Snackbar.LENGTH_LONG)
+                        snack.show()
+                    }
+                }
+            }
+
+            // Set the alert dialog positive/yes button
+            builder.setPositiveButton("YES",dialogClickListener)
+
+            // Set the alert dialog negative/no button
+            builder.setNegativeButton("NO",dialogClickListener)
+
+            // Initialize the AlertDialog using builder object
+            val alertDialog = builder.create()
+
+            // Finally, display the alert dialog
+            alertDialog.show()
+
+
+//            val snack = Snackbar.make(it,"Form submitted",Snackbar.LENGTH_LONG)
+//            snack.show()
+//
+//            findNavController().navigate(R.id.action_surveyFragmentLack_to_mainMenuFragment)
         }
 
         binding.checkBoxWheat.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
@@ -134,10 +176,8 @@ class SurveyLackFragment : Fragment() {
 
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

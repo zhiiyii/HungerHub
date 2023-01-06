@@ -39,7 +39,6 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
             firebaseAuth = FirebaseAuth.getInstance()
             val fullName = binding.editTextRegisterFullname.text.toString()
@@ -58,24 +57,6 @@ class RegisterFragment : Fragment() {
                 type = "Recipient"
             }
 
-
-
-//            al radioGroup: RadioGroup = findViewById(R.id.radioGroup)
-//                findViewById(R.id.radioGroup)
-
-
-//            //create a data in firebase auth
-//            firebaseAuth.createUserWithEmailAndPassword(ic,pass).addOnCompleteListener {
-//                if(it.isSuccessful){
-//                    Log.e("cw","Register successfully cw")
-//                }else{
-//                    Log.e("cw","Register gg cw")
-//                }
-//            }
-
-            //This variable is use to solve the problems that firebase cannot store the value with "."
-//            val newEmail = email.replace(".",",")
-
             database = FirebaseDatabase.getInstance().getReference("User")
             val user = User(ic,email,fullName,state,pass,phoneNo,address,posCode,type)
             database.child(ic).setValue(user).addOnSuccessListener {
@@ -90,43 +71,32 @@ class RegisterFragment : Fragment() {
                 binding.editTextRegisterComfirmPassword.text.clear()
                 binding.editTextRegisterPassword.text.clear()
 
-                //Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
-                //Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
+                toastMakeText(requireActivity(), "Failed to add details to database", Toast.LENGTH_LONG)
+                    .show()
             }
 
-            if (ic.isNotEmpty() && email.isNotEmpty() && state.isNotEmpty() && pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
+            if (pass.isNotEmpty() && comfirmPass.isNotEmpty()) {
                 if (pass == comfirmPass) {
-//                    firebaseAuth.createUserWithEmailAndPassword(ic, pass).addOnCompleteListener {
-//                        if (it.isSuccessful) {
-//                            findNavController().navigate(R.id.action_nav_home_to_loginFragment)
-//
-//                        } else {
-//                            toastMakeText(
-//                                requireActivity(),
-//                                it.exception.toString(),
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//                    }
-                } else {
+                    toastMakeText(requireActivity(), "Successfully to create an account!", Toast.LENGTH_LONG)
+                        .show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+
+                } else if((pass != comfirmPass)){
                     toastMakeText(requireActivity(), "Password is not matching", Toast.LENGTH_LONG)
                         .show()
+                    return@setOnClickListener
                 }
+
             } else {
                 toastMakeText(
                     requireActivity(),
                     "Empty Fields Are not Allowed!!",
                     Toast.LENGTH_LONG
                 ).show()
-
             }
         }
 
-
-//        binding.radioGroupRandD.setOnCheckedChangeListener {
-//
-//        }
         if (binding.editTextRegisterFullname.text.isEmpty()) {
             binding.editTextRegisterFullname.setError(getString(R.string.fullNameRequired))
         }
