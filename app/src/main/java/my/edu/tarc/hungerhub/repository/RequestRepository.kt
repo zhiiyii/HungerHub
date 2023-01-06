@@ -18,6 +18,10 @@ class RequestRepository(private val requestDao: RequestDao) {
         return requestDao.filterByDate(ic, date)
     }
 
+    fun filterByStatus(ic: String, status: String): List<Request> {
+        return requestDao.filterByStatus(ic, status)
+    }
+
     fun removeFilter(ic: String): List<Request> {
         return requestDao.removeFilter(ic)
     }

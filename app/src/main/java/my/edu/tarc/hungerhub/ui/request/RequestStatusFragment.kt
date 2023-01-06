@@ -43,8 +43,6 @@ class RequestStatusFragment: Fragment() {
 
         // check for changes of live data
         requestViewModel.requestList.observe(viewLifecycleOwner) {
-            requestAdapter.setForm(it)
-
             // query to select records only for login user
             val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
             if (unfilteredList != null) {
@@ -67,42 +65,58 @@ class RequestStatusFragment: Fragment() {
             builder.setTitle(R.string.filter_by)
             builder.setIcon(R.drawable.ic_baseline_filter_alt_24)
 
-            val filterBy = arrayOf("Day", "Month", "Year")
+            val filterBy = arrayOf("Day", "Month", "Year", "Approved", "Pending", "Rejected")
             builder.setItems(filterBy, DialogInterface.OnClickListener { _, which ->
-                val calendar = Calendar.getInstance()
-                val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                    calendar.set(Calendar.YEAR, year)
-                    calendar.set(Calendar.MONTH, month)
-                    calendar.set(Calendar.DAY_OF_MONTH, day)
+                if (which == 0 || which == 1 || which == 2) {
+                    val calendar = Calendar.getInstance()
+                    val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                        calendar.set(Calendar.YEAR, year)
+                        calendar.set(Calendar.MONTH, month)
+                        calendar.set(Calendar.DAY_OF_MONTH, day)
 
-                    var dateFormat = ""
-                    when (which) {
-                        0 -> dateFormat = "yyyy/MM/dd"
-                        1 -> dateFormat = "yyyy/MM"
-                        2 -> dateFormat = "yyyy"
+                        var dateFormat = ""
+                        when (which) {
+                            0 -> dateFormat = "yyyy/MM/dd"
+                            1 -> dateFormat = "yyyy/MM"
+                            2 -> dateFormat = "yyyy"
+                        }
+
+                        val standardFormat = SimpleDateFormat(dateFormat)
+                        val selectedDate = standardFormat.format(calendar.time)
+
+                        if (loginIc != null) {
+                            val queryList = requestViewModel.filterByDate(loginIc, selectedDate)
+                            requestAdapter.setForm(queryList)
+                        }
+
+                        Toast.makeText(this.requireContext(), (getString(R.string.show_record) + " " + selectedDate), Toast.LENGTH_SHORT).show()
+                        checkRecordNum()
                     }
 
-                    val standardFormat = SimpleDateFormat(dateFormat)
-                    val selectedDate = standardFormat.format(calendar.time)
+                    this.context?.let {
+                        DatePickerDialog(
+                            it,
+                            dateSetListener,
+                            calendar.get(Calendar.YEAR),
+                            calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.DAY_OF_MONTH)
+                        ).show()
+                    }
+                } else {
+                    var status = ""
+                    when (which) {
+                        3 -> status = "approved"
+                        4 -> status = "pending"
+                        5 -> status = "rejected"
+                    }
 
                     if (loginIc != null) {
-                        val queryList = requestViewModel.filterByDate(loginIc, selectedDate)
+                        val queryList = requestViewModel.filterByStatus(loginIc, status)
                         requestAdapter.setForm(queryList)
                     }
 
-                    Toast.makeText(this.requireContext(), (getString(R.string.show_record) + " " + selectedDate), Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this.requireContext(), (getString(R.string.showing) + " " + status + " " + getString(R.string.records)), Toast.LENGTH_SHORT).show()
                     checkRecordNum()
-                }
-
-                this.context?.let {
-                    DatePickerDialog(
-                        it,
-                        dateSetListener,
-                        calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH),
-                        calendar.get(Calendar.DAY_OF_MONTH)
-                    ).show()
                 }
             })
 

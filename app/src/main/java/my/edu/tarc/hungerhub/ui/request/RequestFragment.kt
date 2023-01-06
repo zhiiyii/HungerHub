@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
 import my.edu.tarc.hungerhub.model.Request
+import my.edu.tarc.hungerhub.model.RequestFirebase
 import my.edu.tarc.hungerhub.model.RequestViewModel
 import java.util.Calendar
 
@@ -45,9 +46,6 @@ class RequestFragment: Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onStart() {
         super.onStart()
-
-        // to get login user's data
-        readLoginData()
 
         // open and close TNC popup card view
         binding.textViewTnc.setOnClickListener {
@@ -104,13 +102,16 @@ class RequestFragment: Fragment() {
 
             // press submit in dialog
             builder.setPositiveButton(R.string.submit) { _, _ ->
-                val referenceReq = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_req))
+                val firebase = FirebaseDatabase.getInstance().reference
 
                 // get submit date and time
                 val dateFormat = "yyyy/MM/dd HH:mm:ss"
+                val datePathFormat = "yyyy/MM/dd/HH:mm:ss"  // for firebase child path
                 val calendar = Calendar.getInstance()
                 val format = SimpleDateFormat(dateFormat)
+                val formatPath = SimpleDateFormat(datePathFormat)
                 val time = format.format(calendar.time)
+                val timePath = formatPath.format(calendar.time)
 
                 val income = binding.editTextIncome.text.toString().toInt()
                 val job = binding.spinnerJob.selectedItem.toString()
@@ -119,6 +120,7 @@ class RequestFragment: Fragment() {
                 val reason = binding.editTextReason.text.toString()
                 val pending = getString(R.string.pending)
 
+                // get user's data from shared preference
                 val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
                 if (sharedPref != null) {
                     val ic = sharedPref.getString("ic", null)
@@ -129,17 +131,19 @@ class RequestFragment: Fragment() {
                     val postcode = sharedPref.getString("posCode", null)
                     val state = sharedPref.getString("state", null)
 
+                    // save data to room database with user's personal data
                     if (ic != null && name != null && email != null && phone != null &&
                         address != null && postcode != null && state != null) {
                         val request = Request(
                             time, name, ic, phone, email, address, postcode, state,
                             income, job, marital, pax, reason, pending
                         )
-
-                        // save data to room database and firebase
                         requestViewModel.insert(request)
-                        referenceReq.child(time).setValue(request)
                     }
+
+                    // save data to firebase
+                    val requestFB = RequestFirebase(time, income, job, marital, pax, reason, pending)
+                    firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(timePath).setValue(requestFB)
                 }
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
@@ -157,49 +161,6 @@ class RequestFragment: Fragment() {
             alertDialog.setCancelable(false)
             alertDialog.show()
         }
-    }
-
-    // function to read the logged in user's data
-    private fun readLoginData() {
-        val referenceUser = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user))
-
-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
-        val loginIc = sharedPref?.getString("ic", null)
-        val findUser = referenceUser.orderByChild("ic").equalTo(loginIc)
-
-        findUser.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists() && loginIc != null) {
-                    Log.d("checkpoint", "got snapshot")
-                    val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
-                    val name = children.child("name").value.toString()
-                    val ic = children.child("ic").value.toString()
-                    val email = children.child("email").value.toString()
-                    val phoneNo = children.child("phoneNo").value.toString()
-                    val address = children.child("address").value.toString()
-                    val postcode = children.child("posCode").value.toString()
-                    val state = children.child("state").value.toString()
-
-                    with(sharedPref.edit()) {
-                        this?.clear()
-                        this?.putString("ic", ic)
-                        this?.putString("name", name)
-                        this?.putString("email", email)
-                        this?.putString("phoneNo", phoneNo)
-                        this?.putString("address", address)
-                        this?.putString("posCode", postcode)
-                        this?.putString("state", state)
-                        this?.apply()
-                    }
-                } else {
-                    Log.d("checkpoint", "no snapshot or not logged in")
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.e("firebase", "firebase error")
-            }
-        })
     }
 
     override fun onDestroyView() {

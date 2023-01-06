@@ -16,6 +16,10 @@ interface RequestDao {
     @Query("SELECT * FROM request WHERE ic = :ic AND date LIKE :date || '%' ORDER BY date DESC")
     fun filterByDate(ic: String, date: String): List<Request>
 
+    // select all requests by status for specific users
+    @Query("SELECT * FROM request WHERE ic = :ic AND lower(approvalStatus) = :status ORDER BY date DESC")
+    fun filterByStatus(ic: String, status: String): List<Request>
+
     // select all requests for a specific user
     @Query("SELECT * FROM request WHERE ic = :ic ORDER BY date DESC")
     fun removeFilter(ic: String): List<Request>

@@ -61,7 +61,7 @@
     <string name="cancel">Cancel</string>
     <string name="form_submitted">Form submitted</string>
     <string name="action_cancelled">Action cancelled</string>
-    <string name="firebase_req">Requests</string>
+    <string name="firebase_req">requests</string>
     <string name="firebase_user">User</string>
 
     <!--  Request Status Fragment  -->
@@ -77,6 +77,8 @@
     <string name="remove_filter">Remove Filter</string>
     <string name="remove_filter_msg">Filter Removed</string>
     <string name="show_record">Showing records in</string>
+    <string name="showing">Showing</string>
+    <string name="records">records</string>
 
     <!--  Survey Fragment  -->
     <string name="Height">Height (cm)</string>

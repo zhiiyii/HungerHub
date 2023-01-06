@@ -32,6 +32,10 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
         return requestRepository.filterByDate(ic, date)
     }
 
+    fun filterByStatus(ic: String, status: String): List<Request> {
+        return requestRepository.filterByStatus(ic, status)
+    }
+
     fun removeFilter(ic: String): List<Request> {
         return requestRepository.removeFilter(ic)
     }

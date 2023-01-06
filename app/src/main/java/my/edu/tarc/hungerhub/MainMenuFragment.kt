@@ -82,19 +82,28 @@ class MainMenuFragment: Fragment()  {
                 if (dataSnapshot.exists() && loginIc != null) {
                     val children = loginIc.let { it1 -> dataSnapshot.child(it1) }
                     val name = children.child("name").value.toString()
+                    val ic = children.child("ic").value.toString()
                     val email = children.child("email").value.toString()
                     val phoneNo = children.child("phoneNo").value.toString()
+                    val address = children.child("address").value.toString()
+                    val postcode = children.child("posCode").value.toString()
+                    val state = children.child("state").value.toString()
 
                     with(sharedPref.edit()) {
+                        this?.clear()
+                        this?.putString("ic", ic)
                         this?.putString("name", name)
                         this?.putString("email", email)
-                        this?.putString("phone", phoneNo)
+                        this?.putString("phoneNo", phoneNo)
+                        this?.putString("address", address)
+                        this?.putString("posCode", postcode)
+                        this?.putString("state", state)
                         this?.apply()
                     }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.e("firebase", "firebase error")
+                Log.e("firebase", "no snapshot")
             }
         })
     }
