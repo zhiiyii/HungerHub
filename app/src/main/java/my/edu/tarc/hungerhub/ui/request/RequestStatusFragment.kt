@@ -170,6 +170,7 @@ class RequestStatusFragment: Fragment() {
                     for (requestSnapshot in dataSnapshot.children) {
                         val request = requestSnapshot.getValue(Request::class.java)
                         if (request != null) {
+                            Thread.sleep(10)
                             requestViewModel.insert(request)
                         }
                     }
