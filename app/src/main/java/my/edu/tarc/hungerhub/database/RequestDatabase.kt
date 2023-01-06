@@ -27,7 +27,7 @@ abstract class RequestDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RequestDatabase::class.java,
-                    "request_db"
+                    "requests"
                 ).allowMainThreadQueries().build()
 
                 INSTANCE = instance

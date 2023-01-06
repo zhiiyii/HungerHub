@@ -1,0 +1,419 @@
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.ui.request\r\n\r\nimport android.annotation.SuppressLint\r\nimport android.app.AlertDialog\r\nimport android.app.DatePickerDialog\r\nimport android.content.Context\r\nimport android.content.DialogInterface\r\nimport android.os.Bundle\r\nimport android.view.*\r\nimport android.widget.Toast\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport my.edu.tarc.hungerhub.R\r\nimport my.edu.tarc.hungerhub.adapter.RequestAdapter\r\nimport my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding\r\nimport my.edu.tarc.hungerhub.model.RequestViewModel\r\nimport java.text.SimpleDateFormat\r\nimport java.util.Calendar\r\n\r\nclass RequestStatusFragment: Fragment() {\r\n\r\n    private var _binding: FragmentRequestStatusBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val requestViewModel: RequestViewModel by viewModels()\r\n    private val requestAdapter = RequestAdapter()\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentRequestStatusBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    @SuppressLint(\"SimpleDateFormat\")\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        val sharedPref = activity?.getSharedPreferences(\"Login\", Context.MODE_PRIVATE)\r\n        val loginIc = sharedPref?.getString(\"ic\", null)\r\n\r\n        // check for changes of live data\r\n        requestViewModel.requestList.observe(viewLifecycleOwner) {\r\n            // query to select records only for login user\r\n            val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }\r\n            if (unfilteredList != null) {\r\n                requestAdapter.setForm(unfilteredList)\r\n            }\r\n            checkRecordNum()\r\n        }\r\n\r\n        with(binding.recyclerViewStatus) {\r\n            layoutManager = LinearLayoutManager(requireActivity())\r\n            adapter = requestAdapter\r\n        }\r\n\r\n        binding.floatingActionButtonAddForm.setOnClickListener {\r\n            findNavController().navigate(R.id.action_nav_request_to_RequestFragment)\r\n        }\r\n\r\n        binding.floatingActionButtonFilter.setOnClickListener {\r\n            val builder = AlertDialog.Builder(this.requireContext())\r\n            builder.setTitle(R.string.filter_by)\r\n            builder.setIcon(R.drawable.ic_baseline_filter_alt_24)\r\n\r\n            val filterBy = arrayOf(\"Day\", \"Month\", \"Year\", \"Approved\", \"Pending\", \"Rejected\")\r\n            builder.setItems(filterBy, DialogInterface.OnClickListener { _, which ->\r\n                if (which == 0 || which == 1 || which == 2) {\r\n                    val calendar = Calendar.getInstance()\r\n                    val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->\r\n                        calendar.set(Calendar.YEAR, year)\r\n                        calendar.set(Calendar.MONTH, month)\r\n                        calendar.set(Calendar.DAY_OF_MONTH, day)\r\n\r\n                        var dateFormat = \"\"\r\n                        when (which) {\r\n                            0 -> dateFormat = \"yyyy/MM/dd\"\r\n                            1 -> dateFormat = \"yyyy/MM\"\r\n                            2 -> dateFormat = \"yyyy\"\r\n                        }\r\n\r\n                        val standardFormat = SimpleDateFormat(dateFormat)\r\n                        val selectedDate = standardFormat.format(calendar.time)\r\n\r\n                        if (loginIc != null) {\r\n                            val queryList = requestViewModel.filterByDate(loginIc, selectedDate)\r\n                            requestAdapter.setForm(queryList)\r\n                        }\r\n\r\n                        Toast.makeText(this.requireContext(), (getString(R.string.show_record) + \" \" + selectedDate), Toast.LENGTH_SHORT).show()\r\n                        checkRecordNum()\r\n                    }\r\n\r\n                    this.context?.let {\r\n                        DatePickerDialog(\r\n                            it,\r\n                            dateSetListener,\r\n                            calendar.get(Calendar.YEAR),\r\n                            calendar.get(Calendar.MONTH),\r\n                            calendar.get(Calendar.DAY_OF_MONTH)\r\n                        ).show()\r\n                    }\r\n                } else {\r\n                    var status = \"\"\r\n                    when (which) {\r\n                        3 -> status = \"approved\"\r\n                        4 -> status = \"pending\"\r\n                        5 -> status = \"rejected\"\r\n                    }\r\n\r\n                    if (loginIc != null) {\r\n                        val queryList = requestViewModel.filterByStatus(loginIc, status)\r\n                        requestAdapter.setForm(queryList)\r\n                    }\r\n\r\n                    Toast.makeText(this.requireContext(), (getString(R.string.showing) + \" \" + status + \" \" + getString(R.string.records)), Toast.LENGTH_SHORT).show()\r\n                    checkRecordNum()\r\n                }\r\n            })\r\n\r\n            builder.setPositiveButton(R.string.remove_filter) { _, _ ->\r\n                val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }\r\n                if (unfilteredList != null) {\r\n                    requestAdapter.setForm(unfilteredList)\r\n                }\r\n                checkRecordNum()\r\n\r\n                Toast.makeText(this.requireContext(), R.string.remove_filter_msg, Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n            builder.setNeutralButton(R.string.cancel) { _, _ ->\r\n                Toast.makeText(this.requireContext(), R.string.action_cancelled, Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n            val alertDialog: AlertDialog = builder.create()\r\n            alertDialog.setCancelable(false)\r\n            alertDialog.show()\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n\r\n    // function to display message to tell user there are no records\r\n    private fun checkRecordNum() {\r\n        if (binding.recyclerViewStatus.adapter?.itemCount == 0) {\r\n            binding.textViewEmpty.text = getString(R.string.no_record)\r\n        } else {\r\n            binding.textViewEmpty.text = \"\"\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestStatusFragment.kt	(date 1673004784465)
+@@ -6,15 +6,21 @@
+ import android.content.Context
+ import android.content.DialogInterface
+ import android.os.Bundle
++import android.util.Log
+ import android.view.*
+ import android.widget.Toast
+ import androidx.fragment.app.Fragment
+ import androidx.fragment.app.viewModels
+ import androidx.navigation.fragment.findNavController
+ import androidx.recyclerview.widget.LinearLayoutManager
++import com.google.firebase.database.DataSnapshot
++import com.google.firebase.database.DatabaseError
++import com.google.firebase.database.FirebaseDatabase
++import com.google.firebase.database.ValueEventListener
+ import my.edu.tarc.hungerhub.R
+ import my.edu.tarc.hungerhub.adapter.RequestAdapter
+ import my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding
++import my.edu.tarc.hungerhub.model.Request
+ import my.edu.tarc.hungerhub.model.RequestViewModel
+ import java.text.SimpleDateFormat
+ import java.util.Calendar
+@@ -38,16 +44,12 @@
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+ 
+-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-        val loginIc = sharedPref?.getString("ic", null)
++        // update room database with firebase realtime data
++        readRequestsFromFirebase()
+ 
+         // check for changes of live data
+         requestViewModel.requestList.observe(viewLifecycleOwner) {
+-            // query to select records only for login user
+-            val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
+-            if (unfilteredList != null) {
+-                requestAdapter.setForm(unfilteredList)
+-            }
++            requestAdapter.setForm(it)
+             checkRecordNum()
+         }
+ 
+@@ -61,6 +63,9 @@
+         }
+ 
+         binding.floatingActionButtonFilter.setOnClickListener {
++            val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
++            val loginIc = sharedPref?.getString("ic", null)
++
+             val builder = AlertDialog.Builder(this.requireContext())
+             builder.setTitle(R.string.filter_by)
+             builder.setIcon(R.drawable.ic_baseline_filter_alt_24)
+@@ -76,16 +81,16 @@
+ 
+                         var dateFormat = ""
+                         when (which) {
+-                            0 -> dateFormat = "yyyy/MM/dd"
+-                            1 -> dateFormat = "yyyy/MM"
+-                            2 -> dateFormat = "yyyy"
++                            0 -> dateFormat = "yyyy MM dd "
++                            1 -> dateFormat = "yyyy MM "
++                            2 -> dateFormat = "yyyy "
+                         }
+ 
+                         val standardFormat = SimpleDateFormat(dateFormat)
+                         val selectedDate = standardFormat.format(calendar.time)
+ 
+                         if (loginIc != null) {
+-                            val queryList = requestViewModel.filterByDate(loginIc, selectedDate)
++                            val queryList = requestViewModel.filterByDate(selectedDate)
+                             requestAdapter.setForm(queryList)
+                         }
+ 
+@@ -111,7 +116,7 @@
+                     }
+ 
+                     if (loginIc != null) {
+-                        val queryList = requestViewModel.filterByStatus(loginIc, status)
++                        val queryList = requestViewModel.filterByStatus(status)
+                         requestAdapter.setForm(queryList)
+                     }
+ 
+@@ -121,10 +126,8 @@
+             })
+ 
+             builder.setPositiveButton(R.string.remove_filter) { _, _ ->
+-                val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
+-                if (unfilteredList != null) {
+-                    requestAdapter.setForm(unfilteredList)
+-                }
++                val unfilteredList = requestViewModel.removeFilter()
++                requestAdapter.setForm(unfilteredList)
+                 checkRecordNum()
+ 
+                 Toast.makeText(this.requireContext(), R.string.remove_filter_msg, Toast.LENGTH_SHORT).show()
+@@ -153,4 +156,29 @@
+             binding.textViewEmpty.text = ""
+         }
+     }
++
++    private fun readRequestsFromFirebase() {
++        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
++        val loginIc = sharedPref?.getString("ic", null)
++
++        loginIc?.let {
++            FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user)).child(it).child(getString(R.string.firebase_req))
++        }?.addValueEventListener(object: ValueEventListener {
++            override fun onDataChange(dataSnapshot: DataSnapshot) {
++                requestViewModel.deleteAllRecords()
++                if (dataSnapshot.exists()) {
++                    for (requestSnapshot in dataSnapshot.children) {
++                        val request = requestSnapshot.getValue(Request::class.java)
++                        if (request != null) {
++                            requestViewModel.insert(request)
++                        }
++                    }
++                }
++            }
++
++            override fun onCancelled(databaseError: DatabaseError) {
++                Log.e("firebase", "on cancelled")
++            }
++        })
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.model\r\n\r\nimport androidx.room.Entity\r\nimport androidx.room.PrimaryKey\r\n\r\n@Entity\r\ndata class Request (\r\n    @PrimaryKey var date: String,\r\n    var name: String,\r\n    var ic: String,\r\n    var phoneNo: String,\r\n    var loginEmail: String,\r\n    var address: String,\r\n    var postcode: String,\r\n    var state: String,\r\n    var income: Int,\r\n    var jobStatus: String,\r\n    var maritalStatus: String,\r\n    var pax: Int,\r\n    var reason: String,\r\n    var approvalStatus: String\r\n    )
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt b/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/model/Request.kt	(date 1673004784472)
+@@ -6,17 +6,12 @@
+ @Entity
+ data class Request (
+     @PrimaryKey var date: String,
+-    var name: String,
+-    var ic: String,
+-    var phoneNo: String,
+-    var loginEmail: String,
+-    var address: String,
+-    var postcode: String,
+-    var state: String,
+     var income: Int,
+     var jobStatus: String,
+     var maritalStatus: String,
+     var pax: Int,
+     var reason: String,
+     var approvalStatus: String
+-    )
+\ No newline at end of file
++    ) {
++    constructor(): this("", 0, "", "", 0, "", "")
++}
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.ui.request\r\n\r\nimport android.annotation.SuppressLint\r\nimport android.app.AlertDialog\r\nimport android.content.Context\r\nimport android.icu.text.SimpleDateFormat\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.annotation.RequiresApi\r\nimport androidx.core.view.isVisible\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.fragment.findNavController\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.google.firebase.database.DataSnapshot\r\nimport com.google.firebase.database.DatabaseError\r\nimport com.google.firebase.database.FirebaseDatabase\r\nimport com.google.firebase.database.ValueEventListener\r\nimport my.edu.tarc.hungerhub.R\r\nimport my.edu.tarc.hungerhub.databinding.FragmentRequestBinding\r\nimport my.edu.tarc.hungerhub.model.Request\r\nimport my.edu.tarc.hungerhub.model.RequestFirebase\r\nimport my.edu.tarc.hungerhub.model.RequestViewModel\r\nimport java.util.Calendar\r\n\r\nclass RequestFragment: Fragment() {\r\n\r\n    private var _binding: FragmentRequestBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val requestViewModel: RequestViewModel by viewModels()\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentRequestBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    @SuppressLint(\"SimpleDateFormat\")\r\n    @RequiresApi(Build.VERSION_CODES.N)\r\n    override fun onStart() {\r\n        super.onStart()\r\n\r\n        // open and close TNC popup card view\r\n        binding.textViewTnc.setOnClickListener {\r\n            binding.cardViewTnc.isVisible = true\r\n        }\r\n        binding.imageButtonCloseTnc.setOnClickListener {\r\n            binding.cardViewTnc.isVisible = false\r\n        }\r\n        binding.buttonAgree.setOnClickListener {\r\n            binding.checkBoxTnc.isChecked = true\r\n            binding.cardViewTnc.isVisible = false\r\n        }\r\n\r\n        binding.buttonSubmit.setOnClickListener {\r\n            // check empty fields\r\n            if (binding.spinnerMarital.selectedItemPosition == 0) {\r\n                Snackbar.make(this.requireView(), getString(R.string.marital_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.spinnerJob.selectedItemPosition == 0) {\r\n                Snackbar.make(this.requireView(), getString(R.string.job_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextIncome.text.toString().isEmpty()) {\r\n                binding.editTextIncome.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextReason.text.toString().isEmpty()) {\r\n                binding.editTextReason.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n            if (binding.editTextPax.text.toString().isEmpty()) {\r\n                binding.editTextPax.error = getString(R.string.value_required)\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // validate pax amount\r\n            if (binding.editTextPax.text.toString().toInt() > 10) {\r\n                binding.editTextPax.error = getString(R.string.invalid_pax)\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // check agreement of TNC\r\n            if (!binding.checkBoxTnc.isChecked) {\r\n                Snackbar.make(this.requireView(), getString(R.string.tnc_required), Snackbar.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // alert dialog to prompt confirmation\r\n            val builder = AlertDialog.Builder(this.requireContext())\r\n            builder.setTitle(R.string.dialog_title)\r\n            builder.setMessage(R.string.dialog_message)\r\n            builder.setIcon(R.drawable.alert)\r\n\r\n            // press submit in dialog\r\n            builder.setPositiveButton(R.string.submit) { _, _ ->\r\n                val firebase = FirebaseDatabase.getInstance().reference\r\n\r\n                // get submit date and time\r\n                val dateFormat = \"yyyy/MM/dd HH:mm:ss\"\r\n                val datePathFormat = \"yyyy/MM/dd/HH:mm:ss\"  // for firebase child path\r\n                val calendar = Calendar.getInstance()\r\n                val format = SimpleDateFormat(dateFormat)\r\n                val formatPath = SimpleDateFormat(datePathFormat)\r\n                val time = format.format(calendar.time)\r\n                val timePath = formatPath.format(calendar.time)\r\n\r\n                val income = binding.editTextIncome.text.toString().toInt()\r\n                val job = binding.spinnerJob.selectedItem.toString()\r\n                val marital = binding.spinnerMarital.selectedItem.toString()\r\n                val pax = binding.editTextPax.text.toString().toInt()\r\n                val reason = binding.editTextReason.text.toString()\r\n                val pending = getString(R.string.pending)\r\n\r\n                // get user's data from shared preference\r\n                val sharedPref = activity?.getSharedPreferences(\"Login\", Context.MODE_PRIVATE)\r\n                if (sharedPref != null) {\r\n                    val ic = sharedPref.getString(\"ic\", null)\r\n                    val name = sharedPref.getString(\"name\", null)\r\n                    val email = sharedPref.getString(\"email\", null)\r\n                    val phone = sharedPref.getString(\"phoneNo\", null)\r\n                    val address = sharedPref.getString(\"address\", null)\r\n                    val postcode = sharedPref.getString(\"posCode\", null)\r\n                    val state = sharedPref.getString(\"state\", null)\r\n\r\n                    // save data to room database with user's personal data\r\n                    if (ic != null && name != null && email != null && phone != null &&\r\n                        address != null && postcode != null && state != null) {\r\n                        val request = Request(\r\n                            time, name, ic, phone, email, address, postcode, state,\r\n                            income, job, marital, pax, reason, pending\r\n                        )\r\n                        requestViewModel.insert(request)\r\n                    }\r\n\r\n                    // save data to firebase\r\n                    val requestFB = RequestFirebase(time, income, job, marital, pax, reason, pending)\r\n                    firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(timePath).setValue(requestFB)\r\n                }\r\n\r\n                Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),\r\n                    getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()\r\n\r\n                findNavController().navigateUp()\r\n            }\r\n\r\n            // press cancel in dialog\r\n            builder.setNeutralButton(R.string.cancel) { _, _ ->\r\n                Toast.makeText(this.requireContext(), R.string.action_cancelled, Toast.LENGTH_SHORT).show()\r\n            }\r\n\r\n            val alertDialog: AlertDialog = builder.create()\r\n            alertDialog.setCancelable(false)\r\n            alertDialog.show()\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/ui/request/RequestFragment.kt	(date 1673004461466)
+@@ -6,7 +6,6 @@
+ import android.icu.text.SimpleDateFormat
+ import android.os.Build
+ import android.os.Bundle
+-import android.util.Log
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+@@ -14,18 +13,12 @@
+ import androidx.annotation.RequiresApi
+ import androidx.core.view.isVisible
+ import androidx.fragment.app.Fragment
+-import androidx.fragment.app.viewModels
+ import androidx.navigation.fragment.findNavController
+ import com.google.android.material.snackbar.Snackbar
+-import com.google.firebase.database.DataSnapshot
+-import com.google.firebase.database.DatabaseError
+ import com.google.firebase.database.FirebaseDatabase
+-import com.google.firebase.database.ValueEventListener
+ import my.edu.tarc.hungerhub.R
+ import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
+ import my.edu.tarc.hungerhub.model.Request
+-import my.edu.tarc.hungerhub.model.RequestFirebase
+-import my.edu.tarc.hungerhub.model.RequestViewModel
+ import java.util.Calendar
+ 
+ class RequestFragment: Fragment() {
+@@ -33,8 +26,6 @@
+     private var _binding: FragmentRequestBinding? = null
+     private val binding get() = _binding!!
+ 
+-    private val requestViewModel: RequestViewModel by viewModels()
+-
+     override fun onCreateView(
+         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+     ): View {
+@@ -104,15 +95,11 @@
+             builder.setPositiveButton(R.string.submit) { _, _ ->
+                 val firebase = FirebaseDatabase.getInstance().reference
+ 
+-                // get submit date and time
+-                val dateFormat = "yyyy/MM/dd HH:mm:ss"
+-                val datePathFormat = "yyyy/MM/dd/HH:mm:ss"  // for firebase child path
++                val dateFormat = "yyyy MM dd   HH:mm:ss"
+                 val calendar = Calendar.getInstance()
+                 val format = SimpleDateFormat(dateFormat)
+-                val formatPath = SimpleDateFormat(datePathFormat)
++
+                 val time = format.format(calendar.time)
+-                val timePath = formatPath.format(calendar.time)
+-
+                 val income = binding.editTextIncome.text.toString().toInt()
+                 val job = binding.spinnerJob.selectedItem.toString()
+                 val marital = binding.spinnerMarital.selectedItem.toString()
+@@ -120,31 +107,12 @@
+                 val reason = binding.editTextReason.text.toString()
+                 val pending = getString(R.string.pending)
+ 
+-                // get user's data from shared preference
+-                val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+-                if (sharedPref != null) {
+-                    val ic = sharedPref.getString("ic", null)
+-                    val name = sharedPref.getString("name", null)
+-                    val email = sharedPref.getString("email", null)
+-                    val phone = sharedPref.getString("phoneNo", null)
+-                    val address = sharedPref.getString("address", null)
+-                    val postcode = sharedPref.getString("posCode", null)
+-                    val state = sharedPref.getString("state", null)
+-
+-                    // save data to room database with user's personal data
+-                    if (ic != null && name != null && email != null && phone != null &&
+-                        address != null && postcode != null && state != null) {
+-                        val request = Request(
+-                            time, name, ic, phone, email, address, postcode, state,
+-                            income, job, marital, pax, reason, pending
+-                        )
+-                        requestViewModel.insert(request)
+-                    }
+-
+-                    // save data to firebase
+-                    val requestFB = RequestFirebase(time, income, job, marital, pax, reason, pending)
+-                    firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(timePath).setValue(requestFB)
+-                }
++                // save data to firebase
++                val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
++                val ic = sharedPref?.getString("ic", null)
++
++                val requestFB = Request(time, income, job, marital, pax, reason, pending)
++                firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(time).setValue(requestFB)
+ 
+                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
+                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()
+Index: app/src/main/java/my/edu/tarc/hungerhub/model/RequestFirebase.kt
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestFirebase.kt b/app/src/main/java/my/edu/tarc/hungerhub/model/RequestFirebase.kt
+deleted file mode 100644
+--- a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestFirebase.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ /dev/null	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
+@@ -1,11 +0,0 @@
+-package my.edu.tarc.hungerhub.model
+-
+-data class RequestFirebase(
+-    var date: String,
+-    var income: Int,
+-    var jobStatus: String,
+-    var maritalStatus: String,
+-    var pax: Int,
+-    var reason: String,
+-    var approvalStatus: String
+-)
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.model\r\n\r\nimport android.app.Application\r\nimport androidx.lifecycle.AndroidViewModel\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.viewModelScope\r\nimport kotlinx.coroutines.launch\r\nimport my.edu.tarc.hungerhub.repository.RequestRepository\r\nimport my.edu.tarc.hungerhub.database.RequestDatabase\r\n\r\nclass RequestViewModel(application: Application): AndroidViewModel(application) {\r\n    private val _requestList = MutableLiveData<List<Request>>()\r\n    var requestList: LiveData<List<Request>> = _requestList\r\n\r\n    private val requestRepository: RequestRepository\r\n\r\n    init {\r\n        // initialize DAO\r\n        val requestDao = RequestDatabase.getDatabase(application).requestDao()\r\n        // associate DAO to Repository\r\n        requestRepository = RequestRepository(requestDao)\r\n        // get a copy of request list from the repository\r\n        requestList = requestRepository.allRequest\r\n    }\r\n\r\n    fun insert(request: Request) = viewModelScope.launch {\r\n        requestRepository.insert(request)\r\n    }\r\n\r\n    fun filterByDate(ic: String, date: String): List<Request> {\r\n        return requestRepository.filterByDate(ic, date)\r\n    }\r\n\r\n    fun filterByStatus(ic: String, status: String): List<Request> {\r\n        return requestRepository.filterByStatus(ic, status)\r\n    }\r\n\r\n    fun removeFilter(ic: String): List<Request> {\r\n        return requestRepository.removeFilter(ic)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt b/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/model/RequestViewModel.kt	(date 1672997252709)
+@@ -28,15 +28,19 @@
+         requestRepository.insert(request)
+     }
+ 
+-    fun filterByDate(ic: String, date: String): List<Request> {
+-        return requestRepository.filterByDate(ic, date)
++    fun filterByDate(date: String): List<Request> {
++        return requestRepository.filterByDate(date)
++    }
++
++    fun filterByStatus(status: String): List<Request> {
++        return requestRepository.filterByStatus(status)
+     }
+ 
+-    fun filterByStatus(ic: String, status: String): List<Request> {
+-        return requestRepository.filterByStatus(ic, status)
++    fun removeFilter(): List<Request> {
++        return requestRepository.removeFilter()
+     }
+ 
+-    fun removeFilter(ic: String): List<Request> {
+-        return requestRepository.removeFilter(ic)
++    fun deleteAllRecords() {
++        return requestRepository.deleteAllRecords()
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/dao/RequestDao.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.dao\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.room.Dao\r\nimport androidx.room.Insert\r\nimport androidx.room.Query\r\nimport my.edu.tarc.hungerhub.model.Request\r\n\r\n@Dao\r\ninterface RequestDao {\r\n    // select all requests from all users\r\n    @Query(\"SELECT * FROM request ORDER BY date DESC\")\r\n    fun getAllRequest(): LiveData<List<Request>>\r\n\r\n    // select all requests within specified date/month/year for specific user\r\n    @Query(\"SELECT * FROM request WHERE ic = :ic AND date LIKE :date || '%' ORDER BY date DESC\")\r\n    fun filterByDate(ic: String, date: String): List<Request>\r\n\r\n    // select all requests by status for specific users\r\n    @Query(\"SELECT * FROM request WHERE ic = :ic AND lower(approvalStatus) = :status ORDER BY date DESC\")\r\n    fun filterByStatus(ic: String, status: String): List<Request>\r\n\r\n    // select all requests for a specific user\r\n    @Query(\"SELECT * FROM request WHERE ic = :ic ORDER BY date DESC\")\r\n    fun removeFilter(ic: String): List<Request>\r\n\r\n    @Insert\r\n    suspend fun insert(request: Request)\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/dao/RequestDao.kt b/app/src/main/java/my/edu/tarc/hungerhub/dao/RequestDao.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/dao/RequestDao.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/dao/RequestDao.kt	(date 1672997210664)
+@@ -13,16 +13,19 @@
+     fun getAllRequest(): LiveData<List<Request>>
+ 
+     // select all requests within specified date/month/year for specific user
+-    @Query("SELECT * FROM request WHERE ic = :ic AND date LIKE :date || '%' ORDER BY date DESC")
+-    fun filterByDate(ic: String, date: String): List<Request>
++    @Query("SELECT * FROM request WHERE date LIKE :date || '%' ORDER BY date DESC")
++    fun filterByDate(date: String): List<Request>
+ 
+     // select all requests by status for specific users
+-    @Query("SELECT * FROM request WHERE ic = :ic AND lower(approvalStatus) = :status ORDER BY date DESC")
+-    fun filterByStatus(ic: String, status: String): List<Request>
++    @Query("SELECT * FROM request WHERE lower(approvalStatus) = :status ORDER BY date DESC")
++    fun filterByStatus(status: String): List<Request>
+ 
+     // select all requests for a specific user
+-    @Query("SELECT * FROM request WHERE ic = :ic ORDER BY date DESC")
+-    fun removeFilter(ic: String): List<Request>
++    @Query("SELECT * FROM request ORDER BY date DESC")
++    fun removeFilter(): List<Request>
++
++    @Query("DELETE FROM request")
++    fun deleteAllRecords()
+ 
+     @Insert
+     suspend fun insert(request: Request)
+Index: app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.repository\r\n\r\nimport androidx.annotation.WorkerThread\r\nimport androidx.lifecycle.LiveData\r\nimport my.edu.tarc.hungerhub.dao.RequestDao\r\nimport my.edu.tarc.hungerhub.model.Request\r\n\r\nclass RequestRepository(private val requestDao: RequestDao) {\r\n    // create a cache copy of data in the DAO\r\n    val allRequest: LiveData<List<Request>> = requestDao.getAllRequest()\r\n\r\n    @WorkerThread // launch suspend function, only in coroutine\r\n    suspend fun insert(request: Request) {\r\n        requestDao.insert(request)\r\n    }\r\n\r\n    fun filterByDate(ic: String, date: String): List<Request> {\r\n        return requestDao.filterByDate(ic, date)\r\n    }\r\n\r\n    fun filterByStatus(ic: String, status: String): List<Request> {\r\n        return requestDao.filterByStatus(ic, status)\r\n    }\r\n\r\n    fun removeFilter(ic: String): List<Request> {\r\n        return requestDao.removeFilter(ic)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt b/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/repository/RequestRepository.kt	(date 1672997252714)
+@@ -14,15 +14,19 @@
+         requestDao.insert(request)
+     }
+ 
+-    fun filterByDate(ic: String, date: String): List<Request> {
+-        return requestDao.filterByDate(ic, date)
++    fun filterByDate(date: String): List<Request> {
++        return requestDao.filterByDate(date)
++    }
++
++    fun filterByStatus(status: String): List<Request> {
++        return requestDao.filterByStatus(status)
+     }
+ 
+-    fun filterByStatus(ic: String, status: String): List<Request> {
+-        return requestDao.filterByStatus(ic, status)
++    fun removeFilter(): List<Request> {
++        return requestDao.removeFilter()
+     }
+ 
+-    fun removeFilter(ic: String): List<Request> {
+-        return requestDao.removeFilter(ic)
++    fun deleteAllRecords() {
++        return requestDao.deleteAllRecords()
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package my.edu.tarc.hungerhub.database\r\n\r\nimport android.content.Context\r\nimport androidx.room.Database\r\nimport androidx.room.Room\r\nimport androidx.room.RoomDatabase\r\nimport my.edu.tarc.hungerhub.dao.RequestDao\r\nimport my.edu.tarc.hungerhub.model.Request\r\n\r\n@Database(entities = [Request::class], version = 2, exportSchema = false)\r\nabstract class RequestDatabase: RoomDatabase() {\r\n    abstract fun requestDao(): RequestDao\r\n\r\n    companion object {\r\n        @Volatile // data can be destroyed by uninstalling app\r\n        private var INSTANCE: RequestDatabase? = null\r\n\r\n        fun getDatabase(context: Context): RequestDatabase {\r\n            val tempInstance = INSTANCE\r\n\r\n            if (tempInstance != null) { // database exist\r\n                return tempInstance\r\n            }\r\n\r\n            // Create an instance of the database\r\n            synchronized(this) {\r\n                val instance = Room.databaseBuilder(\r\n                    context.applicationContext,\r\n                    RequestDatabase::class.java,\r\n                    \"request_db\"\r\n                ).allowMainThreadQueries().build()\r\n\r\n                INSTANCE = instance\r\n                return instance\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt
+--- a/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt	(revision de01e6ce4948c74ac2e129280dd6611d107b3923)
++++ b/app/src/main/java/my/edu/tarc/hungerhub/database/RequestDatabase.kt	(date 1673003600386)
+@@ -27,7 +27,7 @@
+                 val instance = Room.databaseBuilder(
+                     context.applicationContext,
+                     RequestDatabase::class.java,
+-                    "request_db"
++                    "requests"
+                 ).allowMainThreadQueries().build()
+ 
+                 INSTANCE = instance

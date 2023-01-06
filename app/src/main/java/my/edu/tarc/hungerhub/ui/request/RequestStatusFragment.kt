@@ -6,15 +6,21 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.adapter.RequestAdapter
 import my.edu.tarc.hungerhub.databinding.FragmentRequestStatusBinding
+import my.edu.tarc.hungerhub.model.Request
 import my.edu.tarc.hungerhub.model.RequestViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -38,16 +44,12 @@ class RequestStatusFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
-        val loginIc = sharedPref?.getString("ic", null)
+        // update room database with firebase realtime data
+        readRequestsFromFirebase()
 
         // check for changes of live data
         requestViewModel.requestList.observe(viewLifecycleOwner) {
-            // query to select records only for login user
-            val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
-            if (unfilteredList != null) {
-                requestAdapter.setForm(unfilteredList)
-            }
+            requestAdapter.setForm(it)
             checkRecordNum()
         }
 
@@ -61,6 +63,9 @@ class RequestStatusFragment: Fragment() {
         }
 
         binding.floatingActionButtonFilter.setOnClickListener {
+            val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+            val loginIc = sharedPref?.getString("ic", null)
+
             val builder = AlertDialog.Builder(this.requireContext())
             builder.setTitle(R.string.filter_by)
             builder.setIcon(R.drawable.ic_baseline_filter_alt_24)
@@ -76,16 +81,16 @@ class RequestStatusFragment: Fragment() {
 
                         var dateFormat = ""
                         when (which) {
-                            0 -> dateFormat = "yyyy/MM/dd"
-                            1 -> dateFormat = "yyyy/MM"
-                            2 -> dateFormat = "yyyy"
+                            0 -> dateFormat = "yyyy MM dd "
+                            1 -> dateFormat = "yyyy MM "
+                            2 -> dateFormat = "yyyy "
                         }
 
                         val standardFormat = SimpleDateFormat(dateFormat)
                         val selectedDate = standardFormat.format(calendar.time)
 
                         if (loginIc != null) {
-                            val queryList = requestViewModel.filterByDate(loginIc, selectedDate)
+                            val queryList = requestViewModel.filterByDate(selectedDate)
                             requestAdapter.setForm(queryList)
                         }
 
@@ -111,7 +116,7 @@ class RequestStatusFragment: Fragment() {
                     }
 
                     if (loginIc != null) {
-                        val queryList = requestViewModel.filterByStatus(loginIc, status)
+                        val queryList = requestViewModel.filterByStatus(status)
                         requestAdapter.setForm(queryList)
                     }
 
@@ -121,10 +126,8 @@ class RequestStatusFragment: Fragment() {
             })
 
             builder.setPositiveButton(R.string.remove_filter) { _, _ ->
-                val unfilteredList = loginIc?.let { it1 -> requestViewModel.removeFilter(it1) }
-                if (unfilteredList != null) {
-                    requestAdapter.setForm(unfilteredList)
-                }
+                val unfilteredList = requestViewModel.removeFilter()
+                requestAdapter.setForm(unfilteredList)
                 checkRecordNum()
 
                 Toast.makeText(this.requireContext(), R.string.remove_filter_msg, Toast.LENGTH_SHORT).show()
@@ -152,5 +155,30 @@ class RequestStatusFragment: Fragment() {
         } else {
             binding.textViewEmpty.text = ""
         }
+    }
+
+    private fun readRequestsFromFirebase() {
+        val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val loginIc = sharedPref?.getString("ic", null)
+
+        loginIc?.let {
+            FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_user)).child(it).child(getString(R.string.firebase_req))
+        }?.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                requestViewModel.deleteAllRecords()
+                if (dataSnapshot.exists()) {
+                    for (requestSnapshot in dataSnapshot.children) {
+                        val request = requestSnapshot.getValue(Request::class.java)
+                        if (request != null) {
+                            requestViewModel.insert(request)
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("firebase", "on cancelled")
+            }
+        })
     }
 }

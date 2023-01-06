@@ -14,15 +14,19 @@ class RequestRepository(private val requestDao: RequestDao) {
         requestDao.insert(request)
     }
 
-    fun filterByDate(ic: String, date: String): List<Request> {
-        return requestDao.filterByDate(ic, date)
+    fun filterByDate(date: String): List<Request> {
+        return requestDao.filterByDate(date)
     }
 
-    fun filterByStatus(ic: String, status: String): List<Request> {
-        return requestDao.filterByStatus(ic, status)
+    fun filterByStatus(status: String): List<Request> {
+        return requestDao.filterByStatus(status)
     }
 
-    fun removeFilter(ic: String): List<Request> {
-        return requestDao.removeFilter(ic)
+    fun removeFilter(): List<Request> {
+        return requestDao.removeFilter()
+    }
+
+    fun deleteAllRecords() {
+        return requestDao.deleteAllRecords()
     }
 }

@@ -6,7 +6,6 @@ import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,26 +13,18 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentRequestBinding
 import my.edu.tarc.hungerhub.model.Request
-import my.edu.tarc.hungerhub.model.RequestFirebase
-import my.edu.tarc.hungerhub.model.RequestViewModel
 import java.util.Calendar
 
 class RequestFragment: Fragment() {
 
     private var _binding: FragmentRequestBinding? = null
     private val binding get() = _binding!!
-
-    private val requestViewModel: RequestViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -104,15 +95,11 @@ class RequestFragment: Fragment() {
             builder.setPositiveButton(R.string.submit) { _, _ ->
                 val firebase = FirebaseDatabase.getInstance().reference
 
-                // get submit date and time
-                val dateFormat = "yyyy/MM/dd HH:mm:ss"
-                val datePathFormat = "yyyy/MM/dd/HH:mm:ss"  // for firebase child path
+                val dateFormat = "yyyy MM dd   HH:mm:ss"
                 val calendar = Calendar.getInstance()
                 val format = SimpleDateFormat(dateFormat)
-                val formatPath = SimpleDateFormat(datePathFormat)
-                val time = format.format(calendar.time)
-                val timePath = formatPath.format(calendar.time)
 
+                val time = format.format(calendar.time)
                 val income = binding.editTextIncome.text.toString().toInt()
                 val job = binding.spinnerJob.selectedItem.toString()
                 val marital = binding.spinnerMarital.selectedItem.toString()
@@ -120,31 +107,12 @@ class RequestFragment: Fragment() {
                 val reason = binding.editTextReason.text.toString()
                 val pending = getString(R.string.pending)
 
-                // get user's data from shared preference
+                // save data to firebase
                 val sharedPref = activity?.getSharedPreferences("Login", Context.MODE_PRIVATE)
-                if (sharedPref != null) {
-                    val ic = sharedPref.getString("ic", null)
-                    val name = sharedPref.getString("name", null)
-                    val email = sharedPref.getString("email", null)
-                    val phone = sharedPref.getString("phoneNo", null)
-                    val address = sharedPref.getString("address", null)
-                    val postcode = sharedPref.getString("posCode", null)
-                    val state = sharedPref.getString("state", null)
+                val ic = sharedPref?.getString("ic", null)
 
-                    // save data to room database with user's personal data
-                    if (ic != null && name != null && email != null && phone != null &&
-                        address != null && postcode != null && state != null) {
-                        val request = Request(
-                            time, name, ic, phone, email, address, postcode, state,
-                            income, job, marital, pax, reason, pending
-                        )
-                        requestViewModel.insert(request)
-                    }
-
-                    // save data to firebase
-                    val requestFB = RequestFirebase(time, income, job, marital, pax, reason, pending)
-                    firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(timePath).setValue(requestFB)
-                }
+                val requestFB = Request(time, income, job, marital, pax, reason, pending)
+                firebase.child(getString(R.string.firebase_user)).child(ic.toString()).child(getString(R.string.firebase_req)).child(time).setValue(requestFB)
 
                 Snackbar.make(this.requireActivity().findViewById(R.id.constraintLayout_request),
                     getString(R.string.form_submitted), Snackbar.LENGTH_SHORT).show()

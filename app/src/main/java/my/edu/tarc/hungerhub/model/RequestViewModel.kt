@@ -28,15 +28,19 @@ class RequestViewModel(application: Application): AndroidViewModel(application) 
         requestRepository.insert(request)
     }
 
-    fun filterByDate(ic: String, date: String): List<Request> {
-        return requestRepository.filterByDate(ic, date)
+    fun filterByDate(date: String): List<Request> {
+        return requestRepository.filterByDate(date)
     }
 
-    fun filterByStatus(ic: String, status: String): List<Request> {
-        return requestRepository.filterByStatus(ic, status)
+    fun filterByStatus(status: String): List<Request> {
+        return requestRepository.filterByStatus(status)
     }
 
-    fun removeFilter(ic: String): List<Request> {
-        return requestRepository.removeFilter(ic)
+    fun removeFilter(): List<Request> {
+        return requestRepository.removeFilter()
+    }
+
+    fun deleteAllRecords() {
+        return requestRepository.deleteAllRecords()
     }
 }
