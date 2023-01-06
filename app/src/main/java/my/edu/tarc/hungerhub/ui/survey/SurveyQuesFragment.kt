@@ -10,17 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
-import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyQuesBinding
 
-class fragment_survey_ques : Fragment() {
+class SurveyQuesFragment : Fragment() {
 
     private var _binding: FragmentSurveyQuesBinding? = null
     private val binding get() = _binding!!

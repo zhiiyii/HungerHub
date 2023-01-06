@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="@string/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:fontFamily="@font/abeezee_regular"
         android:textSize="20sp" />
@@ -36,7 +36,7 @@
         android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle"
+        android:text="@string/email"
         android:fontFamily="@font/abeezee_regular"
         android:textSize="14sp"/>
 
@@ -44,7 +44,7 @@
         android:id="@+id/textViewPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle2"
+        android:text="@string/phone"
         android:fontFamily="@font/abeezee_regular"
         android:textSize="14sp" />
 </LinearLayout>

@@ -2,22 +2,16 @@
     <string name="app_name">HungerHub</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Username</string>
-    <string name="nav_header_subtitle">user@gmail.com</string>
-    <string name="nav_header_subtitle2">012–3456789</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
+    <!-- Fragment Name -->
     <string name="menu_home">Home</string>
     <string name="menu_survey">Survey</string>
     <string name="menu_donation">Donation</string>
     <string name="menu_request">Request Food</string>
-
-    <!--  Login / Register  -->
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="phone">Phone Number</string>
-    <string name="address">Address</string>
+    <string name="menu_main">Main Menu</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_register">Register</string>
 
     <!--  Request Fragment  -->
     <string name="request_form">Request Food Form</string>
@@ -85,7 +79,6 @@
     <string name="show_record">Showing records in</string>
 
     <!--  Survey Fragment  -->
-    <string name="Survey_text">Survey</string> <!--  got menu_survey up there  -->
     <string name="Height">Height (cm)</string>
     <string name="Weight">Weight (kg)</string>
     <string name="BMI_calc">BMI calculator</string>
@@ -104,7 +97,7 @@
     <string name="Fruits_vege">Fruits and Vegetables</string>
     <string name="Meat">Fish, Meat, Egg, Milk products</string>
     <string name="fats">Fats, Oil, Sugar, Salt</string>
-    <string name="foodPyramidInfo"></string>
+    <string name="foodPyramidInfo">Food Pyramid Information</string>
     <string name="general_survey">Survey</string>
     <string name="How_many_people">How many members are there in your household?</string>
     <string name="How_many_working">How many members are working currently in your household?</string>
@@ -120,12 +113,15 @@
     <string name="four_above">4 or above</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
-    <string name="rateHygiene">Rate 1-5 of how satisfied are you with the hygiene of your living environment</string>
+    <string name="rateHygiene">Rate 1–5 of how satisfied are you with the hygiene of your living environment</string>
     <string name="reasonable_price">Do you think the food price in your area is reasonable/affordable?</string>
     <string name="required_select">You are required to select a value before proceed</string>
 
-    <!-- zhi hong part -->
-    <string name="started_title">Hello You!</string>
+    <!-- Home/Login/Register Fragment -->
+    <string name="login_title_welcome">Welcome to our application!</string>
+    <string name="login_notyet">If you haven\'t register —></string>
+    <string name="signin_title">Sign In</string>
+    <string name="registered_account"><![CDATA[If you have an account —>]]></string>
     <string name="LogIn">Log In</string>
     <string name="emailRequired">Email Required!</string>
     <string name="passwordRequired">Password Required!</string>
@@ -138,8 +134,6 @@
         \n<b>Login</b> If you already have an account.
         \n<b>Register</b> To get started with the application.
     </string>
-    <string name="btn_register">Register</string>
-    <string name="btn_login">Login</string>
     <string name="login_title">Login to app</string>
     <string name="login_sub_title">
         <font color="00C988"><b>Login</b></font>
@@ -168,6 +162,7 @@
     <string name="illustration_image">illustration_img</string>
     <string name="started_text">Welcome </string>
     <string name="register_username">Your username</string>
+    <string name="address">Address</string>
     <string name="register_state">Your State</string>
     <string name="register_IC">Your IC</string>
     <string name="register_posCode">Pos Code</string>
@@ -175,8 +170,11 @@
     <string name="register_recipient">Recipient</string>
     <string name="register_donor">Donor</string>
 
-    <!--  Donation Fragment  -->
+    <!--  Donation & Main Menu Fragment  -->
     <string name="food_donation">Food Donation</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone Number</string>
     <string name="donation_amount">Enter donation amount: </string>
     <string name="donation_details">Donation Details</string>
     <string name="donation_payment">Donation Payment</string>
@@ -219,7 +217,6 @@
         <item>11</item>
         <item>12</item>
     </string-array>
-
     <string-array name="year_group">
         <item>23</item>
         <item>24</item>
@@ -232,11 +229,4 @@
         <item>31</item>
         <item>32</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login_title_welcome">Welcome to our application!</string>
-    <string name="login_notyet">If you not yet register --></string>
-    <string name="login_ic">Your IC</string>
-    <string name="signin_title">Sign In</string>
-    <string name="registered_account"><![CDATA[If you have an account -->]]></string>
 </resources>

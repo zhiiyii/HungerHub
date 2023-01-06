@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
 import my.edu.tarc.hungerhub.databinding.FragmentSurveyBinding
-import my.edu.tarc.hungerhub.model.bmiData
+import my.edu.tarc.hungerhub.model.BmiData
 
 //import my.edu.tarc.hungerhub.ui.request.UserListCallback
 
@@ -121,7 +121,7 @@ class SurveyFragment : Fragment() {
 
             }
         })
-        val bmiDatas = bmiData(height,weight, bmi, status)
+        val bmiDatas = BmiData(height,weight, bmi, status)
         database.child("User").child(loginIc.toString()).child("survey").child("bmi").setValue(bmiDatas)
     }
 

@@ -15,13 +15,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
-import my.edu.tarc.hungerhub.databinding.FragmentDonation2Binding
+import my.edu.tarc.hungerhub.databinding.FragmentDonationPaymentBinding
 import my.edu.tarc.hungerhub.model.Donor
 
-//import my.edu.tarc.hungerhub.ui.request.MyCallback
-
-class DonationFragment2: Fragment() {
-    private var _binding: FragmentDonation2Binding? = null
+class DonationPaymentFragment: Fragment() {
+    private var _binding: FragmentDonationPaymentBinding? = null
     private val binding get() = _binding!!
 
     private val totalCharacter = 19 // size of pattern 0000-0000-0000-0000
@@ -44,7 +42,7 @@ class DonationFragment2: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDonation2Binding.inflate(inflater, container, false)
+        _binding = FragmentDonationPaymentBinding.inflate(inflater, container, false)
 
         return binding.root
     }

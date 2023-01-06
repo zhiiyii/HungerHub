@@ -10,17 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import my.edu.tarc.hungerhub.R
-import my.edu.tarc.hungerhub.databinding.FragmentSurveyRate1Binding
+import my.edu.tarc.hungerhub.databinding.FragmentSurveyRateBinding
 
-class SurveyFragmentRate1 : Fragment() {
-    private var _binding: FragmentSurveyRate1Binding? = null
+class SurveyRateFragment : Fragment() {
+    private var _binding: FragmentSurveyRateBinding? = null
     private val binding get() = _binding!!
 
     var database = FirebaseDatabase.getInstance().reference
@@ -30,7 +28,7 @@ class SurveyFragmentRate1 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSurveyRate1Binding.inflate(inflater, container, false)
+        _binding = FragmentSurveyRateBinding.inflate(inflater, container, false)
         return binding.root
     }
 

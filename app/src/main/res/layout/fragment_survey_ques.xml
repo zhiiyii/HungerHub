@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.survey.fragment_survey_ques">
-
+    tools:context=".ui.survey.SurveyQuesFragment">
 
     <TextView
         android:id="@+id/textViewQues"
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/abeezee_italic"
-        android:text="@string/Survey_text"
+        android:text="@string/menu_survey"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,32 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home2">
+    app:startDestination="@+id/HomeFragment">
 
     <fragment
-        android:id="@+id/nav_home2"
+        android:id="@+id/HomeFragment"
         android:name="my.edu.tarc.hungerhub.ui.account.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/LoginFragment" />
         <action
             android:id="@+id/action_nav_home_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/RegisterFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_survey"
+        android:id="@+id/SurveyFragment"
         android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragment"
         android:label="@string/menu_survey" >
         <action
             android:id="@+id/action_nav_survey_to_fragment_survey_ques"
-            app:destination="@id/fragment_survey_ques" />
+            app:destination="@id/SurveyQuesFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_donation"
+        android:id="@+id/DonationFragment"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment"
         android:label="@string/food_donation">
         <argument
@@ -36,10 +36,10 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_nav_donation_to_donorDetailsFragment"
-            app:destination="@id/donorDetailsFragment" />
+            app:destination="@id/DonorDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_request"
+        android:id="@+id/RequestStatusFragment"
         android:name="my.edu.tarc.hungerhub.ui.request.RequestStatusFragment"
         android:label="@string/request_status"
         tools:layout="@layout/fragment_request_status" >
@@ -48,37 +48,30 @@
             app:destination="@id/RequestFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_donation2"
-        android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment2"
+        android:id="@+id/DonationPaymentFragment"
+        android:name="my.edu.tarc.hungerhub.ui.donation.DonationPaymentFragment"
         android:label="@string/donation_payment">
         <action
-            android:id="@+id/action_nav_donation2_to_donationFragment3"
-            app:destination="@id/donationFragment3" />
-        <action
             android:id="@+id/action_nav_donation2_to_nav_donation"
-            app:destination="@id/nav_donation" />
+            app:destination="@id/DonationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/donationFragment3"
-        android:name="my.edu.tarc.hungerhub.ui.donation.DonationFragment3"
-        android:label="DonationFragment3" />
-    <fragment
-        android:id="@+id/surveyFragmentRate1"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentRate1"
-        android:label="fragment_survey_rate1"
-        tools:layout="@layout/fragment_survey_rate1" >
+        android:id="@+id/SurveyRateFragment"
+        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyRateFragment"
+        android:label="@string/menu_survey"
+        tools:layout="@layout/fragment_survey_rate">
         <action
             android:id="@+id/action_surveyFragmentRate1_to_surveyFragmentLack"
-            app:destination="@id/surveyFragmentLack" />
+            app:destination="@id/SurveyLackFragment" />
     </fragment>
     <fragment
-        android:id="@+id/surveyFragmentLack"
-        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyFragmentLack"
-        android:label="fragment_survey_lack"
-        tools:layout="@layout/fragment_survey_lack" >
+        android:id="@+id/SurveyLackFragment"
+        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyLackFragment"
+        android:label="@string/menu_survey"
+        tools:layout="@layout/fragment_survey_lack">
         <action
             android:id="@+id/action_surveyFragmentLack_to_mainMenuFragment"
-            app:destination="@id/nav_home" />
+            app:destination="@id/MainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/RequestFragment"
@@ -87,67 +80,66 @@
         tools:layout="@layout/fragment_request">
         <action
             android:id="@+id/action_RequestFragment_to_nav_request"
-            app:destination="@id/nav_request" />
+            app:destination="@id/RequestStatusFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/LoginFragment"
         android:name="my.edu.tarc.hungerhub.ui.account.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="@string/menu_login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/RegisterFragment" />
         <action
             android:id="@+id/action_loginFragment_to_mainMenuFragment"
-            app:destination="@id/nav_home" />
+            app:destination="@id/MainMenuFragment" />
     </fragment>
     <fragment
-        android:id="@+id/registerFragment"
+        android:id="@+id/RegisterFragment"
         android:name="my.edu.tarc.hungerhub.ui.account.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:label="@string/menu_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/LoginFragment" />
         <action
             android:id="@+id/action_registerFragment_self"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/RegisterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_survey_ques"
-        android:name="my.edu.tarc.hungerhub.ui.survey.fragment_survey_ques"
-        android:label="fragment_survey_ques"
-        tools:layout="@layout/fragment_survey_ques" >
+        android:id="@+id/SurveyQuesFragment"
+        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyQuesFragment"
+        android:label="@string/menu_survey">
         <action
             android:id="@+id/action_fragment_survey_ques_to_fragment_survey_ques1"
-            app:destination="@id/fragment_survey_ques1" />
+            app:destination="@id/SurveyQues1Fragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_survey_ques1"
-        android:name="my.edu.tarc.hungerhub.ui.survey.fragment_survey_ques1"
-        android:label="fragment_survey_ques1" >
+        android:id="@+id/SurveyQues1Fragment"
+        android:name="my.edu.tarc.hungerhub.ui.survey.SurveyQues1Fragment"
+        android:label="@string/menu_survey">
         <action
             android:id="@+id/action_fragment_survey_ques1_to_surveyFragmentRate1"
-            app:destination="@id/surveyFragmentRate1" />
+            app:destination="@id/SurveyRateFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/MainMenuFragment"
         android:name="my.edu.tarc.hungerhub.MainMenuFragment"
-        android:label="Main Menu" >
+        android:label="@string/menu_main">
         <action
             android:id="@+id/action_mainMenuFragment_to_nav_donation"
-            app:destination="@id/nav_donation" />
+            app:destination="@id/DonationFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_nav_request"
-            app:destination="@id/nav_request" />
+            app:destination="@id/RequestStatusFragment" />
         <action
             android:id="@+id/action_mainMenuFragment_to_nav_survey"
-            app:destination="@id/nav_survey" />
+            app:destination="@id/SurveyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/donorDetailsFragment"
+        android:id="@+id/DonorDetailsFragment"
         android:name="my.edu.tarc.hungerhub.ui.donation.DonorDetailsFragment"
-        android:label="DonorDetailsFragment" >
+        android:label="@string/menu_donation">
         <action
             android:id="@+id/action_donorDetailsFragment_to_nav_donation2"
-            app:destination="@id/nav_donation2" />
+            app:destination="@id/DonationPaymentFragment" />
     </fragment>
 </navigation>
